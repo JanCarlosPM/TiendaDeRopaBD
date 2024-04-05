@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(wfPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.venaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +55,7 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.venaToolStripMenuItem});
+            this.ventaToolStripMenuItem});
             this.nuevoToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold);
             this.nuevoToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.facturacion_icon;
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
@@ -63,13 +63,13 @@
             this.nuevoToolStripMenuItem.Text = "Facturación";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
-            // venaToolStripMenuItem
+            // ventaToolStripMenuItem
             // 
-            this.venaToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.venta_icon;
-            this.venaToolStripMenuItem.Name = "venaToolStripMenuItem";
-            this.venaToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
-            this.venaToolStripMenuItem.Text = "Venta";
-            this.venaToolStripMenuItem.Click += new System.EventHandler(this.venaToolStripMenuItem_Click);
+            this.ventaToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.venta_icon;
+            this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
+            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.ventaToolStripMenuItem.Text = "Venta";
+            this.ventaToolStripMenuItem.Click += new System.EventHandler(this.venaToolStripMenuItem_Click);
             // 
             // inventarioToolStripMenuItem
             // 
@@ -93,8 +93,9 @@
             // 
             this.compraToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.compra_icon;
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
-            this.compraToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.compraToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.compraToolStripMenuItem.Text = "Compra";
+            this.compraToolStripMenuItem.Click += new System.EventHandler(this.compraToolStripMenuItem_Click_1);
             // 
             // panel1
             // 
@@ -104,7 +105,7 @@
             this.panel1.Size = new System.Drawing.Size(1065, 600);
             this.panel1.TabIndex = 2;
             // 
-            // Form1
+            // wfPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,7 +117,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "wfPrincipal";
             this.Text = "Tienda De Ropa Alcides S.A";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -131,7 +132,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem inventarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem venaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ventaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compraToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
