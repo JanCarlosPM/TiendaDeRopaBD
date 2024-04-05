@@ -1,4 +1,5 @@
 CREATE PROCEDURE USP_LISTADO_PROV
+@cTexto varchar(80) =''
 AS
 BEGIN
    SELECT nombre,
@@ -9,9 +10,6 @@ BEGIN
    WHERE estado = 1
 END;
 
-   execute USP_LISTADO_PROV
-
-  
 
 CREATE PROCEDURE USP_GUARDAR_PROV
 @opcion int=1, --1=Nuevo Registro / 2=Actualizar Registro 
