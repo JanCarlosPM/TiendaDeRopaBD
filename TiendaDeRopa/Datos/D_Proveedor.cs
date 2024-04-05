@@ -73,5 +73,32 @@ namespace TiendaDeRopa.Datos
             }
             return Rpta;
         }
+
+        public string Activo_prov(int Id_prov,
+                               int Estado_activo)
+        {
+            string Rpta = "";
+            SqlConnection SqlCon = new SqlConnection();
+            try
+            {
+
+                SqlCon = Conexion.getInstancia().CrearConexion();
+                SqlCommand Comando = new SqlCommand("ACTIVO_PROV", SqlCon);
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.Parameters.Add("@id", SqlDbType.Int).Value = Id_prov;
+                Comando.Parameters.Add("@estado", SqlDbType.Int).Value = Estado_activo;
+                SqlCon.Open();
+                Rpta = Comando.ExecuteNonQuery() >= 1 ? "OK" : "No se pudo cambiar el estado activo del producto";
+            }
+            catch (Exception ex)
+            {
+                Rpta = ex.Message;
+            }
+            finally
+            {
+                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
+            }
+            return Rpta;
+        }
     }
 }
