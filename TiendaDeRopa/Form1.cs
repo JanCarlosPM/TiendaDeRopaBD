@@ -31,5 +31,10 @@ namespace TiendaDeRopa
         {
 
         }
+
+        private void venaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
