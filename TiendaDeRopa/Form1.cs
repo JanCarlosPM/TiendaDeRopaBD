@@ -21,5 +21,15 @@ namespace TiendaDeRopa
         {
 
         }
+
+        private void compraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eliminarCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
