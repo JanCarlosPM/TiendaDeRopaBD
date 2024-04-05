@@ -90,6 +90,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\facturacion_icon.png" />
+    <Content Include="img\inventario_icon.png" />
+    <Content Include="img\proveedor_icon.png" />
+    <Content Include="img\tienda_icon.ico" />
+    <Content Include="img\venta_icon.png" />
+    <Content Include="img\compra_icon.png" />
     <Content Include="img\menu_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

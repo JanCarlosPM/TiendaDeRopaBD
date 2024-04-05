@@ -36,5 +36,10 @@ namespace TiendaDeRopa
         {
 
         }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

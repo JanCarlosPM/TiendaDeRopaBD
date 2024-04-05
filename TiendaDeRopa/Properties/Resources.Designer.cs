@@ -63,6 +63,36 @@ namespace TiendaDeRopa.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap compra_icon {
+            get {
+                object obj = ResourceManager.GetObject("compra_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap facturacion_icon {
+            get {
+                object obj = ResourceManager.GetObject("facturacion_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap inventario_icon {
+            get {
+                object obj = ResourceManager.GetObject("inventario_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap menu_icon {
             get {
                 object obj = ResourceManager.GetObject("menu_icon", resourceCulture);
@@ -76,6 +106,26 @@ namespace TiendaDeRopa.Properties {
         internal static System.Drawing.Bitmap menu_icon1 {
             get {
                 object obj = ResourceManager.GetObject("menu_icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap proveedor_icon {
+            get {
+                object obj = ResourceManager.GetObject("proveedor_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap venta_icon {
+            get {
+                object obj = ResourceManager.GetObject("venta_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
