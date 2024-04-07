@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TiendaDeRopa.Datos
 {
-    public class D_Productos
+    public class D_Proveedor
     {
 
         public DataTable Listado_prov(string cTexto)
