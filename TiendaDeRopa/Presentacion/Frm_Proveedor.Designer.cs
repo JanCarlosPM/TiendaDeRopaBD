@@ -30,9 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Proveedor));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnNuevo_pr = new System.Windows.Forms.Button();
+            this.btnActualizar_pr = new System.Windows.Forms.Button();
+            this.btnEliminar_pr = new System.Windows.Forms.Button();
+            this.btnSalir_pr = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombre_pr = new System.Windows.Forms.TextBox();
             this.txtEmail_pr = new System.Windows.Forms.TextBox();
@@ -41,20 +45,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtDireccion_pr = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgvListado_pr = new System.Windows.Forms.DataGridView();
+            this.dgvListado_prov = new System.Windows.Forms.DataGridView();
             this.txtBuscar_pr = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnBuscar_pr = new System.Windows.Forms.Button();
             this.btnGuardar_pr = new System.Windows.Forms.Button();
             this.btnCancelar_pr = new System.Windows.Forms.Button();
-            this.btnNuevo_pr = new System.Windows.Forms.Button();
-            this.btnActualizar_pr = new System.Windows.Forms.Button();
-            this.btnEliminar_pr = new System.Windows.Forms.Button();
-            this.btnSalir_pr = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListado_pr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListado_prov)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -65,10 +65,47 @@
             this.flowLayoutPanel1.Controls.Add(this.btnEliminar_pr);
             this.flowLayoutPanel1.Controls.Add(this.btnSalir_pr);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(659, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(773, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(141, 450);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(141, 472);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // btnNuevo_pr
+            // 
+            this.btnNuevo_pr.Location = new System.Drawing.Point(3, 3);
+            this.btnNuevo_pr.Name = "btnNuevo_pr";
+            this.btnNuevo_pr.Size = new System.Drawing.Size(126, 64);
+            this.btnNuevo_pr.TabIndex = 15;
+            this.btnNuevo_pr.Text = "Nuevo";
+            this.btnNuevo_pr.UseVisualStyleBackColor = true;
+            this.btnNuevo_pr.Click += new System.EventHandler(this.btnNuevo_pr_Click);
+            // 
+            // btnActualizar_pr
+            // 
+            this.btnActualizar_pr.Location = new System.Drawing.Point(3, 73);
+            this.btnActualizar_pr.Name = "btnActualizar_pr";
+            this.btnActualizar_pr.Size = new System.Drawing.Size(126, 64);
+            this.btnActualizar_pr.TabIndex = 16;
+            this.btnActualizar_pr.Text = "Actualizar";
+            this.btnActualizar_pr.UseVisualStyleBackColor = true;
+            // 
+            // btnEliminar_pr
+            // 
+            this.btnEliminar_pr.Location = new System.Drawing.Point(3, 143);
+            this.btnEliminar_pr.Name = "btnEliminar_pr";
+            this.btnEliminar_pr.Size = new System.Drawing.Size(126, 64);
+            this.btnEliminar_pr.TabIndex = 17;
+            this.btnEliminar_pr.Text = "Eliminar";
+            this.btnEliminar_pr.UseVisualStyleBackColor = true;
+            // 
+            // btnSalir_pr
+            // 
+            this.btnSalir_pr.Location = new System.Drawing.Point(3, 213);
+            this.btnSalir_pr.Name = "btnSalir_pr";
+            this.btnSalir_pr.Size = new System.Drawing.Size(126, 64);
+            this.btnSalir_pr.TabIndex = 18;
+            this.btnSalir_pr.Text = "Salir";
+            this.btnSalir_pr.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -78,8 +115,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(659, 100);
+            this.panel1.Size = new System.Drawing.Size(773, 100);
             this.panel1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(118, 97);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -91,18 +138,6 @@
             this.label1.Size = new System.Drawing.Size(175, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "PROVEEDORES";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(118, 97);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label2
             // 
@@ -157,7 +192,6 @@
             this.label4.Size = new System.Drawing.Size(64, 16);
             this.label4.TabIndex = 6;
             this.label4.Text = "Telefono:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtDireccion_pr
             // 
@@ -177,19 +211,20 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Direccion:";
             // 
-            // dgvListado_pr
+            // dgvListado_prov
             // 
-            this.dgvListado_pr.AllowUserToAddRows = false;
-            this.dgvListado_pr.AllowUserToDeleteRows = false;
-            this.dgvListado_pr.AllowUserToOrderColumns = true;
-            this.dgvListado_pr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListado_pr.Location = new System.Drawing.Point(3, 288);
-            this.dgvListado_pr.Name = "dgvListado_pr";
-            this.dgvListado_pr.ReadOnly = true;
-            this.dgvListado_pr.RowHeadersWidth = 51;
-            this.dgvListado_pr.RowTemplate.Height = 24;
-            this.dgvListado_pr.Size = new System.Drawing.Size(650, 150);
-            this.dgvListado_pr.TabIndex = 10;
+            this.dgvListado_prov.AllowUserToAddRows = false;
+            this.dgvListado_prov.AllowUserToDeleteRows = false;
+            this.dgvListado_prov.AllowUserToOrderColumns = true;
+            this.dgvListado_prov.ColumnHeadersHeight = 35;
+            this.dgvListado_prov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvListado_prov.Location = new System.Drawing.Point(15, 310);
+            this.dgvListado_prov.Name = "dgvListado_prov";
+            this.dgvListado_prov.ReadOnly = true;
+            this.dgvListado_prov.RowHeadersWidth = 51;
+            this.dgvListado_prov.RowTemplate.Height = 24;
+            this.dgvListado_prov.Size = new System.Drawing.Size(718, 150);
+            this.dgvListado_prov.TabIndex = 10;
             // 
             // txtBuscar_pr
             // 
@@ -198,7 +233,6 @@
             this.txtBuscar_pr.Name = "txtBuscar_pr";
             this.txtBuscar_pr.Size = new System.Drawing.Size(174, 22);
             this.txtBuscar_pr.TabIndex = 12;
-            this.txtBuscar_pr.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label6
             // 
@@ -220,7 +254,7 @@
             // 
             // btnGuardar_pr
             // 
-            this.btnGuardar_pr.Location = new System.Drawing.Point(361, 231);
+            this.btnGuardar_pr.Location = new System.Drawing.Point(525, 258);
             this.btnGuardar_pr.Name = "btnGuardar_pr";
             this.btnGuardar_pr.Size = new System.Drawing.Size(75, 31);
             this.btnGuardar_pr.TabIndex = 14;
@@ -231,65 +265,26 @@
             // 
             // btnCancelar_pr
             // 
-            this.btnCancelar_pr.Location = new System.Drawing.Point(460, 231);
+            this.btnCancelar_pr.Location = new System.Drawing.Point(616, 258);
             this.btnCancelar_pr.Name = "btnCancelar_pr";
-            this.btnCancelar_pr.Size = new System.Drawing.Size(75, 31);
+            this.btnCancelar_pr.Size = new System.Drawing.Size(88, 31);
             this.btnCancelar_pr.TabIndex = 15;
             this.btnCancelar_pr.Text = "Cancelar";
             this.btnCancelar_pr.UseVisualStyleBackColor = true;
             this.btnCancelar_pr.Visible = false;
-            // 
-            // btnNuevo_pr
-            // 
-            this.btnNuevo_pr.Location = new System.Drawing.Point(3, 3);
-            this.btnNuevo_pr.Name = "btnNuevo_pr";
-            this.btnNuevo_pr.Size = new System.Drawing.Size(126, 64);
-            this.btnNuevo_pr.TabIndex = 15;
-            this.btnNuevo_pr.Text = "Nuevo";
-            this.btnNuevo_pr.UseVisualStyleBackColor = true;
-            this.btnNuevo_pr.Visible = false;
-            // 
-            // btnActualizar_pr
-            // 
-            this.btnActualizar_pr.Location = new System.Drawing.Point(3, 73);
-            this.btnActualizar_pr.Name = "btnActualizar_pr";
-            this.btnActualizar_pr.Size = new System.Drawing.Size(126, 64);
-            this.btnActualizar_pr.TabIndex = 16;
-            this.btnActualizar_pr.Text = "Actualizar";
-            this.btnActualizar_pr.UseVisualStyleBackColor = true;
-            this.btnActualizar_pr.Visible = false;
-            // 
-            // btnEliminar_pr
-            // 
-            this.btnEliminar_pr.Location = new System.Drawing.Point(3, 143);
-            this.btnEliminar_pr.Name = "btnEliminar_pr";
-            this.btnEliminar_pr.Size = new System.Drawing.Size(126, 64);
-            this.btnEliminar_pr.TabIndex = 17;
-            this.btnEliminar_pr.Text = "Eliminar";
-            this.btnEliminar_pr.UseVisualStyleBackColor = true;
-            this.btnEliminar_pr.Visible = false;
-            // 
-            // btnSalir_pr
-            // 
-            this.btnSalir_pr.Location = new System.Drawing.Point(3, 213);
-            this.btnSalir_pr.Name = "btnSalir_pr";
-            this.btnSalir_pr.Size = new System.Drawing.Size(126, 64);
-            this.btnSalir_pr.TabIndex = 18;
-            this.btnSalir_pr.Text = "Salir";
-            this.btnSalir_pr.UseVisualStyleBackColor = true;
-            this.btnSalir_pr.Visible = false;
+            this.btnCancelar_pr.Click += new System.EventHandler(this.btnCancelar_pr_Click);
             // 
             // Frm_Proveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 472);
             this.Controls.Add(this.btnCancelar_pr);
             this.Controls.Add(this.btnGuardar_pr);
             this.Controls.Add(this.btnBuscar_pr);
             this.Controls.Add(this.txtBuscar_pr);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dgvListado_pr);
+            this.Controls.Add(this.dgvListado_prov);
             this.Controls.Add(this.txtDireccion_pr);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtTelefono_pr);
@@ -300,14 +295,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Frm_Proveedor";
             this.Text = "Frm_Proveedor";
-            this.Load += new System.EventHandler(this.Frm_Proveedor_Load);
+            this.Load += new System.EventHandler(this.Frm_Proveedor_Load_1);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListado_pr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListado_prov)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,7 +324,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDireccion_pr;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dgvListado_pr;
+        private System.Windows.Forms.DataGridView dgvListado_prov;
         private System.Windows.Forms.TextBox txtBuscar_pr;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnBuscar_pr;
