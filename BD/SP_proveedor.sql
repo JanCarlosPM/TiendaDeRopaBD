@@ -2,7 +2,8 @@ CREATE PROCEDURE USP_LISTADO_PROV
 @cTexto varchar(80) =''
 AS
 BEGIN
-   SELECT nombre,
+   SELECT id,
+          nombre,
           email,
           telefono,
 		  direccion
