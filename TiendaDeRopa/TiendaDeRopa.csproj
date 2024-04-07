@@ -46,6 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\Conexion.cs" />
+    <Compile Include="Datos\D_Proveedor.cs" />
+    <Compile Include="Entidades\E_Proveedor.cs" />
+    <Compile Include="Presentacion\Frm_Proveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Frm_Proveedor.Designer.cs">
+      <DependentUpon>Frm_Proveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="wfPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +69,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentacion\Frm_Proveedor.resx">
+      <DependentUpon>Frm_Proveedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="wfPrincipal.resx">
       <DependentUpon>wfPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,5 +110,6 @@
     <Content Include="img\compra_icon.png" />
     <Content Include="img\menu_icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
