@@ -91,6 +91,7 @@
             this.btnActualizar_pr.TabIndex = 16;
             this.btnActualizar_pr.Text = "Actualizar";
             this.btnActualizar_pr.UseVisualStyleBackColor = true;
+            this.btnActualizar_pr.Click += new System.EventHandler(this.btnActualizar_pr_Click);
             // 
             // btnEliminar_pr
             // 
@@ -101,6 +102,7 @@
             this.btnEliminar_pr.TabIndex = 17;
             this.btnEliminar_pr.Text = "Eliminar";
             this.btnEliminar_pr.UseVisualStyleBackColor = true;
+            this.btnEliminar_pr.Click += new System.EventHandler(this.btnEliminar_pr_Click);
             // 
             // btnSalir_pr
             // 
@@ -111,6 +113,7 @@
             this.btnSalir_pr.TabIndex = 18;
             this.btnSalir_pr.Text = "Salir";
             this.btnSalir_pr.UseVisualStyleBackColor = true;
+            this.btnSalir_pr.Click += new System.EventHandler(this.btnSalir_pr_Click);
             // 
             // panel1
             // 
@@ -242,6 +245,7 @@
             this.dgvListado_prov.RowTemplate.Height = 24;
             this.dgvListado_prov.Size = new System.Drawing.Size(538, 122);
             this.dgvListado_prov.TabIndex = 10;
+            this.dgvListado_prov.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_prov_CellClick);
             // 
             // txtBuscar_pr
             // 
@@ -271,6 +275,7 @@
             this.btnBuscar_pr.TabIndex = 13;
             this.btnBuscar_pr.Text = "Buscar";
             this.btnBuscar_pr.UseVisualStyleBackColor = true;
+            this.btnBuscar_pr.Click += new System.EventHandler(this.btnBuscar_pr_Click);
             // 
             // btnGuardar_pr
             // 
