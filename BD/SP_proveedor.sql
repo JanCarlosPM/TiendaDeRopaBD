@@ -2,17 +2,22 @@ CREATE PROCEDURE USP_LISTADO_PROV
 @cTexto varchar(80) =''
 AS
 BEGIN
-   SELECT nombre,
+   SELECT id,
+          nombre,
           email,
           telefono,
 		  direccion
    FROM Proveedor
    WHERE estado = 1
+   AND (nombre LIKE '%' + @cTexto + '%'
+        OR email LIKE '%' + @cTexto + '%'
+        OR telefono LIKE '%' + @cTexto + '%'
+        OR direccion LIKE '%' + @cTexto + '%') -- Filtrar por cualquier columna
+   ORDER BY id
 END;
 
-   execute USP_LISTADO_PROV
+  execute USP_LISTADO_PROV
 
-  
 
 CREATE PROCEDURE USP_GUARDAR_PROV
 @opcion int=1, --1=Nuevo Registro / 2=Actualizar Registro 
@@ -51,7 +56,7 @@ CREATE PROCEDURE ACTIVO_PROV
 @estado int
 
 AS
- UPDATE ACTIVO_PROV SET estado=@estado
+ UPDATE Proveedor SET estado=@estado
                  where id= @id;
 
 GO
