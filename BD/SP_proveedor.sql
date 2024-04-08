@@ -56,7 +56,7 @@ CREATE PROCEDURE ACTIVO_PROV
 @estado int
 
 AS
- UPDATE ACTIVO_PROV SET estado=@estado
+ UPDATE Proveedor SET estado=@estado
                  where id= @id;
 
 GO
