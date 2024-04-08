@@ -98,6 +98,7 @@
             this.btnEliminar_pr.TabIndex = 17;
             this.btnEliminar_pr.Text = "Eliminar";
             this.btnEliminar_pr.UseVisualStyleBackColor = true;
+            this.btnEliminar_pr.Click += new System.EventHandler(this.btnEliminar_pr_Click);
             // 
             // btnSalir_pr
             // 
@@ -107,6 +108,7 @@
             this.btnSalir_pr.TabIndex = 18;
             this.btnSalir_pr.Text = "Salir";
             this.btnSalir_pr.UseVisualStyleBackColor = true;
+            this.btnSalir_pr.Click += new System.EventHandler(this.btnSalir_pr_Click);
             // 
             // panel1
             // 

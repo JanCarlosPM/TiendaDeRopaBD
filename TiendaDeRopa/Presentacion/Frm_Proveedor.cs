@@ -181,5 +181,39 @@ namespace TiendaDeRopa.Presentacion
         {
             this.Listado_prov(txtBuscar_pr.Text); 
         }
+
+        private void btnEliminar_pr_Click(object sender, EventArgs e)
+        {
+            if (dgvListado_prov.Rows.Count <= 0 ||
+              string.IsNullOrEmpty(Convert.ToString(dgvListado_prov.CurrentRow.Cells["id"].Value)))
+            {
+                MessageBox.Show("No se tiene informacion para eliminar",
+                    "Aviso del sistema",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string Rpta = "";
+                D_Proveedor Datos = new D_Proveedor();
+                Rpta = Datos.Activo_prov(idProv, 0);
+                if (Rpta == "OK")
+                {
+                    this.Listado_prov("%");
+                    this.LimpiaTexto();
+                    idProv = 0;
+                    MessageBox.Show("El registro seleccionado ha sido eliminado",
+                        "Aviso del sistema",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+            }
+        }
+
+        private void btnSalir_pr_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
