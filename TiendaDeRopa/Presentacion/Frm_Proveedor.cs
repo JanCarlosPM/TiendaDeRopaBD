@@ -19,6 +19,12 @@ namespace TiendaDeRopa.Presentacion
             InitializeComponent();
         }
 
+        #region "MIS VARIABLES"
+        int nEstadoguarda = 0;
+        int idProv = 0;
+        #endregion
+
+        #region "MIS METODOS"
         private void LimpiaTexto()
         {
             txtNombre_pr.Text = "";
@@ -51,18 +57,20 @@ namespace TiendaDeRopa.Presentacion
 
         private void Formato_prov()
         {
-            
-            dgvListado_prov.Columns[0].Width = 210;
-            dgvListado_prov.Columns[0].HeaderText = "PROVEEDOR";
-            dgvListado_prov.Columns[1].Width = 110;
-            dgvListado_prov.Columns[1].HeaderText = "EMAIL";
-            dgvListado_prov.Columns[2].Width = 110;
-            dgvListado_prov.Columns[2].HeaderText = "TELEFONO";
-            dgvListado_prov.Columns[3].Width = 110;
-            dgvListado_prov.Columns[3].HeaderText = "DIRECCION";
+            dgvListado_prov.Columns[0].Width = 50;
+            dgvListado_prov.Columns[0].HeaderText = "ID";
+            dgvListado_prov.Columns[1].Width = 100;
+            dgvListado_prov.Columns[1].HeaderText = "PROVEEDOR";
+            dgvListado_prov.Columns[2].Width = 150;
+            dgvListado_prov.Columns[2].HeaderText = "EMAIL";
+            dgvListado_prov.Columns[3].Width = 75;
+            dgvListado_prov.Columns[3].HeaderText = "TELEFONO";
+            dgvListado_prov.Columns[4].Width = 250;
+            dgvListado_prov.Columns[4].HeaderText = "DIRECCION";
 
         }
 
+        
         private void Listado_prov(string cTexto)
         {
             D_Proveedor Datos = new D_Proveedor();
@@ -70,8 +78,32 @@ namespace TiendaDeRopa.Presentacion
             this.Formato_prov();
         }
 
+        private void Selecciona_Item_prov()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(dgvListado_prov.CurrentRow.Cells["id"].Value)))
+            {
+                MessageBox.Show("No se tiene informacion para visualizar",
+                    "Aviso del Sistema",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                this.idProv = Convert.ToInt32(dgvListado_prov.CurrentRow.Cells["id"].Value);
+                txtNombre_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["nombre"].Value);
+                txtEmail_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["email"].Value);
+                txtTelefono_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["telefono"].Value);
+                txtDireccion_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["direccion"].Value);
+
+            }
+
+        }
+        #endregion
+
         private void btnNuevo_pr_Click(object sender, EventArgs e)
         {
+            this.nEstadoguarda = 1; //Nuevo Registro
+            this.idProv = 0;
             this.LimpiaTexto();
             this.EstadoTexto(true);
             this.EstadoBotones(false);
@@ -98,18 +130,18 @@ namespace TiendaDeRopa.Presentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
             }
-            else 
+            else //Proceso para guardar informacion
             {
                 string Rpta = "";
                 E_Proveedor oProv = new E_Proveedor();
-                oProv.id = 0;
+                oProv.id = this.idProv;
                 oProv.nombre= txtNombre_pr.Text;
                 oProv.email = txtEmail_pr.Text;
                 oProv.telefono = txtTelefono_pr.Text;
                 oProv.direccion = txtDireccion_pr.Text;
 
                 D_Proveedor Datos = new D_Proveedor();
-                Rpta = Datos.Guardar_prov(1, oProv); //por el procedimiento o se guarda o actualiza
+                Rpta = Datos.Guardar_prov(this.nEstadoguarda, oProv); //por el procedimiento o se guarda o actualiza
 
                 if (Rpta == "OK")
                 {
@@ -118,7 +150,8 @@ namespace TiendaDeRopa.Presentacion
                         "Aviso del Sistema",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-                  
+
+                    this.idProv = 0;
                     this.LimpiaTexto();
                     this.EstadoTexto(false);
                     this.EstadoBotones(true);
@@ -129,6 +162,24 @@ namespace TiendaDeRopa.Presentacion
         private void Frm_Proveedor_Load_1(object sender, EventArgs e)
         {
             this.Listado_prov("%");
+        }
+
+        private void dgvListado_prov_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Selecciona_Item_prov();
+        }
+
+        private void btnActualizar_pr_Click(object sender, EventArgs e)
+        {
+            this.nEstadoguarda = 2; //Actualizar Registro
+            this.EstadoTexto(true);
+            this.EstadoBotones(false);
+            txtNombre_pr.Select();
+        }
+
+        private void btnBuscar_pr_Click(object sender, EventArgs e)
+        {
+            this.Listado_prov(txtBuscar_pr.Text); 
         }
     }
 }
