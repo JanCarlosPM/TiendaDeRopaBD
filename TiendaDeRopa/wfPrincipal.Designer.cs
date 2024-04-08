@@ -34,6 +34,7 @@
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
@@ -67,7 +68,7 @@
             // 
             this.ventaToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.venta_icon;
             this.ventaToolStripMenuItem.Name = "ventaToolStripMenuItem";
-            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.ventaToolStripMenuItem.Size = new System.Drawing.Size(133, 30);
             this.ventaToolStripMenuItem.Text = "Venta";
             this.ventaToolStripMenuItem.Click += new System.EventHandler(this.venaToolStripMenuItem_Click);
             // 
@@ -82,6 +83,7 @@
             // proveedoresToolStripMenuItem
             // 
             this.proveedoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoToolStripMenuItem1,
             this.compraToolStripMenuItem});
             this.proveedoresToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold);
             this.proveedoresToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.proveedor_icon;
@@ -89,11 +91,19 @@
             this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(146, 29);
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             // 
+            // nuevoToolStripMenuItem1
+            // 
+            this.nuevoToolStripMenuItem1.Image = global::TiendaDeRopa.Properties.Resources.nuevo_icon;
+            this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
+            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(180, 30);
+            this.nuevoToolStripMenuItem1.Text = "Nuevo";
+            this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
+            // 
             // compraToolStripMenuItem
             // 
             this.compraToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.compra_icon;
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
-            this.compraToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
+            this.compraToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
             this.compraToolStripMenuItem.Text = "Compra";
             this.compraToolStripMenuItem.Click += new System.EventHandler(this.compraToolStripMenuItem_Click_1);
             // 
@@ -136,6 +146,7 @@
         private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compraToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem1;
     }
 }
 

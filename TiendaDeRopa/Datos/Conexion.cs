@@ -19,8 +19,8 @@ namespace TiendaDeRopa.Datos
         private Conexion()
         {
             this.Base = "TiendaRopa";
-            this.Servidor = "DESKTOP-Q4UIS59";
-            this.Usuario = "user_vr";
+            this.Servidor = "JCPM";
+            this.Usuario = "sa";
             this.Clave = "1234";
 
         }

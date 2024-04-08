@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TiendaDeRopa.formularios;
+using TiendaDeRopa.Presentacion;
 
 namespace TiendaDeRopa
 {
@@ -40,21 +41,29 @@ namespace TiendaDeRopa
 
         private void compraToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            // Crear una instancia del formulario wfCompras
-            wfCompras compras = new wfCompras();
+            Frm_Compras compras = new Frm_Compras();
 
-            // Establecer el formulario como un control secundario del panel1
             compras.TopLevel = false;
             panel1.Controls.Add(compras);
 
-            // Mostrar el formulario dentro del panel
             compras.Show();
 
-            //Necesito que ocupe todo el panel y no solo una parte
             compras.Dock = DockStyle.Fill;
             panel1.Dock = DockStyle.Fill;
 
+        }
 
+        private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Frm_Proveedor proveedor = new Frm_Proveedor();
+
+            proveedor.TopLevel = false;
+            panel1.Controls.Add(proveedor);
+            
+            proveedor.Show();
+
+            proveedor.Dock = DockStyle.Fill;
+            panel1.Dock = DockStyle.Fill;
         }
     }
 }

@@ -47,7 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\Conexion.cs" />
+    <Compile Include="Datos\D_DetalleFactura.cs" />
+    <Compile Include="Datos\D_Factura.cs" />
+    <Compile Include="Datos\D_Producto.cs" />
     <Compile Include="Datos\D_Proveedor.cs" />
+    <Compile Include="Entidades\E_DetalleFactura.cs" />
+    <Compile Include="Entidades\E_Factura.cs" />
+    <Compile Include="Entidades\E_Producto.cs" />
     <Compile Include="Entidades\E_Proveedor.cs" />
     <Compile Include="Presentacion\Frm_Proveedor.cs">
       <SubType>Form</SubType>
@@ -61,11 +67,11 @@
     <Compile Include="wfPrincipal.Designer.cs">
       <DependentUpon>wfPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="formularios\wfCompras.cs">
+    <Compile Include="Presentacion\Frm_Compras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formularios\wfCompras.Designer.cs">
-      <DependentUpon>wfCompras.cs</DependentUpon>
+    <Compile Include="Presentacion\Frm_Compras.Designer.cs">
+      <DependentUpon>Frm_Compras.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,8 +81,8 @@
     <EmbeddedResource Include="wfPrincipal.resx">
       <DependentUpon>wfPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formularios\wfCompras.resx">
-      <DependentUpon>wfCompras.cs</DependentUpon>
+    <EmbeddedResource Include="Presentacion\Frm_Compras.resx">
+      <DependentUpon>Frm_Compras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,6 +110,7 @@
   <ItemGroup>
     <Content Include="img\facturacion_icon.png" />
     <Content Include="img\inventario_icon.png" />
+    <Content Include="img\nuevo_icon.png" />
     <Content Include="img\proveedor_icon.png" />
     <Content Include="img\tienda_icon.ico" />
     <Content Include="img\venta_icon.png" />
