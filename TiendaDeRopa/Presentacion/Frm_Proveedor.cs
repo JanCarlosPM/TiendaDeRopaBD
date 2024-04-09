@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TiendaDeRopa.Datos;
 using TiendaDeRopa.Entidades;
+using System.Text.RegularExpressions;
 
 namespace TiendaDeRopa.Presentacion
 {
@@ -120,6 +121,15 @@ namespace TiendaDeRopa.Presentacion
 
         private void btnGuardar_pr_Click(object sender, EventArgs e)
         {
+            int telefono;
+     
+            // Dentro del método donde estás realizando la validación
+            string nombre = txtNombre_pr.Text;
+
+            // Expresión regular para verificar si el nombre contiene solo caracteres alfabéticos
+            Regex regex = new Regex("^[a-zA-Z]+$");
+
+
             if (txtNombre_pr.Text == string.Empty ||
                txtEmail_pr.Text == string.Empty ||
                txtTelefono_pr.Text == string.Empty ||
@@ -129,7 +139,23 @@ namespace TiendaDeRopa.Presentacion
                     "Aviso del Sistema",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
+                return;
             }
+
+            if (!regex.IsMatch(nombre))
+            {
+                MessageBox.Show("El nombre solo debe contener caracteres alfabéticos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(txtTelefono_pr.Text, out telefono))
+            {
+                MessageBox.Show("El telefono solo deben ser números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+
             else //Proceso para guardar informacion
             {
                 string Rpta = "";
