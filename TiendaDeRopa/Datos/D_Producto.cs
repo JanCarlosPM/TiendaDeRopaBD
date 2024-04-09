@@ -77,7 +77,7 @@ namespace TiendaDeRopa.Datos
             }
             catch (Exception ex)
             {
-                
+                Console.WriteLine("Error al obtener IDProducto: " + ex.Message);
             }
             return idProducto;
         }

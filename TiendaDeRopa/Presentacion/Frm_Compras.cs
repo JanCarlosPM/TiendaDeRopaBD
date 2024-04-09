@@ -24,6 +24,16 @@ namespace TiendaDeRopa.formularios
 
             ListarProductos();
             ObtenerFechaActual();
+
+            txtCantidad.Enabled = false;
+            btnListarProducto.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnInsertar.Enabled = false;
+            btnLimpiar.Enabled = false;
+            btnCancelar.Visible = false;
+            txtSubTotal.Text = "0";
+            txtIVA.Text = "0";
+            txtTotal.Text = "0";
         }
 
         private void ListarProductos()
@@ -79,9 +89,9 @@ namespace TiendaDeRopa.formularios
                 return false;
             }
 
-            if (txtSubTotal.Text == "")
+            if (txtSubTotal.Text == "0" || txtIVA.Text == "0" || txtTotal.Text == "0")
             {
-                MessageBox.Show("Debe ingresar el subtotal de la compra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe ingresar productos en la tabla", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSubTotal.Focus();
                 return false;
             }
@@ -93,24 +103,10 @@ namespace TiendaDeRopa.formularios
                 return false;
             }
 
-            if (txtIVA.Text == "")
-            {
-                MessageBox.Show("Debe ingresar el IVA de la compra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtIVA.Focus();
-                return false;
-            }
-
             if (!double.TryParse(txtIVA.Text, out _))
             {
                 MessageBox.Show("El IVA debe ser un número", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtIVA.Focus();
-                return false;
-            }
-
-            if (txtTotal.Text == "")
-            {
-                MessageBox.Show("Debe ingresar el total de la compra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTotal.Focus();
                 return false;
             }
 
@@ -141,6 +137,8 @@ namespace TiendaDeRopa.formularios
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+            txtCantidad.Enabled = false;
+            btnListarProducto.Enabled = false;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -154,10 +152,31 @@ namespace TiendaDeRopa.formularios
             D_Producto producto = new D_Producto();
             dgvProductos.DataSource = producto.ListarProductosFiltro(categoria);
         }
+
+        private bool ValidateGrid()
+        {
+            foreach (DataGridViewRow row in dgvDetallesCompras.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             if (ValidarCampos())
             {
+                if (ValidateGrid())
+                {
+                    MessageBox.Show("Tabla vacia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 GenerarNumeroFactura();
 
                 string rpta = "";
@@ -189,19 +208,13 @@ namespace TiendaDeRopa.formularios
                 btnLimpiar.Enabled = true;
                 btnEliminar.Enabled = true;
                 dgvDetallesCompras.Rows.Clear();
-                txtSubTotal.Text = "";
-                txtIVA.Text = "";
-                txtTotal.Text = "";
+                txtSubTotal.Text = "0";
+                txtIVA.Text = "0";
+                txtTotal.Text = "0";
                 cbEfectivo.Checked = false;
                 cbTarjeta.Checked = false;
                 return;
             }
-        }
-
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -216,13 +229,18 @@ namespace TiendaDeRopa.formularios
                 CalcularSubTotal();
 
                 LimpiarCampos();
+
+                txtCantidad.Enabled = false;
+                btnInsertar.Enabled = true;
+                btnListarProducto.Enabled = true;
+                btnLimpiar.Enabled = true;
+                btnCancelar.Visible = false;
             }
             else
             {
                 MessageBox.Show("Seleccione una fila para eliminar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
 
         private void wfCompras_Load(object sender, EventArgs e)
         {
@@ -242,12 +260,16 @@ namespace TiendaDeRopa.formularios
 
                 txtCategoria.Text = filaSeleccionada.Cells["Categoria"].Value.ToString();
                 txtPrecio.Text = filaSeleccionada.Cells["Precio"].Value.ToString();
+
+                txtCantidad.Enabled = true;
+                btnListarProducto.Enabled = true;
             }
         }
-
         private void dgvDetallesCompras_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && dgvDetallesCompras.Rows[e.RowIndex].Cells["Categoria"].Value != null &&
+                dgvDetallesCompras.Rows[e.RowIndex].Cells["Precio"].Value != null &&
+                dgvDetallesCompras.Rows[e.RowIndex].Cells["Cantidad"].Value != null)
             {
                 DataGridViewRow filaSeleccionada = dgvDetallesCompras.Rows[e.RowIndex];
 
@@ -255,23 +277,55 @@ namespace TiendaDeRopa.formularios
                 txtPrecio.Text = filaSeleccionada.Cells["Precio"].Value.ToString();
                 txtCantidad.Text = filaSeleccionada.Cells["Cantidad"].Value.ToString();
 
+                txtCantidad.Enabled = false;
+                btnListarProducto.Enabled = false;
                 btnEliminar.Enabled = true;
+                btnInsertar.Enabled = false;
+                btnCancelar.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Celda sin Datos, seleccione otra", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void btnListarProducto_Click(object sender, EventArgs e)
         {
-            string descripcion = txtCategoria.Text;
-            double precio = double.Parse(txtPrecio.Text);
-            int cantidad = int.Parse(txtCantidad.Text);
+            if (string.IsNullOrWhiteSpace(txtCategoria.Text) || string.IsNullOrWhiteSpace(txtPrecio.Text) || string.IsNullOrWhiteSpace(txtCantidad.Text))
+            {
+                MessageBox.Show("Debe seleccionar un producto y/o llenar el campo cantidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            string descripcion = txtCategoria.Text;
+            double precio;
+            int cantidad;
+
+            // Validar que el campo "Cantidad" solo contenga números enteros
+            if (!int.TryParse(txtCantidad.Text, out cantidad))
+            {
+                MessageBox.Show("La Cantidad debe ser un número entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validar que el campo "Precio" sea un número válido
+            if (!double.TryParse(txtPrecio.Text, out precio))
+            {
+                MessageBox.Show("El campo 'Precio' debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Agregar la fila al DataGridView
             dgvDetallesCompras.Rows.Add(descripcion, precio, cantidad);
 
+            // Realizar las operaciones adicionales (CalcularSubTotal, ActualizarEstadoBotones, LimpiarCampos, etc.)
             CalcularSubTotal();
-
             ActualizarEstadoBotones();
-
             LimpiarCampos();
+
+            btnEliminar.Enabled = true;
+            btnInsertar.Enabled = true;
+            btnListarProducto.Enabled = false;
+            txtCantidad.Enabled = false;
         }
 
         private void CalcularSubTotal()
@@ -294,7 +348,6 @@ namespace TiendaDeRopa.formularios
             txtSubTotal.Text = subtotal.ToString();
             txtTotal.Text = total.ToString();
         }
-
         private void ActualizarEstadoBotones()
         {
 
@@ -309,7 +362,6 @@ namespace TiendaDeRopa.formularios
                 btnEliminar.Enabled = true;
             }
         }
-
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtBuscar.Text))
@@ -317,8 +369,22 @@ namespace TiendaDeRopa.formularios
                 ListarProductos();
             }
         }
-
         private void dgvDetallesCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtCategoria.Text = "";
+            txtPrecio.Text = "";
+            txtCantidad.Text = "";
+
+            btnCancelar.Visible = false;
+            btnInsertar.Enabled = true;
+            btnListarProducto.Enabled = false;
+        }
+
+        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
