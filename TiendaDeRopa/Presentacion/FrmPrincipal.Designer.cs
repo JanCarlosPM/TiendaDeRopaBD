@@ -1,10 +1,7 @@
 ﻿namespace TiendaDeRopa
 {
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
     partial class Frm_Principal
-========
     partial class FrmPrincipal
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -32,11 +29,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Principal));
-========
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
+
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -135,11 +130,8 @@
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
             // Frm_Principal
-========
             // FrmPrincipal
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,11 +143,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
             this.Name = "Frm_Principal";
-========
             this.Name = "FrmPrincipal";
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
             this.Text = "Tienda De Ropa Alcides S.A";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
