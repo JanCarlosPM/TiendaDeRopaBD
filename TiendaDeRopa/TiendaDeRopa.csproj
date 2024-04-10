@@ -69,11 +69,19 @@
     <Compile Include="Presentacion\Frm_Proveedor.Designer.cs">
       <DependentUpon>Frm_Proveedor.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Presentacion\Frm_Principal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\Frm_Principal.Designer.cs">
       <DependentUpon>Frm_Principal.cs</DependentUpon>
+=======
+    <Compile Include="Presentacion\FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0
     </Compile>
     <Compile Include="Presentacion\Frm_Compras.cs">
       <SubType>Form</SubType>
@@ -89,8 +97,13 @@
     <EmbeddedResource Include="Presentacion\Frm_Proveedor.resx">
       <DependentUpon>Frm_Proveedor.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Presentacion\Frm_Principal.resx">
       <DependentUpon>Frm_Principal.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Presentacion\FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Frm_Compras.resx">
       <DependentUpon>Frm_Compras.cs</DependentUpon>
