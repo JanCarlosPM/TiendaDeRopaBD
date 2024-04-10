@@ -5,15 +5,12 @@ using TiendaDeRopa.Presentacion;
 
 namespace TiendaDeRopa
 {
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.cs
     public partial class Frm_Principal : Form
     {
         public Frm_Principal()
-========
     public partial class FrmPrincipal : Form
     {
         public FrmPrincipal()
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.cs
         {
             InitializeComponent();
         }
@@ -73,7 +70,6 @@ namespace TiendaDeRopa
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.cs
         }
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,8 +84,6 @@ namespace TiendaDeRopa
             panel1.Controls.Add(inventario);
             inventario.Dock = DockStyle.Fill;
             inventario.Show();
-========
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.cs
         }
     }
 }
