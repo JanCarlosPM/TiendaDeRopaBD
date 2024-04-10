@@ -61,11 +61,11 @@
     <Compile Include="Presentacion\Frm_Proveedor.Designer.cs">
       <DependentUpon>Frm_Proveedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="wfPrincipal.cs">
+    <Compile Include="Presentacion\FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="wfPrincipal.Designer.cs">
-      <DependentUpon>wfPrincipal.cs</DependentUpon>
+    <Compile Include="Presentacion\FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Frm_Compras.cs">
       <SubType>Form</SubType>
@@ -78,8 +78,8 @@
     <EmbeddedResource Include="Presentacion\Frm_Proveedor.resx">
       <DependentUpon>Frm_Proveedor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="wfPrincipal.resx">
-      <DependentUpon>wfPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="Presentacion\FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Frm_Compras.resx">
       <DependentUpon>Frm_Compras.cs</DependentUpon>

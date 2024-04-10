@@ -12,9 +12,9 @@ using TiendaDeRopa.Presentacion;
 
 namespace TiendaDeRopa
 {
-    public partial class wfPrincipal : Form
+    public partial class FrmPrincipal : Form
     {
-        public wfPrincipal()
+        public FrmPrincipal()
         {
             InitializeComponent();
         }
@@ -41,29 +41,39 @@ namespace TiendaDeRopa
 
         private void compraToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Frm_Compras compras = new Frm_Compras();
+            // Cerrar el formulario anterior si lo hay
+            if (panel1.Controls.Count > 0)
+            {
+                panel1.Controls.RemoveAt(0);
+            }
 
+            // Mostrar el formulario de compras en el panel principal
+            Frm_Compras compras = new Frm_Compras();
             compras.TopLevel = false;
             panel1.Controls.Add(compras);
-
-            compras.Show();
-
             compras.Dock = DockStyle.Fill;
-            panel1.Dock = DockStyle.Fill;
-
+            compras.Show();
         }
 
         private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Frm_Proveedor proveedor = new Frm_Proveedor();
+            // Cerrar el formulario anterior si lo hay
+            if (panel1.Controls.Count > 0)
+            {
+                panel1.Controls.RemoveAt(0);
+            }
 
+            // Mostrar el formulario de proveedor en el panel principal
+            Frm_Proveedor proveedor = new Frm_Proveedor();
             proveedor.TopLevel = false;
             panel1.Controls.Add(proveedor);
-            
-            proveedor.Show();
-
             proveedor.Dock = DockStyle.Fill;
-            panel1.Dock = DockStyle.Fill;
+            proveedor.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
