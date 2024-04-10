@@ -16,7 +16,7 @@ namespace TiendaDeRopa
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new wfPrincipal());
+            Application.Run(new Frm_Principal());
         }
     }
 }

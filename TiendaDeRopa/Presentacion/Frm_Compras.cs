@@ -327,30 +327,27 @@ namespace TiendaDeRopa.formularios
             double precio;
             int cantidad;
 
-            // Validar que el campo "Cantidad" solo contenga números enteros
             if (!int.TryParse(txtCantidad.Text, out cantidad))
             {
                 MessageBox.Show("La Cantidad debe ser un número entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Validar que el campo "Precio" sea un número válido
             if (!double.TryParse(txtPrecio.Text, out precio))
             {
                 MessageBox.Show("El campo 'Precio' debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Agregar la fila al DataGridView
             dgvDetallesCompras.Rows.Add(descripcion, precio, cantidad);
 
-            // Realizar las operaciones adicionales (CalcularSubTotal, ActualizarEstadoBotones, LimpiarCampos, etc.)
             CalcularSubTotal();
             ActualizarEstadoBotones();
             LimpiarCampos();
 
             btnEliminar.Enabled = true;
             btnInsertar.Enabled = true;
+            dgvDetallesCompras.ClearSelection();
             btnListarProducto.Enabled = false;
             txtCantidad.Enabled = false;
         }
