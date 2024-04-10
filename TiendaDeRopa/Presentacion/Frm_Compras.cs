@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -197,26 +198,52 @@ namespace TiendaDeRopa.formularios
                 if (rpta.Equals("Compra registrada correctamente"))
                 {
                     MessageBox.Show("Compra registrada correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    List<E_DetalleFactura> listaDetalles = new List<E_DetalleFactura>();
+                    List<string> categorias = new List<string>();
+                    List<int> cantidades = new List<int>();
+                    List<float> precios = new List<float>();
+
+                    foreach (DataGridViewRow fila in dgvDetallesCompras.Rows)
+                    {
+                        string categoria = fila.Cells["Categoria"].Value.ToString();
+                        int cantidad = int.Parse(fila.Cells["Cantidad"].Value.ToString());
+                        float precio = float.Parse(fila.Cells["Precio"].Value.ToString());
+
+                        categorias.Add(categoria);
+                        cantidades.Add(cantidad);
+                        precios.Add(precio);
+                    }
+
+                    string idFactura = txtNumeroFactura.Text;
+
+                    D_DetalleFactura detalleFactura = new D_DetalleFactura();
+                    rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
+
+                    if (rpta.Equals("Todos los detalles de la factura se registraron correctamente."))
+                    {
+                        LimpiarCampos();
+                        GenerarNumeroFactura();
+                        btnLimpiar.Enabled = true;
+                        btnEliminar.Enabled = true;
+                        dgvDetallesCompras.Rows.Clear();
+                        txtSubTotal.Text = "0";
+                        txtIVA.Text = "0";
+                        txtTotal.Text = "0";
+                        cbEfectivo.Checked = false;
+                        cbTarjeta.Checked = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show(rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
                     MessageBox.Show(rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                LimpiarCampos();
-                GenerarNumeroFactura();
-                btnLimpiar.Enabled = true;
-                btnEliminar.Enabled = true;
-                dgvDetallesCompras.Rows.Clear();
-                txtSubTotal.Text = "0";
-                txtIVA.Text = "0";
-                txtTotal.Text = "0";
-                cbEfectivo.Checked = false;
-                cbTarjeta.Checked = false;
-                return;
             }
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 

@@ -114,6 +114,10 @@
             // 
             // dgvProductos
             // 
+            this.dgvProductos.AllowUserToAddRows = false;
+            this.dgvProductos.AllowUserToDeleteRows = false;
+            this.dgvProductos.AllowUserToResizeColumns = false;
+            this.dgvProductos.AllowUserToResizeRows = false;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Location = new System.Drawing.Point(16, 103);
             this.dgvProductos.Name = "dgvProductos";
@@ -302,6 +306,10 @@
             // 
             // dgvDetallesCompras
             // 
+            this.dgvDetallesCompras.AllowUserToAddRows = false;
+            this.dgvDetallesCompras.AllowUserToDeleteRows = false;
+            this.dgvDetallesCompras.AllowUserToResizeColumns = false;
+            this.dgvDetallesCompras.AllowUserToResizeRows = false;
             this.dgvDetallesCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetallesCompras.Location = new System.Drawing.Point(16, 315);
             this.dgvDetallesCompras.Name = "dgvDetallesCompras";

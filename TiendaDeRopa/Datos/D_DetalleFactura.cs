@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class D_DetalleFactura
 {
-    public string GuardarCompra(E_DetalleFactura e_Detalle)
+    public string GuardarCompra(List<E_DetalleFactura> listaDetalles, List<string> categorias, List<int> cantidades, List<float> precios, string codFactura)
     {
         string mensaje = "";
         SqlConnection conexion = new SqlConnection();
@@ -15,17 +15,27 @@ public class D_DetalleFactura
         try
         {
             conexion = Conexion.getInstancia().CrearConexion();
+            conexion.Open();
+
+            string categoriasStr = string.Join(",", categorias);
+            string cantidadesStr = string.Join(",", cantidades);
+            string preciosStr = string.Join(",", precios);
 
             SqlCommand comando = new SqlCommand("SP_DetalleFactura", conexion);
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.Add("@id_producto_inventario", SqlDbType.Int).Value = e_Detalle.id_producto_inventario;
-            comando.Parameters.Add("@cantidad", SqlDbType.Int).Value = e_Detalle.cantidad;
-            comando.Parameters.Add("@precio_venta", SqlDbType.Int).Value = e_Detalle.precio_venta;
-
-            conexion.Open();
+            comando.Parameters.Add("@categorias", SqlDbType.NVarChar).Value = categoriasStr;
+            comando.Parameters.Add("@cantidades", SqlDbType.NVarChar).Value = cantidadesStr;
+            comando.Parameters.Add("@precios", SqlDbType.NVarChar).Value = preciosStr;
+            comando.Parameters.Add("@cod_factura", SqlDbType.NVarChar, 10).Value = codFactura;
 
             int filasAfectadas = comando.ExecuteNonQuery();
-            mensaje = filasAfectadas >= 1 ? "Detalles de Factura registrados correctamente" : "No se pudo registrar los Detalles de la Factura";
+            if (filasAfectadas < 1)
+            {
+                mensaje = "No se pudo registrar todos los detalles de la factura.";
+                return mensaje;
+            }
+
+            mensaje = "Todos los detalles de la factura se registraron correctamente.";
         }
         catch (SqlException ex)
         {
