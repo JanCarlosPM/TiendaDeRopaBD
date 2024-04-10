@@ -25,6 +25,7 @@ namespace TiendaDeRopa.Datos
 
         }
 
+
         public SqlConnection CrearConexion()
         {
             SqlConnection Cadena = new SqlConnection();

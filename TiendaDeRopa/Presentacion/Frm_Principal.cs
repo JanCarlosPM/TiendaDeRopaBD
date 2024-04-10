@@ -64,5 +64,23 @@ namespace TiendaDeRopa
             proveedor.Show();
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (panel1.Controls.Count > 0)
+            {
+                panel1.Controls.RemoveAt(0);
+            }
+
+            Frm_Inventario inventario = new Frm_Inventario();
+            inventario.TopLevel = false;
+            panel1.Controls.Add(inventario);
+            inventario.Dock = DockStyle.Fill;
+            inventario.Show();
+        }
     }
 }
