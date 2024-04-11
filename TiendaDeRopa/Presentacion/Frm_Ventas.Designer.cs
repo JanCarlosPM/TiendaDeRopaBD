@@ -31,10 +31,10 @@
             this.Btn_BuscarVenta = new System.Windows.Forms.Button();
             this.lbl_BuscarVenta = new System.Windows.Forms.Label();
             this.Txt_BuscarVenta = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.dgvVenta = new System.Windows.Forms.DataGridView();
+            this.txtCategoriaVenta = new System.Windows.Forms.TextBox();
+            this.txtPrecioVenta = new System.Windows.Forms.TextBox();
+            this.txtCantidaVenta = new System.Windows.Forms.TextBox();
             this.Btn_ListaVenta = new System.Windows.Forms.Button();
             this.Btn_LimpiarVenta = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             this.txtFechaVenta = new System.Windows.Forms.TextBox();
             this.lblNumfactVenta = new System.Windows.Forms.Label();
             this.txtNumFacVenta = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,34 +85,35 @@
             this.Txt_BuscarVenta.Size = new System.Drawing.Size(257, 20);
             this.Txt_BuscarVenta.TabIndex = 3;
             // 
-            // dataGridView1
+            // dgvVenta
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 100);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(432, 144);
-            this.dataGridView1.TabIndex = 4;
+            this.dgvVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVenta.Location = new System.Drawing.Point(16, 100);
+            this.dgvVenta.Name = "dgvVenta";
+            this.dgvVenta.Size = new System.Drawing.Size(432, 144);
+            this.dgvVenta.TabIndex = 4;
+            this.dgvVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // textBox1
+            // txtCategoriaVenta
             // 
-            this.textBox1.Location = new System.Drawing.Point(454, 100);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(146, 20);
-            this.textBox1.TabIndex = 5;
+            this.txtCategoriaVenta.Location = new System.Drawing.Point(454, 100);
+            this.txtCategoriaVenta.Name = "txtCategoriaVenta";
+            this.txtCategoriaVenta.Size = new System.Drawing.Size(146, 20);
+            this.txtCategoriaVenta.TabIndex = 5;
             // 
-            // textBox2
+            // txtPrecioVenta
             // 
-            this.textBox2.Location = new System.Drawing.Point(454, 142);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(146, 20);
-            this.textBox2.TabIndex = 6;
+            this.txtPrecioVenta.Location = new System.Drawing.Point(454, 142);
+            this.txtPrecioVenta.Name = "txtPrecioVenta";
+            this.txtPrecioVenta.Size = new System.Drawing.Size(146, 20);
+            this.txtPrecioVenta.TabIndex = 6;
             // 
-            // textBox3
+            // txtCantidaVenta
             // 
-            this.textBox3.Location = new System.Drawing.Point(455, 239);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(145, 20);
-            this.textBox3.TabIndex = 7;
+            this.txtCantidaVenta.Location = new System.Drawing.Point(455, 239);
+            this.txtCantidaVenta.Name = "txtCantidaVenta";
+            this.txtCantidaVenta.Size = new System.Drawing.Size(145, 20);
+            this.txtCantidaVenta.TabIndex = 7;
             // 
             // Btn_ListaVenta
             // 
@@ -122,6 +123,7 @@
             this.Btn_ListaVenta.TabIndex = 8;
             this.Btn_ListaVenta.Text = "Lista Venta";
             this.Btn_ListaVenta.UseVisualStyleBackColor = true;
+            this.Btn_ListaVenta.Click += new System.EventHandler(this.Btn_ListaVenta_Click);
             // 
             // Btn_LimpiarVenta
             // 
@@ -319,10 +321,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Btn_LimpiarVenta);
             this.Controls.Add(this.Btn_ListaVenta);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txtCantidaVenta);
+            this.Controls.Add(this.txtPrecioVenta);
+            this.Controls.Add(this.txtCategoriaVenta);
+            this.Controls.Add(this.dgvVenta);
             this.Controls.Add(this.Txt_BuscarVenta);
             this.Controls.Add(this.lbl_BuscarVenta);
             this.Controls.Add(this.Btn_BuscarVenta);
@@ -332,7 +334,7 @@
             this.Name = "Frm_Ventas";
             this.Text = "WfVentas";
             this.Load += new System.EventHandler(this.Frm_Ventas_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -344,10 +346,10 @@
         private System.Windows.Forms.Button Btn_BuscarVenta;
         private System.Windows.Forms.Label lbl_BuscarVenta;
         private System.Windows.Forms.TextBox Txt_BuscarVenta;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.DataGridView dgvVenta;
+        private System.Windows.Forms.TextBox txtCategoriaVenta;
+        private System.Windows.Forms.TextBox txtPrecioVenta;
+        private System.Windows.Forms.TextBox txtCantidaVenta;
         private System.Windows.Forms.Button Btn_ListaVenta;
         private System.Windows.Forms.Button Btn_LimpiarVenta;
         private System.Windows.Forms.Label label1;

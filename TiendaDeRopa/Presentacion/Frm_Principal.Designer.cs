@@ -37,6 +37,7 @@
             this.nuevoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,8 @@
             // 
             // inventarioToolStripMenuItem
             // 
+            this.inventarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.productosToolStripMenuItem});
             this.inventarioToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold);
             this.inventarioToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.inventario_icon;
             this.inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
@@ -95,7 +98,7 @@
             // 
             this.nuevoToolStripMenuItem1.Image = global::TiendaDeRopa.Properties.Resources.nuevo_icon;
             this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
-            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(180, 30);
+            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(152, 30);
             this.nuevoToolStripMenuItem1.Text = "Nuevo";
             this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
             // 
@@ -103,7 +106,7 @@
             // 
             this.compraToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.compra_icon;
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
-            this.compraToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.compraToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.compraToolStripMenuItem.Text = "Compra";
             this.compraToolStripMenuItem.Click += new System.EventHandler(this.compraToolStripMenuItem_Click_1);
             // 
@@ -115,7 +118,15 @@
             this.panel1.Size = new System.Drawing.Size(1065, 600);
             this.panel1.TabIndex = 2;
             // 
-            // wfPrincipal
+            // productosToolStripMenuItem
+            // 
+            this.productosToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.producto_icon;
+            this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.productosToolStripMenuItem.Text = "Productos";
+            this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
+            // 
+            // Frm_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -127,7 +138,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "wfPrincipal";
+            this.Name = "Frm_Principal";
             this.Text = "Tienda De Ropa Alcides S.A";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -147,6 +158,7 @@
         private System.Windows.Forms.ToolStripMenuItem compraToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
     }
 }
 
