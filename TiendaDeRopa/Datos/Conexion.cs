@@ -19,12 +19,11 @@ namespace TiendaDeRopa.Datos
         private Conexion()
         {
             this.Base = "TiendaRopa";
-            this.Servidor = "DESKTOP-RCDL60N";
-            this.Usuario = "tester";
+            this.Servidor = "LABPUNO6\\SQLEXPRESS";
+            this.Usuario = "Jan";
             this.Clave = "1234";
 
         }
-
 
         public SqlConnection CrearConexion()
         {

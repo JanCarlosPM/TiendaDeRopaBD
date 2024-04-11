@@ -282,7 +282,7 @@
             this.lblNumfactVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumfactVenta.Location = new System.Drawing.Point(792, 64);
             this.lblNumfactVenta.Name = "lblNumfactVenta";
-            this.lblNumfactVenta.Size = new System.Drawing.Size(86, 16);
+            this.lblNumfactVenta.Size = new System.Drawing.Size(83, 16);
             this.lblNumfactVenta.TabIndex = 26;
             this.lblNumfactVenta.Text = "No.Factura";
             // 
@@ -326,6 +326,7 @@
             this.Controls.Add(this.Txt_BuscarVenta);
             this.Controls.Add(this.lbl_BuscarVenta);
             this.Controls.Add(this.Btn_BuscarVenta);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Frm_Ventas";

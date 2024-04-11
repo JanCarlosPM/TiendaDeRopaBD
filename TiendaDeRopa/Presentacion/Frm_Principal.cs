@@ -31,7 +31,14 @@ namespace TiendaDeRopa
 
         private void venaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (formularioAbierto != null)
+            {
+                formularioAbierto.Close();
+            }
+
+            Frm_Ventas ventas = new Frm_Ventas();
+
+            configurarFormulario(ventas);
         }
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,31 +46,41 @@ namespace TiendaDeRopa
 
         }
 
+        private Form formularioAbierto = null;
+
         private void compraToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            if (formularioAbierto != null)
+            {
+                formularioAbierto.Close();
+            }
+
             Frm_Compras compras = new Frm_Compras();
 
-            compras.TopLevel = false;
-            panel1.Controls.Add(compras);
-
-            compras.Show();
-
-            compras.Dock = DockStyle.Fill;
-            panel1.Dock = DockStyle.Fill;
-
+            configurarFormulario(compras);
         }
 
         private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (formularioAbierto != null)
+            {
+                formularioAbierto.Close();
+            }
+
             Frm_Proveedor proveedor = new Frm_Proveedor();
 
-            proveedor.TopLevel = false;
-            panel1.Controls.Add(proveedor);
-            
-            proveedor.Show();
+            configurarFormulario(proveedor);
+        }
 
-            proveedor.Dock = DockStyle.Fill;
+        private void configurarFormulario(Form formulario)
+        {
+            formulario.TopLevel = false;
+            panel1.Controls.Add(formulario);
+            formulario.Show();
+            formulario.Dock = DockStyle.Fill;
             panel1.Dock = DockStyle.Fill;
+
+            formularioAbierto = formulario;
         }
     }
 }
