@@ -1,19 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TiendaDeRopa.formularios;
 using TiendaDeRopa.Presentacion;
 
 namespace TiendaDeRopa
 {
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.cs
     public partial class Frm_Principal : Form
     {
         public Frm_Principal()
-========
-    public partial class FrmPrincipal : Form
-    {
-        public FrmPrincipal()
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.cs
         {
             InitializeComponent();
         }
@@ -30,7 +31,7 @@ namespace TiendaDeRopa
 
         private void venaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,56 +41,29 @@ namespace TiendaDeRopa
 
         private void compraToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            // Cerrar el formulario anterior si lo hay
-            if (panel1.Controls.Count > 0)
-            {
-                panel1.Controls.RemoveAt(0);
-            }
-
-            // Mostrar el formulario de compras en el panel principal
             Frm_Compras compras = new Frm_Compras();
+
             compras.TopLevel = false;
             panel1.Controls.Add(compras);
-            compras.Dock = DockStyle.Fill;
+
             compras.Show();
+
+            compras.Dock = DockStyle.Fill;
+            panel1.Dock = DockStyle.Fill;
+
         }
 
         private void nuevoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            // Cerrar el formulario anterior si lo hay
-            if (panel1.Controls.Count > 0)
-            {
-                panel1.Controls.RemoveAt(0);
-            }
-
-            // Mostrar el formulario de proveedor en el panel principal
             Frm_Proveedor proveedor = new Frm_Proveedor();
+
             proveedor.TopLevel = false;
             panel1.Controls.Add(proveedor);
-            proveedor.Dock = DockStyle.Fill;
+            
             proveedor.Show();
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.cs
-        }
-
-        private void productosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (panel1.Controls.Count > 0)
-            {
-                panel1.Controls.RemoveAt(0);
-            }
-
-            Frm_Inventario inventario = new Frm_Inventario();
-            inventario.TopLevel = false;
-            panel1.Controls.Add(inventario);
-            inventario.Dock = DockStyle.Fill;
-            inventario.Show();
-========
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.cs
+            proveedor.Dock = DockStyle.Fill;
+            panel1.Dock = DockStyle.Fill;
         }
     }
 }

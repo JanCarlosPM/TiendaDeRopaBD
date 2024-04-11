@@ -19,8 +19,8 @@ namespace TiendaDeRopa.Datos
         private Conexion()
         {
             this.Base = "TiendaRopa";
-            this.Servidor = "LABPUNO6\\SQLEXPRESS";
-            this.Usuario = "Jan";
+            this.Servidor = "JCPM";
+            this.Usuario = "sa";
             this.Clave = "1234";
 
         }
