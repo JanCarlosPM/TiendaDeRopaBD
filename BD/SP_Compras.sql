@@ -1,4 +1,23 @@
+--//SP LISTAR INVENTARIO
+CREATE PROCEDURE [dbo].[SP_ListarInventario]
+AS
+BEGIN
+	SELECT Producto.categoria,
+		   Producto.tela,
+		   Producto.talla,
+		   Producto.estilo,
+		   Producto.descripcion,
+		   Producto.marca,
+		   Producto.precio,
+		   Inventario.existencia,
+		   Inventario.fecha_ingreso
+	FROM Inventario
+	INNER JOIN Producto ON Inventario.id_producto = Producto.id;
+	END;
+GO
+    
 --//SP GUARDAR DETALLES FACTURA
+    
 CREATE PROCEDURE SP_DetalleFactura
     @categorias NVARCHAR(MAX),
     @cantidades NVARCHAR(MAX),
