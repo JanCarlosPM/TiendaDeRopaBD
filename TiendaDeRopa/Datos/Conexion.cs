@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -19,12 +19,11 @@ namespace TiendaDeRopa.Datos
         private Conexion()
         {
             this.Base = "TiendaRopa";
-            this.Servidor = "JCPM";
-            this.Usuario = "sa";
+            this.Servidor = "LABPUNO6\\SQLEXPRESS";
+            this.Usuario = "Jan";
             this.Clave = "1234";
 
         }
-
 
         public SqlConnection CrearConexion()
         {
