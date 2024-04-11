@@ -1,10 +1,6 @@
 ﻿namespace TiendaDeRopa
 {
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
     partial class Frm_Principal
-========
-    partial class FrmPrincipal
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -32,16 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Principal));
-========
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.compraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,21 +74,11 @@
             // 
             // inventarioToolStripMenuItem
             // 
-            this.inventarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.productosToolStripMenuItem});
             this.inventarioToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold);
             this.inventarioToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.inventario_icon;
             this.inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
             this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(128, 29);
             this.inventarioToolStripMenuItem.Text = "Inventario";
-            // 
-            // productosToolStripMenuItem
-            // 
-            this.productosToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.producto_icon;
-            this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
-            this.productosToolStripMenuItem.Text = "Productos";
-            this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // proveedoresToolStripMenuItem
             // 
@@ -114,7 +95,7 @@
             // 
             this.nuevoToolStripMenuItem1.Image = global::TiendaDeRopa.Properties.Resources.nuevo_icon;
             this.nuevoToolStripMenuItem1.Name = "nuevoToolStripMenuItem1";
-            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(152, 30);
+            this.nuevoToolStripMenuItem1.Size = new System.Drawing.Size(180, 30);
             this.nuevoToolStripMenuItem1.Text = "Nuevo";
             this.nuevoToolStripMenuItem1.Click += new System.EventHandler(this.nuevoToolStripMenuItem1_Click);
             // 
@@ -122,7 +103,7 @@
             // 
             this.compraToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.compra_icon;
             this.compraToolStripMenuItem.Name = "compraToolStripMenuItem";
-            this.compraToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
+            this.compraToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
             this.compraToolStripMenuItem.Text = "Compra";
             this.compraToolStripMenuItem.Click += new System.EventHandler(this.compraToolStripMenuItem_Click_1);
             // 
@@ -133,13 +114,8 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1065, 600);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
-            // Frm_Principal
-========
-            // FrmPrincipal
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
+            // wfPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,11 +127,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-<<<<<<<< HEAD:TiendaDeRopa/Presentacion/Frm_Principal.Designer.cs
-            this.Name = "Frm_Principal";
-========
-            this.Name = "FrmPrincipal";
->>>>>>>> 752afb49aecadac1b4095731e69b381852319ff0:TiendaDeRopa/Presentacion/FrmPrincipal.Designer.cs
+            this.Name = "wfPrincipal";
             this.Text = "Tienda De Ropa Alcides S.A";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -175,7 +147,6 @@
         private System.Windows.Forms.ToolStripMenuItem compraToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem;
     }
 }
 
