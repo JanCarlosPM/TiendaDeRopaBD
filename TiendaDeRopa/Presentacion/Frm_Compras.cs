@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Windows.Forms;
 using TiendaDeRopa.Datos;
 using TiendaDeRopa.Entidades;
@@ -20,12 +21,15 @@ namespace TiendaDeRopa.formularios
             dgvDetallesCompras.Columns.Add("Categoria", "Categoria");
             dgvDetallesCompras.Columns.Add("Precio", "Precio");
             dgvDetallesCompras.Columns.Add("Cantidad", "Cantidad");
+            dgvDetallesCompras.Columns.Add("Fecha de Ingreso", "Fecha de Ingreso");
             dgvDetallesCompras.CellClick += dgvDetallesCompras_CellClick;
             dgvProductos.CellClick += dgvProductos_CellClick;
 
             ListarProductos();
             ObtenerFechaActual();
 
+            cbEfectivo.Enabled = false;
+            cbTarjeta.Enabled = false;
             txtCantidad.Enabled = false;
             btnListarProducto.Enabled = false;
             btnEliminar.Enabled = false;
@@ -45,7 +49,8 @@ namespace TiendaDeRopa.formularios
         }
         private void ObtenerFechaActual()
         {
-            txtFechaCompra.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+            txtFechaCompra.Text = DateTime.Now.ToString("yyyy-MM-dd");
             txtFechaCompra.Enabled = false;
             txtSubTotal.Enabled = false;
             txtIVA.Enabled = false;
@@ -181,6 +186,7 @@ namespace TiendaDeRopa.formularios
                 GenerarNumeroFactura();
 
                 string rpta = "";
+
                 E_Factura factura = new E_Factura()
                 {
                     cod_factura = txtNumeroFactura.Text,
@@ -199,6 +205,13 @@ namespace TiendaDeRopa.formularios
                 {
                     MessageBox.Show("Compra registrada correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    // ACTUALIZAR STOCK
+                    List<E_Inventario> listaInventario = new List<E_Inventario>();
+                    List<string> categoriasStock = new List<string>();
+                    List<int> cantidadesStock = new List<int>();
+                    List<DateTime> fechasIngresoStock = new List<DateTime>();
+
+                    // DETALLE FACTURA
                     List<E_DetalleFactura> listaDetalles = new List<E_DetalleFactura>();
                     List<string> categorias = new List<string>();
                     List<int> cantidades = new List<int>();
@@ -209,16 +222,24 @@ namespace TiendaDeRopa.formularios
                         string categoria = fila.Cells["Categoria"].Value.ToString();
                         int cantidad = int.Parse(fila.Cells["Cantidad"].Value.ToString());
                         float precio = float.Parse(fila.Cells["Precio"].Value.ToString());
+                        DateTime fechaIngresoStock = DateTime.Parse(fila.Cells["Fecha de Ingreso"].Value.ToString());
+
 
                         categorias.Add(categoria);
                         cantidades.Add(cantidad);
                         precios.Add(precio);
+                        categoriasStock.Add(categoria);
+                        cantidadesStock.Add(cantidad);
+                        fechasIngresoStock.Add(fechaIngresoStock);
                     }
 
                     string idFactura = txtNumeroFactura.Text;
 
                     D_DetalleFactura detalleFactura = new D_DetalleFactura();
                     rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
+
+                    D_Inventario inventario = new D_Inventario();
+                    rpta = inventario.ActualizarStock(listaInventario, categoriasStock, cantidadesStock, fechasIngresoStock);
 
                     if (rpta.Equals("Todos los detalles de la factura se registraron correctamente."))
                     {
@@ -244,6 +265,8 @@ namespace TiendaDeRopa.formularios
                 }
             }
         }
+
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
@@ -326,6 +349,8 @@ namespace TiendaDeRopa.formularios
             string descripcion = txtCategoria.Text;
             double precio;
             int cantidad;
+            string fechaIngreso = txtFechaCompra.Text;
+
 
             if (!int.TryParse(txtCantidad.Text, out cantidad))
             {
@@ -339,7 +364,7 @@ namespace TiendaDeRopa.formularios
                 return;
             }
 
-            dgvDetallesCompras.Rows.Add(descripcion, precio, cantidad);
+            dgvDetallesCompras.Rows.Add(descripcion, precio, cantidad, fechaIngreso);
 
             CalcularSubTotal();
             ActualizarEstadoBotones();
@@ -350,6 +375,8 @@ namespace TiendaDeRopa.formularios
             dgvDetallesCompras.ClearSelection();
             btnListarProducto.Enabled = false;
             txtCantidad.Enabled = false;
+            cbTarjeta.Enabled = true;
+            cbEfectivo.Enabled = true;
         }
 
         private void CalcularSubTotal()
@@ -406,11 +433,30 @@ namespace TiendaDeRopa.formularios
             btnCancelar.Visible = false;
             btnInsertar.Enabled = true;
             btnListarProducto.Enabled = false;
+
+            dgvDetallesCompras.ClearSelection();
         }
+
 
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void cbEfectivo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbEfectivo.Checked)
+            {
+                cbTarjeta.Checked = false;
+            }
+        }
+
+        private void cbTarjeta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTarjeta.Checked)
+            {
+                cbEfectivo.Checked = false;
+            }
         }
     }
 }
