@@ -27,6 +27,8 @@ namespace TiendaDeRopa.formularios
 
             ListarProductos();
             ObtenerFechaActual();
+            txtBuscar.KeyPress += txtBuscar_KeyPress;
+            txtCantidad.KeyPress += txtCantidad_KeyPress;
 
             cbEfectivo.Enabled = false;
             cbTarjeta.Enabled = false;
@@ -151,6 +153,23 @@ namespace TiendaDeRopa.formularios
         {
 
         }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string categoria = txtBuscar.Text.Trim();
