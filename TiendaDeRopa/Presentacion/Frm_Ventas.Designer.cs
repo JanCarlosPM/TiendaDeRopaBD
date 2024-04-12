@@ -44,7 +44,7 @@
             this.BtnCancelarVenta = new System.Windows.Forms.Button();
             this.BtnEliminarProductoVenta = new System.Windows.Forms.Button();
             this.Btnfacturar = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvDetalleVenta = new System.Windows.Forms.DataGridView();
             this.lblSubTotalventa = new System.Windows.Forms.Label();
             this.lblTotalVenta = new System.Windows.Forms.Label();
             this.lblIvaVenta = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@
             this.lblNumfactVenta = new System.Windows.Forms.Label();
             this.txtNumFacVenta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleVenta)).BeginInit();
             this.SuspendLayout();
             // 
             // Btn_BuscarVenta
@@ -67,6 +67,7 @@
             this.Btn_BuscarVenta.TabIndex = 0;
             this.Btn_BuscarVenta.Text = "Buscar";
             this.Btn_BuscarVenta.UseVisualStyleBackColor = true;
+            this.Btn_BuscarVenta.Click += new System.EventHandler(this.Btn_BuscarVenta_Click);
             // 
             // lbl_BuscarVenta
             // 
@@ -84,6 +85,7 @@
             this.Txt_BuscarVenta.Name = "Txt_BuscarVenta";
             this.Txt_BuscarVenta.Size = new System.Drawing.Size(257, 20);
             this.Txt_BuscarVenta.TabIndex = 3;
+            this.Txt_BuscarVenta.TextChanged += new System.EventHandler(this.Txt_BuscarVenta_TextChanged);
             // 
             // dgvVenta
             // 
@@ -201,13 +203,13 @@
             this.Btnfacturar.Text = "Generar Factura ";
             this.Btnfacturar.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dgvDetalleVenta
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(16, 276);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(432, 145);
-            this.dataGridView2.TabIndex = 17;
+            this.dgvDetalleVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleVenta.Location = new System.Drawing.Point(16, 276);
+            this.dgvDetalleVenta.Name = "dgvDetalleVenta";
+            this.dgvDetalleVenta.Size = new System.Drawing.Size(432, 145);
+            this.dgvDetalleVenta.TabIndex = 17;
             // 
             // lblSubTotalventa
             // 
@@ -311,7 +313,7 @@
             this.Controls.Add(this.lblIvaVenta);
             this.Controls.Add(this.lblTotalVenta);
             this.Controls.Add(this.lblSubTotalventa);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgvDetalleVenta);
             this.Controls.Add(this.Btnfacturar);
             this.Controls.Add(this.BtnEliminarProductoVenta);
             this.Controls.Add(this.BtnCancelarVenta);
@@ -335,7 +337,7 @@
             this.Text = "WfVentas";
             this.Load += new System.EventHandler(this.Frm_Ventas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleVenta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,7 +361,7 @@
         private System.Windows.Forms.Button BtnCancelarVenta;
         private System.Windows.Forms.Button BtnEliminarProductoVenta;
         private System.Windows.Forms.Button Btnfacturar;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvDetalleVenta;
         private System.Windows.Forms.Label lblSubTotalventa;
         private System.Windows.Forms.Label lblTotalVenta;
         private System.Windows.Forms.Label lblIvaVenta;
