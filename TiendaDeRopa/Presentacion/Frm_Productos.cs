@@ -42,5 +42,17 @@ namespace TiendaDeRopa.Presentacion
         {
 
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtCategoria.Text = "";
+            txtTela.Text = "";
+            txtTalla.Text = "";
+            txtEstilo.Text = "";
+            txtDescripcion.Text = "";
+            txtMarca.Text = "";
+            cbProveedor.SelectedIndex = -1;
+            txtPrecio.Text = "";
+        }
     }
 }
