@@ -241,7 +241,7 @@ namespace TiendaDeRopa.formularios
                     D_Inventario inventario = new D_Inventario();
                     rpta = inventario.ActualizarStock(listaInventario, categoriasStock, cantidadesStock, fechasIngresoStock);
 
-                    if (rpta.Equals("Todos los detalles de la factura se registraron correctamente."))
+                    if (rpta.Equals("El stock del inventario se actualizó correctamente."))
                     {
                         LimpiarCampos();
                         GenerarNumeroFactura();
@@ -266,7 +266,6 @@ namespace TiendaDeRopa.formularios
             }
         }
 
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
@@ -285,6 +284,7 @@ namespace TiendaDeRopa.formularios
                 btnListarProducto.Enabled = true;
                 btnLimpiar.Enabled = true;
                 btnCancelar.Visible = false;
+                dgvProductos.Enabled = true;
             }
             else
             {
@@ -327,6 +327,7 @@ namespace TiendaDeRopa.formularios
                 txtPrecio.Text = filaSeleccionada.Cells["Precio"].Value.ToString();
                 txtCantidad.Text = filaSeleccionada.Cells["Cantidad"].Value.ToString();
 
+                dgvProductos.Enabled = false;
                 txtCantidad.Enabled = false;
                 btnListarProducto.Enabled = false;
                 btnEliminar.Enabled = true;
@@ -351,10 +352,16 @@ namespace TiendaDeRopa.formularios
             int cantidad;
             string fechaIngreso = txtFechaCompra.Text;
 
-
             if (!int.TryParse(txtCantidad.Text, out cantidad))
             {
                 MessageBox.Show("La Cantidad debe ser un número entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validación para números negativos
+            if (cantidad < 0)
+            {
+                MessageBox.Show("La Cantidad no puede ser un número negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -378,6 +385,7 @@ namespace TiendaDeRopa.formularios
             cbTarjeta.Enabled = true;
             cbEfectivo.Enabled = true;
         }
+
 
         private void CalcularSubTotal()
         {
@@ -434,6 +442,7 @@ namespace TiendaDeRopa.formularios
             btnInsertar.Enabled = true;
             btnListarProducto.Enabled = false;
 
+            dgvProductos.Enabled = true;
             dgvDetallesCompras.ClearSelection();
         }
 
