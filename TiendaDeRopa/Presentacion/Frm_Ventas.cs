@@ -4,11 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TiendaDeRopa.Datos;
+using TiendaDeRopa.Entidades;
 
 namespace TiendaDeRopa.Presentacion
 {
@@ -32,6 +35,48 @@ namespace TiendaDeRopa.Presentacion
             txtSubVenta.Enabled = false;
             txtIvaVenta.Enabled = false;
             txtTotalVenta.Enabled = false;
+        }
+        private void CalcularSubtotalVenta()
+        {
+            double subtotal = 0;
+            double iva = 0;
+            double total = 0;
+
+            foreach (DataGridViewRow fila in dgvDetalleVenta.Rows)
+            {
+                double precio = Convert.ToDouble(fila.Cells["Precio"].Value);
+                int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                subtotal += precio * cantidad;
+            }
+
+            iva = subtotal * 0.15;
+            total = subtotal + iva;
+
+            txtIvaVenta.Text = iva.ToString();
+            txtSubVenta.Text = subtotal.ToString();
+            txtTotalVenta.Text = total.ToString();
+        }
+        private void ActEstadoBtnVenta()
+        {
+            if (dgvDetalleVenta.RowCount > 0)
+            {
+                Btn_LimpiarVenta.Enabled = false;
+                BtnEliminarProductoVenta.Enabled = false;
+            }
+            else
+            {
+                Btn_LimpiarVenta.Enabled = true;
+                BtnEliminarProductoVenta.Enabled = true;
+            }
+            
+        }
+        private void limpiarcampos()
+        {
+            txtCategoriaVenta.Text = "";
+            txtPrecioVenta.Text = "";
+            txtCantidaVenta.Text = "";
+            CbEfectivoVenta.Checked = false;
+            CbTarjetaVenta.Checked = false;
         }
         private void GenerarNumeroFacturaVenta()
         {
@@ -106,6 +151,20 @@ namespace TiendaDeRopa.Presentacion
 
             return true;
         }
+        private bool ValidateGrid()
+        {
+            foreach (DataGridViewRow row in dgvDetalleVenta.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -137,7 +196,7 @@ namespace TiendaDeRopa.Presentacion
 
         private void Btn_ListaVenta_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Btn_BuscarVenta_Click(object sender, EventArgs e)
@@ -150,10 +209,153 @@ namespace TiendaDeRopa.Presentacion
 
         private void Txt_BuscarVenta_TextChanged(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(Txt_BuscarVenta.Text))
+            if (string.IsNullOrWhiteSpace(Txt_BuscarVenta.Text))
             {
                 ListarProductos();
             }
         }
+
+        private void dgvDetalleVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtCategoriaVenta.Text) || string.IsNullOrWhiteSpace(txtPrecioVenta.Text) || string.IsNullOrWhiteSpace(txtCantidaVenta.Text))
+            {
+                MessageBox.Show("Debe seleccionar un producto y/o llenar el campo cantidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string descripcion = txtCategoriaVenta.Text;
+            double precio;
+            int cantidad;
+
+            if (!int.TryParse(txtCantidaVenta.Text, out cantidad))
+            {
+                MessageBox.Show("La Cantidad debe ser un número entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!double.TryParse(txtPrecioVenta.Text, out precio))
+            {
+                MessageBox.Show("El campo 'Precio' debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            dgvDetalleVenta.Rows.Add(descripcion, precio, cantidad);
+            
+             CalcularSubtotalVenta();
+            ActEstadoBtnVenta();
+            limpiarcampos();
+
+             BtnEliminarProductoVenta.Enabled = true;
+             BtnfInsertarVenta.Enabled = true;
+             dgvDetalleVenta.ClearSelection();
+             Btn_ListaVenta.Enabled = false;
+             txtCantidaVenta.Enabled = false;
+             
+        }
+
+        private void BtnEliminarProductoVenta_Click(object sender, EventArgs e)
+        {
+            if (dgvDetalleVenta.SelectedRows.Count > 0)
+            {
+                DataGridViewRow filaSeleccionada = dgvDetalleVenta.SelectedRows[0];
+
+                dgvDetalleVenta.Rows.Remove(filaSeleccionada);
+
+                CalcularSubtotalVenta();
+
+                limpiarcampos();
+
+                txtCantidaVenta.Enabled = false;
+                BtnfInsertarVenta.Enabled = true;
+                Btn_ListaVenta.Enabled = true;
+                Btn_LimpiarVenta.Enabled = true;
+                BtnCancelarVenta.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una fila para eliminar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnfInsertarVenta_Click(object sender, EventArgs e)
+        {
+            if (ValidarCamposVenta())
+            {
+                if (ValidateGrid())
+                {
+                    MessageBox.Show("Tabla vacia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                GenerarNumeroFacturaVenta();
+
+                string rpta = "";
+                E_Factura factura = new E_Factura()
+                {
+                    cod_factura = txtNumFacVenta.Text,
+                    fecha = DateTime.Parse(txtFechaVenta.Text),
+                    subtotal = float.Parse(txtSubVenta.Text),
+                    iva = float.Parse(txtIvaVenta.Text),
+                    total = float.Parse(txtTotalVenta.Text),
+                    forma_pago = CbEfectivoVenta.Checked ? "Efectivo" : "Tarjeta",
+                    tipo = 1
+                };
+
+                D_Factura dfactura = new D_Factura();
+                rpta = dfactura.GuardarCompra(factura);
+
+                if (rpta.Equals("Compra registrada correctamente"))
+                {
+                    MessageBox.Show("Compra registrada correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    List<E_DetalleFactura> listaDetalles = new List<E_DetalleFactura>();
+                    List<string> categorias = new List<string>();
+                    List<int> cantidades = new List<int>();
+                    List<float> precios = new List<float>();
+
+                    foreach (DataGridViewRow fila in dgvDetallesVenta.Rows)
+                    {
+                        string categoria = fila.Cells["Categoria"].Value.ToString();
+                        int cantidad = int.Parse(fila.Cells["Cantidad"].Value.ToString());
+                        float precio = float.Parse(fila.Cells["Precio"].Value.ToString());
+
+                        categorias.Add(categoria);
+                        cantidades.Add(cantidad);
+                        precios.Add(precio);
+                    }
+
+                    string idFactura = txtNumeroFactura.Text;
+
+                    D_DetalleFactura detalleFactura = new D_DetalleFactura();
+                    rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
+
+                    if (rpta.Equals("Todos los detalles de la factura se registraron correctamente."))
+                    {
+                        LimpiarCampos();
+                        GenerarNumeroFactura();
+                        btnLimpiar.Enabled = true;
+                        btnEliminar.Enabled = true;
+                        dgvDetallesCompras.Rows.Clear();
+                        txtSubTotal.Text = "0";
+                        txtIVA.Text = "0";
+                        txtTotal.Text = "0";
+                        cbEfectivo.Checked = false;
+                        cbTarjeta.Checked = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show(rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
+
+
+   
 }
+
+

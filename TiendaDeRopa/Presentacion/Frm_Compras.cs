@@ -171,7 +171,7 @@ namespace TiendaDeRopa.formularios
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            if (ValidarCampos())
+           if (ValidarCampos())
             {
                 if (ValidateGrid())
                 {

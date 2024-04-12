@@ -43,7 +43,7 @@
             this.CbTarjetaVenta = new System.Windows.Forms.CheckBox();
             this.BtnCancelarVenta = new System.Windows.Forms.Button();
             this.BtnEliminarProductoVenta = new System.Windows.Forms.Button();
-            this.Btnfacturar = new System.Windows.Forms.Button();
+            this.BtnfInsertarVenta = new System.Windows.Forms.Button();
             this.dgvDetalleVenta = new System.Windows.Forms.DataGridView();
             this.lblSubTotalventa = new System.Windows.Forms.Label();
             this.lblTotalVenta = new System.Windows.Forms.Label();
@@ -193,15 +193,17 @@
             this.BtnEliminarProductoVenta.TabIndex = 15;
             this.BtnEliminarProductoVenta.Text = "Eliminar producto";
             this.BtnEliminarProductoVenta.UseVisualStyleBackColor = true;
+            this.BtnEliminarProductoVenta.Click += new System.EventHandler(this.BtnEliminarProductoVenta_Click);
             // 
-            // Btnfacturar
+            // BtnfInsertarVenta
             // 
-            this.Btnfacturar.Location = new System.Drawing.Point(601, 407);
-            this.Btnfacturar.Name = "Btnfacturar";
-            this.Btnfacturar.Size = new System.Drawing.Size(107, 23);
-            this.Btnfacturar.TabIndex = 16;
-            this.Btnfacturar.Text = "Generar Factura ";
-            this.Btnfacturar.UseVisualStyleBackColor = true;
+            this.BtnfInsertarVenta.Location = new System.Drawing.Point(601, 407);
+            this.BtnfInsertarVenta.Name = "BtnfInsertarVenta";
+            this.BtnfInsertarVenta.Size = new System.Drawing.Size(107, 23);
+            this.BtnfInsertarVenta.TabIndex = 16;
+            this.BtnfInsertarVenta.Text = "Generar Factura ";
+            this.BtnfInsertarVenta.UseVisualStyleBackColor = true;
+            this.BtnfInsertarVenta.Click += new System.EventHandler(this.BtnfInsertarVenta_Click);
             // 
             // dgvDetalleVenta
             // 
@@ -210,6 +212,7 @@
             this.dgvDetalleVenta.Name = "dgvDetalleVenta";
             this.dgvDetalleVenta.Size = new System.Drawing.Size(432, 145);
             this.dgvDetalleVenta.TabIndex = 17;
+            this.dgvDetalleVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleVenta_CellContentClick);
             // 
             // lblSubTotalventa
             // 
@@ -314,7 +317,7 @@
             this.Controls.Add(this.lblTotalVenta);
             this.Controls.Add(this.lblSubTotalventa);
             this.Controls.Add(this.dgvDetalleVenta);
-            this.Controls.Add(this.Btnfacturar);
+            this.Controls.Add(this.BtnfInsertarVenta);
             this.Controls.Add(this.BtnEliminarProductoVenta);
             this.Controls.Add(this.BtnCancelarVenta);
             this.Controls.Add(this.CbTarjetaVenta);
@@ -360,7 +363,7 @@
         private System.Windows.Forms.CheckBox CbTarjetaVenta;
         private System.Windows.Forms.Button BtnCancelarVenta;
         private System.Windows.Forms.Button BtnEliminarProductoVenta;
-        private System.Windows.Forms.Button Btnfacturar;
+        private System.Windows.Forms.Button BtnfInsertarVenta;
         private System.Windows.Forms.DataGridView dgvDetalleVenta;
         private System.Windows.Forms.Label lblSubTotalventa;
         private System.Windows.Forms.Label lblTotalVenta;
