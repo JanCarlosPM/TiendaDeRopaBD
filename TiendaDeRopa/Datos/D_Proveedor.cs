@@ -96,5 +96,27 @@ namespace TiendaDeRopa.Datos
             }
             return Rpta;
         }
+
+        public DataTable ObtenerNombresProveedores()
+        {
+            DataTable nombres = new DataTable();
+            try
+            {
+                using (SqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
+                {
+                    using (SqlCommand comando = new SqlCommand("SP_ObtenerNombresProveedores", sqlCon))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        sqlCon.Open();
+                        nombres.Load(comando.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener nombres de proveedores: " + ex.Message);
+            }
+            return nombres;
+        }
     }
 }

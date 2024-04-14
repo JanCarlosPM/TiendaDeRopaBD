@@ -221,6 +221,7 @@
             this.btnRegistrar.TabIndex = 18;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnEditar
             // 
@@ -235,6 +236,7 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Enabled = false;
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btnEliminar.Location = new System.Drawing.Point(675, 188);
             this.btnEliminar.Name = "btnEliminar";
