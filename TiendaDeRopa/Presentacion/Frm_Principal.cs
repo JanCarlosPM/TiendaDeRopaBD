@@ -94,5 +94,17 @@ namespace TiendaDeRopa
 
             configurarFormulario(inventario);
         }
+
+        private void productoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (formularioAbierto != null)
+            {
+                formularioAbierto.Close();
+            }
+
+            Frm_Productos productos = new Frm_Productos();
+
+            configurarFormulario(productos);
+        }
     }
 }

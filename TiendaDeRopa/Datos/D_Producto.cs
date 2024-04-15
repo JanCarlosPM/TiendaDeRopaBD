@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using TiendaDeRopa.Entidades;
 
 namespace TiendaDeRopa.Datos
 {
@@ -59,27 +60,40 @@ namespace TiendaDeRopa.Datos
             return tabla;
         }
 
-        public string ObtenerIDProducto(string categoria)
+        public string InsertarProducto(string categoria, string tela, string talla, string estilo, string descripcion, string marca, string nombre_proveedor, float precio)
         {
-            string idProducto = null;
+            string mensaje = "";
+
             try
             {
                 using (SqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
                 {
-                    string query = "SELECT IDProducto FROM Productos WHERE Categoria = @Categoria";
-                    using (SqlCommand comando = new SqlCommand(query, sqlCon))
+                    using (SqlCommand comando = new SqlCommand("SP_InsertarProducto", sqlCon))
                     {
-                        comando.Parameters.AddWithValue("@Categoria", categoria);
+                        comando.CommandType = CommandType.StoredProcedure;
+
+                        comando.Parameters.Add("@categoria", SqlDbType.NVarChar).Value = categoria;
+                        comando.Parameters.Add("@tela", SqlDbType.NVarChar).Value = tela;
+                        comando.Parameters.Add("@talla", SqlDbType.NVarChar).Value = talla;
+                        comando.Parameters.Add("@estilo", SqlDbType.NVarChar).Value = estilo;
+                        comando.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = descripcion;
+                        comando.Parameters.Add("@marca", SqlDbType.NVarChar).Value = marca;
+                        comando.Parameters.Add("@nombre_proveedor", SqlDbType.VarChar).Value = nombre_proveedor;
+                        comando.Parameters.Add("@precio", SqlDbType.Float).Value = precio;
+
                         sqlCon.Open();
-                        idProducto = comando.ExecuteScalar()?.ToString();
+                        comando.ExecuteNonQuery();
+
+                        mensaje = "Producto insertado correctamente.";
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al obtener IDProducto: " + ex.Message);
+                mensaje = "Error al insertar producto: " + ex.Message;
             }
-            return idProducto;
+
+            return mensaje;
         }
 
     }

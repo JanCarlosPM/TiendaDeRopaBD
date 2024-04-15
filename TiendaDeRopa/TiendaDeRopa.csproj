@@ -63,6 +63,12 @@
     <Compile Include="Presentacion\Frm_Inventario.Designer.cs">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Frm_Productos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Frm_Productos.Designer.cs">
+      <DependentUpon>Frm_Productos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\Frm_Proveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     </Compile>
     <EmbeddedResource Include="Presentacion\Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Frm_Productos.resx">
+      <DependentUpon>Frm_Productos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Frm_Proveedor.resx">
       <DependentUpon>Frm_Proveedor.cs</DependentUpon>

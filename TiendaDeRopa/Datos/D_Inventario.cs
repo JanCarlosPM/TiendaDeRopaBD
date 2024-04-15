@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.Generic;
+using TiendaDeRopa.Entidades;
 
 namespace TiendaDeRopa.Datos
 {
@@ -31,5 +33,59 @@ namespace TiendaDeRopa.Datos
             }
             return tabla;
         }
+
+        public string ActualizarStock(List<E_Inventario> listaInventario, List<string> categorias, List<int> cantidades, List<DateTime> fechasIngreso)
+        {
+            string mensaje = "";
+            SqlConnection conexion = new SqlConnection();
+
+            try
+            {
+                conexion = Conexion.getInstancia().CrearConexion();
+                conexion.Open();
+
+                string categoriasStr = string.Join(",", categorias);
+                string cantidadesStr = string.Join(",", cantidades);
+
+                List<string> fechasIngresoStrList = new List<string>();
+                foreach (DateTime fecha in fechasIngreso)
+                {
+                    fechasIngresoStrList.Add(fecha.ToString("yyyy/MM/dd"));
+                }
+
+                string fechasIngresoStr = string.Join(",", fechasIngresoStrList);
+
+                SqlCommand comando = new SqlCommand("SP_ActualizarStock", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("@categorias", SqlDbType.NVarChar).Value = categoriasStr;
+                comando.Parameters.Add("@cantidades", SqlDbType.NVarChar).Value = cantidadesStr;
+                comando.Parameters.Add("@fechasIngreso", SqlDbType.NVarChar).Value = fechasIngresoStr;
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+                if (filasAfectadas < 1)
+                {
+                    mensaje = "No se pudo actualizar el stock del inventario.";
+                    return mensaje;
+                }
+
+                mensaje = "El stock del inventario se actualizó correctamente.";
+            }
+            catch (SqlException ex)
+            {
+                mensaje = "Error SQL: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                mensaje = "Error: " + ex.Message;
+            }
+            finally
+            {
+                if (conexion.State == ConnectionState.Open)
+                    conexion.Close();
+            }
+
+            return mensaje;
+        }
+
     }
 }

@@ -116,11 +116,11 @@
             // 
             this.dgvProductos.AllowUserToAddRows = false;
             this.dgvProductos.AllowUserToDeleteRows = false;
-            this.dgvProductos.AllowUserToResizeColumns = false;
-            this.dgvProductos.AllowUserToResizeRows = false;
-            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductos.AllowUserToOrderColumns = true;
+            this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvProductos.Location = new System.Drawing.Point(16, 103);
             this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.ReadOnly = true;
             this.dgvProductos.Size = new System.Drawing.Size(399, 164);
             this.dgvProductos.TabIndex = 5;
             this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
@@ -175,6 +175,7 @@
             this.cbEfectivo.TabIndex = 10;
             this.cbEfectivo.Text = "Efectivo";
             this.cbEfectivo.UseVisualStyleBackColor = true;
+            this.cbEfectivo.CheckedChanged += new System.EventHandler(this.cbEfectivo_CheckedChanged);
             // 
             // cbTarjeta
             // 
@@ -186,6 +187,7 @@
             this.cbTarjeta.TabIndex = 11;
             this.cbTarjeta.Text = "Tarjeta";
             this.cbTarjeta.UseVisualStyleBackColor = true;
+            this.cbTarjeta.CheckedChanged += new System.EventHandler(this.cbTarjeta_CheckedChanged);
             // 
             // btnInsertar
             // 
@@ -315,11 +317,11 @@
             // 
             this.dgvDetallesCompras.AllowUserToAddRows = false;
             this.dgvDetallesCompras.AllowUserToDeleteRows = false;
-            this.dgvDetallesCompras.AllowUserToResizeColumns = false;
-            this.dgvDetallesCompras.AllowUserToResizeRows = false;
+            this.dgvDetallesCompras.AllowUserToOrderColumns = true;
             this.dgvDetallesCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetallesCompras.Location = new System.Drawing.Point(16, 315);
             this.dgvDetallesCompras.Name = "dgvDetallesCompras";
+            this.dgvDetallesCompras.ReadOnly = true;
             this.dgvDetallesCompras.Size = new System.Drawing.Size(399, 150);
             this.dgvDetallesCompras.TabIndex = 26;
             this.dgvDetallesCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetallesCompras_CellContentClick);
