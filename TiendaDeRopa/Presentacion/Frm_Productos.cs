@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TiendaDeRopa.Datos;
 
@@ -20,7 +15,38 @@ namespace TiendaDeRopa.Presentacion
             InitializeComponent();
             ListarProductos();
             AsignarEventosTextBox();
+            dgvProductos.CellClick += dgvProductos_CellClick;
         }
+
+
+        private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgvProductos.Rows[e.RowIndex];
+
+                string categoria = fila.Cells["Categoria"].Value.ToString();
+                string tela = fila.Cells["Tela"].Value.ToString();
+                string talla = fila.Cells["Talla"].Value.ToString();
+                string estilo = fila.Cells["Estilo"].Value.ToString();
+                string descripcion = fila.Cells["Descripcion"].Value.ToString();
+                string marca = fila.Cells["Marca"].Value.ToString();
+                string Proveedor = fila.Cells["Proveedor"].Value.ToString();
+                string precio = fila.Cells["Precio"].Value.ToString();
+
+                txtCategoria.Text = categoria;
+                txtTela.Text = tela;
+                txtTalla.Text = talla;
+                txtEstilo.Text = estilo;
+                txtDescripcion.Text = descripcion;
+                txtMarca.Text = marca;
+                cbProveedor.Text = Proveedor;
+                txtPrecio.Text = precio;
+
+                txtCategoria.Enabled = false;
+            }
+        }
+
 
         private void TextBoxLetras_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -52,6 +78,7 @@ namespace TiendaDeRopa.Presentacion
             txtDescripcion.KeyPress += TextBoxLetras_KeyPress;
             txtMarca.KeyPress += TextBoxLetras_KeyPress;
             txtPrecio.KeyPress += TextBoxNumeros_KeyPress;
+            txtCategoria.KeyPress += TextBoxLetras_KeyPress;
         }
 
 
@@ -62,10 +89,32 @@ namespace TiendaDeRopa.Presentacion
             dgvProductos.DataSource = datosOriginales;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnEditar_Click(object sender, EventArgs e)
         {
+            if (txtCategoria.Text == "" || txtTela.Text == "" || txtTalla.Text == "" || txtEstilo.Text == "" || txtDescripcion.Text == "" || txtMarca.Text == "" || txtPrecio.Text == "" || cbProveedor.Text == "Seleccionar")
+            {
+                MessageBox.Show("Debe completar todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            string nombreProveedor = cbProveedor.Text;
+            string categoria = txtCategoria.Text;
+            string tela = txtTela.Text;
+            string talla = txtTalla.Text;
+            string estilo = txtEstilo.Text;
+            string descripcion = txtDescripcion.Text;
+            string marca = txtMarca.Text;
+            float precio = float.Parse(txtPrecio.Text);
+
+            D_Producto producto = new D_Producto();
+            string mensaje = producto.EditarProducto(categoria, tela, talla, estilo, descripcion, marca, nombreProveedor, precio);
+
+            MessageBox.Show(mensaje, "Producto Editado con Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            ListarProductos();
         }
+
+
 
         private void Frm_Productos_Load(object sender, EventArgs e)
         {
@@ -91,7 +140,6 @@ namespace TiendaDeRopa.Presentacion
             cbProveedor.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtCategoria.Text = "";
@@ -101,10 +149,20 @@ namespace TiendaDeRopa.Presentacion
             txtDescripcion.Text = "";
             txtMarca.Text = "";
             txtPrecio.Text = "";
+            cbProveedor.Text = "Seleccionar";
+
+            txtCategoria.Enabled = true;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+
+            if (txtCategoria.Text == "" || txtTela.Text == "" || txtTalla.Text == "" || txtEstilo.Text == "" || txtDescripcion.Text == "" || txtMarca.Text == "" || txtPrecio.Text == "" || cbProveedor.Text == "Seleccionar")
+            {
+                MessageBox.Show("Debe completar todos los campos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string categoria = txtCategoria.Text;
             string tela = txtTela.Text;
             string talla = txtTalla.Text;
@@ -123,6 +181,5 @@ namespace TiendaDeRopa.Presentacion
 
             ListarProductos();
         }
-
     }
 }
