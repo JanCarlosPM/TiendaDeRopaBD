@@ -412,5 +412,40 @@ namespace TiendaDeRopa.formularios
         {
 
         }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIVA_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSubTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFechaCompra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

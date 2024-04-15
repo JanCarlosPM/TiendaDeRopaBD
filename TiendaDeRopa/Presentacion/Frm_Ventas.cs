@@ -196,7 +196,39 @@ namespace TiendaDeRopa.Presentacion
 
         private void Btn_ListaVenta_Click(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrWhiteSpace(txtCategoriaVenta.Text) || string.IsNullOrWhiteSpace(txtPrecioVenta.Text) || string.IsNullOrWhiteSpace(txtCantidaVenta.Text))
+            {
+                MessageBox.Show("Debe seleccionar un producto y/o llenar el campo cantidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string descripcion = txtCategoriaVenta.Text;
+            double precio;
+            int cantidad;
+
+            if (!int.TryParse(txtCantidaVenta.Text, out cantidad))
+            {
+                MessageBox.Show("La Cantidad debe ser un número entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!double.TryParse(txtPrecioVenta.Text, out precio))
+            {
+                MessageBox.Show("El campo 'Precio' debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            dgvDetalleVenta.Rows.Add(descripcion, precio, cantidad);
+
+            CalcularSubtotalVenta();
+            ActEstadoBtnVenta();
+            limpiarcampos();
+
+            BtnEliminarProductoVenta.Enabled = true;
+            BtnfInsertarVenta.Enabled = true;
+            dgvDetalleVenta.ClearSelection();
+            Btn_ListaVenta.Enabled = false;
+            txtCantidaVenta.Enabled = false;
         }
 
         private void Btn_BuscarVenta_Click(object sender, EventArgs e)
@@ -312,7 +344,7 @@ namespace TiendaDeRopa.Presentacion
                     List<int> cantidades = new List<int>();
                     List<float> precios = new List<float>();
 
-                    foreach (DataGridViewRow fila in dgvDetallesVenta.Rows)
+                    foreach (DataGridViewRow fila in dgvDetalleVenta.Rows)
                     {
                         string categoria = fila.Cells["Categoria"].Value.ToString();
                         int cantidad = int.Parse(fila.Cells["Cantidad"].Value.ToString());
@@ -323,23 +355,23 @@ namespace TiendaDeRopa.Presentacion
                         precios.Add(precio);
                     }
 
-                    string idFactura = txtNumeroFactura.Text;
+                    string idFactura = txtNumFacVenta.Text;
 
                     D_DetalleFactura detalleFactura = new D_DetalleFactura();
                     rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
 
                     if (rpta.Equals("Todos los detalles de la factura se registraron correctamente."))
                     {
-                        LimpiarCampos();
-                        GenerarNumeroFactura();
-                        btnLimpiar.Enabled = true;
-                        btnEliminar.Enabled = true;
-                        dgvDetallesCompras.Rows.Clear();
-                        txtSubTotal.Text = "0";
-                        txtIVA.Text = "0";
-                        txtTotal.Text = "0";
-                        cbEfectivo.Checked = false;
-                        cbTarjeta.Checked = false;
+                        limpiarcampos();
+                        GenerarNumeroFacturaVenta();
+                        Btn_LimpiarVenta.Enabled = true;
+                        BtnEliminarProductoVenta.Enabled = true;
+                        dgvDetalleVenta.Rows.Clear();
+                        txtSubVenta.Text = "0";
+                        txtIvaVenta.Text = "0";
+                        txtTotalVenta.Text = "0";
+                        CbEfectivoVenta.Checked = false;
+                        CbTarjetaVenta.Checked = false;
                     }
                     else
                     {
@@ -351,6 +383,18 @@ namespace TiendaDeRopa.Presentacion
                     MessageBox.Show(rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void txtCantidaVenta_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_LimpiarVenta_Click(object sender, EventArgs e)
+        {
+            limpiarcampos();
+            txtCantidaVenta.Enabled = false;
+            Btn_ListaVenta.Enabled = false;
         }
     }
 

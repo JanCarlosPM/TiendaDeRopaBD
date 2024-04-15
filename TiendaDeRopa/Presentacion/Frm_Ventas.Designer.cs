@@ -116,6 +116,7 @@
             this.txtCantidaVenta.Name = "txtCantidaVenta";
             this.txtCantidaVenta.Size = new System.Drawing.Size(145, 20);
             this.txtCantidaVenta.TabIndex = 7;
+            this.txtCantidaVenta.TextChanged += new System.EventHandler(this.txtCantidaVenta_TextChanged);
             // 
             // Btn_ListaVenta
             // 
@@ -135,6 +136,7 @@
             this.Btn_LimpiarVenta.TabIndex = 9;
             this.Btn_LimpiarVenta.Text = "Nueva Venta";
             this.Btn_LimpiarVenta.UseVisualStyleBackColor = true;
+            this.Btn_LimpiarVenta.Click += new System.EventHandler(this.Btn_LimpiarVenta_Click);
             // 
             // label1
             // 

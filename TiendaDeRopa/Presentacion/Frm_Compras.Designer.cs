@@ -133,6 +133,7 @@
             this.txtFechaCompra.Size = new System.Drawing.Size(100, 25);
             this.txtFechaCompra.TabIndex = 6;
             this.txtFechaCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFechaCompra.TextChanged += new System.EventHandler(this.txtFechaCompra_TextChanged);
             // 
             // txtSubTotal
             // 
@@ -142,6 +143,7 @@
             this.txtSubTotal.Size = new System.Drawing.Size(100, 25);
             this.txtSubTotal.TabIndex = 7;
             this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSubTotal.TextChanged += new System.EventHandler(this.txtSubTotal_TextChanged);
             // 
             // txtIVA
             // 
@@ -151,6 +153,7 @@
             this.txtIVA.Size = new System.Drawing.Size(100, 25);
             this.txtIVA.TabIndex = 8;
             this.txtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtIVA.TextChanged += new System.EventHandler(this.txtIVA_TextChanged);
             // 
             // txtTotal
             // 
@@ -160,6 +163,7 @@
             this.txtTotal.Size = new System.Drawing.Size(100, 25);
             this.txtTotal.TabIndex = 9;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
             // 
             // cbEfectivo
             // 
@@ -255,6 +259,7 @@
             this.label7.Size = new System.Drawing.Size(88, 20);
             this.label7.TabIndex = 19;
             this.label7.Text = "No. Factura";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // txtNumeroFactura
             // 
@@ -285,6 +290,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(146, 25);
             this.txtPrecio.TabIndex = 22;
+            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
             // 
             // txtCantidad
             // 
@@ -293,6 +299,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(146, 25);
             this.txtCantidad.TabIndex = 23;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
             // label8
             // 
