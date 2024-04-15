@@ -211,17 +211,19 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT 
-        categoria, 
-        tela, 
-        talla, 
-        estilo, 
-        descripcion, 
-        marca, 
-        precio
+        P.categoria, 
+        P.tela, 
+        P.talla, 
+        P.estilo, 
+        P.descripcion, 
+        P.marca,
+        PR.nombre AS proveedor,
+        P.precio
     FROM 
-        Producto;
+        Producto AS P
+    INNER JOIN
+        Proveedor AS PR ON P.id_proveedor = PR.id;
 END;
-GO
 
 --//SP NUMERO DE FACTURA
 
