@@ -25,13 +25,5 @@ namespace TiendaDeRopa.Entidades
         public string forma_pago { get; set; }
 
         public int tipo { get; set; }
-
-        
-            // Otras propiedades...
-            public List<string> categorias { get; set; }
-            public List<int> cantidades { get; set; } // Agregar esta propiedad
-            public List<DateTime> fechasIngreso { get; set; }
-        
-
     }
 }
