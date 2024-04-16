@@ -195,7 +195,7 @@ namespace TiendaDeRopa.formularios
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-           if (ValidarCampos())
+            if (ValidarCampos())
             {
                 if (ValidateGrid())
                 {
@@ -503,7 +503,9 @@ namespace TiendaDeRopa.formularios
 
         private void txtFechaCompra_TextChanged(object sender, EventArgs e)
         {
-
+             
+         
+        }
         private void cbEfectivo_CheckedChanged(object sender, EventArgs e)
         {
             if (cbEfectivo.Checked)
