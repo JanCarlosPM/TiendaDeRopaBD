@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TiendaDeRopa.Datos;
 using TiendaDeRopa.Entidades;
@@ -105,41 +98,6 @@ namespace TiendaDeRopa.Presentacion
             if (txtFechaVenta.Text == "" || txtSubVenta.Text == "" || txtIvaVenta.Text == "" || txtTotalVenta.Text == "" || (!CbEfectivoVenta.Checked && !CbTarjetaVenta.Checked))
             {
                 MessageBox.Show("Debe llenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (txtFechaVenta.Text == "")
-            {
-                MessageBox.Show("Debe ingresar la fecha de la compra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFechaVenta.Focus();
-                return false;
-            }
-
-            if (txtSubVenta.Text == "0" || txtIvaVenta.Text == "0" || txtTotalVenta.Text == "0")
-            {
-                MessageBox.Show("Debe ingresar productos en la tabla", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSubVenta.Focus();
-                return false;
-            }
-
-            if (!double.TryParse(txtSubVenta.Text, out _))
-            {
-                MessageBox.Show("El subtotal debe ser un número", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSubVenta.Focus();
-                return false;
-            }
-
-            if (!double.TryParse(txtIvaVenta.Text, out _))
-            {
-                MessageBox.Show("El IVA debe ser un número", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtIvaVenta.Focus();
-                return false;
-            }
-
-            if (!double.TryParse(txtTotalVenta.Text, out _))
-            {
-                MessageBox.Show("El total debe ser un número", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTotalVenta.Focus();
                 return false;
             }
 
