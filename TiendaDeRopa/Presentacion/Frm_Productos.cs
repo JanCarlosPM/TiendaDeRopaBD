@@ -47,7 +47,7 @@ namespace TiendaDeRopa.Presentacion
 
                 txtCategoria.Enabled = false;
                 btnRegistrar.Enabled = false;
-                btnEditar.Enabled = false;
+                btnEditar.Enabled = true;
             }
         }
 
@@ -157,6 +157,7 @@ namespace TiendaDeRopa.Presentacion
 
             btnRegistrar.Enabled = true;
             txtCategoria.Enabled = true;
+            btnEditar.Enabled = false;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
