@@ -16,6 +16,8 @@ namespace TiendaDeRopa.Presentacion
             ListarProductos();
             AsignarEventosTextBox();
             dgvProductos.CellClick += dgvProductos_CellClick;
+
+            btnEditar.Enabled = false;
         }
 
 
@@ -44,6 +46,8 @@ namespace TiendaDeRopa.Presentacion
                 txtPrecio.Text = precio;
 
                 txtCategoria.Enabled = false;
+                btnRegistrar.Enabled = false;
+                btnEditar.Enabled = false;
             }
         }
 
@@ -151,6 +155,7 @@ namespace TiendaDeRopa.Presentacion
             txtPrecio.Text = "";
             cbProveedor.Text = "Seleccionar";
 
+            btnRegistrar.Enabled = true;
             txtCategoria.Enabled = true;
         }
 

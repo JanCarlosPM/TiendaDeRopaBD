@@ -95,6 +95,8 @@ namespace TiendaDeRopa.Datos
 
             return mensaje;
         }
+
+
         public string EditarProducto(string categoria, string tela, string talla, string estilo, string descripcion, string marca, string nombre_proveedor, float precio)
         {
             string mensaje = "";

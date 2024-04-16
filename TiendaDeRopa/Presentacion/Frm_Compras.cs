@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
 using System.Windows.Forms;
 using TiendaDeRopa.Datos;
 using TiendaDeRopa.Entidades;
@@ -51,7 +50,6 @@ namespace TiendaDeRopa.formularios
         }
         private void ObtenerFechaActual()
         {
-
             txtFechaCompra.Text = DateTime.Now.ToString("yyyy-MM-dd");
             txtFechaCompra.Enabled = false;
             txtSubTotal.Enabled = false;
@@ -81,47 +79,11 @@ namespace TiendaDeRopa.formularios
             }
         }
 
-
         private bool ValidarCampos()
         {
             if (txtFechaCompra.Text == "" || txtSubTotal.Text == "" || txtIVA.Text == "" || txtTotal.Text == "" || (!cbEfectivo.Checked && !cbTarjeta.Checked))
             {
                 MessageBox.Show("Debe llenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (txtFechaCompra.Text == "")
-            {
-                MessageBox.Show("Debe ingresar la fecha de la compra", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtFechaCompra.Focus();
-                return false;
-            }
-
-            if (txtSubTotal.Text == "0" || txtIVA.Text == "0" || txtTotal.Text == "0")
-            {
-                MessageBox.Show("Debe ingresar productos en la tabla", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSubTotal.Focus();
-                return false;
-            }
-
-            if (!double.TryParse(txtSubTotal.Text, out _))
-            {
-                MessageBox.Show("El subtotal debe ser un número", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSubTotal.Focus();
-                return false;
-            }
-
-            if (!double.TryParse(txtIVA.Text, out _))
-            {
-                MessageBox.Show("El IVA debe ser un número", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtIVA.Focus();
-                return false;
-            }
-
-            if (!double.TryParse(txtTotal.Text, out _))
-            {
-                MessageBox.Show("El total debe ser un número", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTotal.Focus();
                 return false;
             }
 
@@ -142,16 +104,12 @@ namespace TiendaDeRopa.formularios
             cbEfectivo.Checked = false;
             cbTarjeta.Checked = false;
         }
+
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
             txtCantidad.Enabled = false;
             btnListarProducto.Enabled = false;
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -224,13 +182,11 @@ namespace TiendaDeRopa.formularios
                 {
                     MessageBox.Show("Compra registrada correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // ACTUALIZAR STOCK
                     List<E_Inventario> listaInventario = new List<E_Inventario>();
                     List<string> categoriasStock = new List<string>();
                     List<int> cantidadesStock = new List<int>();
                     List<DateTime> fechasIngresoStock = new List<DateTime>();
 
-                    // DETALLE FACTURA
                     List<E_DetalleFactura> listaDetalles = new List<E_DetalleFactura>();
                     List<string> categorias = new List<string>();
                     List<int> cantidades = new List<int>();
@@ -242,7 +198,6 @@ namespace TiendaDeRopa.formularios
                         int cantidad = int.Parse(fila.Cells["Cantidad"].Value.ToString());
                         float precio = float.Parse(fila.Cells["Precio"].Value.ToString());
                         DateTime fechaIngresoStock = DateTime.Parse(fila.Cells["Fecha de Ingreso"].Value.ToString());
-
 
                         categorias.Add(categoria);
                         cantidades.Add(cantidad);
@@ -284,7 +239,6 @@ namespace TiendaDeRopa.formularios
                 }
             }
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
@@ -310,17 +264,6 @@ namespace TiendaDeRopa.formularios
                 MessageBox.Show("Seleccione una fila para eliminar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void wfCompras_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -377,7 +320,6 @@ namespace TiendaDeRopa.formularios
                 return;
             }
 
-            // Validación para números negativos
             if (cantidad < 0)
             {
                 MessageBox.Show("La Cantidad no puede ser un número negativo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -404,8 +346,6 @@ namespace TiendaDeRopa.formularios
             cbTarjeta.Enabled = true;
             cbEfectivo.Enabled = true;
         }
-
-
         private void CalcularSubTotal()
         {
             double subtotal = 0;
@@ -447,10 +387,7 @@ namespace TiendaDeRopa.formularios
                 ListarProductos();
             }
         }
-        private void dgvDetallesCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             txtCategoria.Text = "";
@@ -463,12 +400,6 @@ namespace TiendaDeRopa.formularios
 
             dgvProductos.Enabled = true;
             dgvDetallesCompras.ClearSelection();
-        }
-
-
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void cbEfectivo_CheckedChanged(object sender, EventArgs e)
