@@ -283,6 +283,7 @@
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(146, 25);
             this.txtCategoria.TabIndex = 21;
+            this.txtCategoria.TextChanged += new System.EventHandler(this.txtCategoria_TextChanged);
             // 
             // txtPrecio
             // 

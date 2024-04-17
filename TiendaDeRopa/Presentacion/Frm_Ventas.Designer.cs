@@ -94,7 +94,7 @@
             this.dgvVenta.Name = "dgvVenta";
             this.dgvVenta.Size = new System.Drawing.Size(432, 144);
             this.dgvVenta.TabIndex = 4;
-            this.dgvVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVenta_CellContentClick);
             // 
             // txtCategoriaVenta
             // 
@@ -102,6 +102,7 @@
             this.txtCategoriaVenta.Name = "txtCategoriaVenta";
             this.txtCategoriaVenta.Size = new System.Drawing.Size(146, 20);
             this.txtCategoriaVenta.TabIndex = 5;
+            this.txtCategoriaVenta.TextChanged += new System.EventHandler(this.txtCategoriaVenta_TextChanged);
             // 
             // txtPrecioVenta
             // 
@@ -112,7 +113,7 @@
             // 
             // txtCantidaVenta
             // 
-            this.txtCantidaVenta.Location = new System.Drawing.Point(455, 239);
+            this.txtCantidaVenta.Location = new System.Drawing.Point(455, 222);
             this.txtCantidaVenta.Name = "txtCantidaVenta";
             this.txtCantidaVenta.Size = new System.Drawing.Size(145, 20);
             this.txtCantidaVenta.TabIndex = 7;
@@ -142,7 +143,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(489, 220);
+            this.label1.Location = new System.Drawing.Point(489, 203);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 10;
@@ -167,6 +168,7 @@
             this.CbEfectivoVenta.TabIndex = 12;
             this.CbEfectivoVenta.Text = "Efectivo";
             this.CbEfectivoVenta.UseVisualStyleBackColor = true;
+            this.CbEfectivoVenta.CheckedChanged += new System.EventHandler(this.CbEfectivoVenta_CheckedChanged);
             // 
             // CbTarjetaVenta
             // 
@@ -177,6 +179,7 @@
             this.CbTarjetaVenta.TabIndex = 13;
             this.CbTarjetaVenta.Text = "Tarjeta";
             this.CbTarjetaVenta.UseVisualStyleBackColor = true;
+            this.CbTarjetaVenta.CheckedChanged += new System.EventHandler(this.CbTarjetaVenta_CheckedChanged);
             // 
             // BtnCancelarVenta
             // 
@@ -214,7 +217,7 @@
             this.dgvDetalleVenta.Name = "dgvDetalleVenta";
             this.dgvDetalleVenta.Size = new System.Drawing.Size(432, 145);
             this.dgvDetalleVenta.TabIndex = 17;
-            this.dgvDetalleVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleVenta_CellContentClick);
+            this.dgvDetalleVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleVenta_CellClick);
             // 
             // lblSubTotalventa
             // 

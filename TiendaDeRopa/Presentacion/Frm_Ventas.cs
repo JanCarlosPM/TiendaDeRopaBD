@@ -14,6 +14,30 @@ namespace TiendaDeRopa.Presentacion
         public Frm_Ventas()
         {
             InitializeComponent();
+            GenerarNumeroFacturaVenta();
+            dgvDetalleVenta.Columns.Add("Categoria", "Categoria");
+            dgvDetalleVenta.Columns.Add("Precio", "Precio");
+            dgvDetalleVenta.Columns.Add("Cantidad", "Cantidad");
+            dgvDetalleVenta.Columns.Add("Fecha de Ingreso", "Fecha de Ingreso");
+            dgvDetalleVenta.CellClick += dgvDetalleVenta_CellClick;
+            dgvVenta.CellClick += dgvVenta_CellContentClick;
+
+            ListarProductos();
+            ObtenerFechaActual();
+            Txt_BuscarVenta.KeyPress += txtBuscarVenta_KeyPress;
+            txtCantidaVenta.KeyPress += txtCantidadVenta_KeyPress;
+
+            CbEfectivoVenta.Enabled = false;
+            CbTarjetaVenta.Enabled = false;
+            txtCantidaVenta.Enabled = false;
+            Btn_ListaVenta.Enabled = false;
+            BtnEliminarProductoVenta.Enabled = false;
+            BtnfInsertarVenta.Enabled = false;
+            Btn_LimpiarVenta.Enabled = false;
+            BtnCancelarVenta.Visible = false;
+            txtSubVenta.Text = "0";
+            txtIvaVenta.Text = "0";
+            txtTotalVenta.Text = "0";
         }
         private void ListarProductos()
         {
@@ -70,6 +94,21 @@ namespace TiendaDeRopa.Presentacion
             txtCantidaVenta.Text = "";
             CbEfectivoVenta.Checked = false;
             CbTarjetaVenta.Checked = false;
+        }
+        private void txtCantidadVenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBuscarVenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
         private void GenerarNumeroFacturaVenta()
         {
@@ -205,42 +244,29 @@ namespace TiendaDeRopa.Presentacion
             }
         }
 
-        private void dgvDetalleVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+         private void dgvDetalleVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCategoriaVenta.Text) || string.IsNullOrWhiteSpace(txtPrecioVenta.Text) || string.IsNullOrWhiteSpace(txtCantidaVenta.Text))
+            if (e.RowIndex >= 0 && dgvDetalleVenta.Rows[e.RowIndex].Cells["Categoria"].Value != null &&
+                dgvDetalleVenta.Rows[e.RowIndex].Cells["Precio"].Value != null &&
+                dgvDetalleVenta.Rows[e.RowIndex].Cells["Cantidad"].Value != null)
             {
-                MessageBox.Show("Debe seleccionar un producto y/o llenar el campo cantidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                DataGridViewRow filaSeleccionada = dgvDetalleVenta.Rows[e.RowIndex];
+
+                txtCategoriaVenta.Text = filaSeleccionada.Cells["Categoria"].Value.ToString();
+                txtPrecioVenta.Text = filaSeleccionada.Cells["Precio"].Value.ToString();
+                txtCantidaVenta.Text = filaSeleccionada.Cells["Cantidad"].Value.ToString();
+
+                dgvVenta.Enabled = false;
+                txtCantidaVenta.Enabled = false;
+                Btn_ListaVenta.Enabled = false;
+                BtnEliminarProductoVenta.Enabled = true;
+                BtnfInsertarVenta.Enabled = false;
+                BtnCancelarVenta.Visible = true;
             }
-
-            string descripcion = txtCategoriaVenta.Text;
-            double precio;
-            int cantidad;
-
-            if (!int.TryParse(txtCantidaVenta.Text, out cantidad))
+            else
             {
-                MessageBox.Show("La Cantidad debe ser un número entero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Celda sin Datos, seleccione otra", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            if (!double.TryParse(txtPrecioVenta.Text, out precio))
-            {
-                MessageBox.Show("El campo 'Precio' debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            dgvDetalleVenta.Rows.Add(descripcion, precio, cantidad);
-            
-             CalcularSubtotalVenta();
-            ActEstadoBtnVenta();
-            limpiarcampos();
-
-             BtnEliminarProductoVenta.Enabled = true;
-             BtnfInsertarVenta.Enabled = true;
-             dgvDetalleVenta.ClearSelection();
-             Btn_ListaVenta.Enabled = false;
-             txtCantidaVenta.Enabled = false;
-             
         }
 
         private void BtnEliminarProductoVenta_Click(object sender, EventArgs e)
@@ -260,6 +286,7 @@ namespace TiendaDeRopa.Presentacion
                 Btn_ListaVenta.Enabled = true;
                 Btn_LimpiarVenta.Enabled = true;
                 BtnCancelarVenta.Visible = false;
+                dgvVenta.Enabled = true;
             }
             else
             {
@@ -353,6 +380,32 @@ namespace TiendaDeRopa.Presentacion
             limpiarcampos();
             txtCantidaVenta.Enabled = false;
             Btn_ListaVenta.Enabled = false;
+        }
+
+        private void dgvVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void CbEfectivoVenta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbEfectivoVenta.Checked)
+            {
+                CbTarjetaVenta.Checked = false;
+            }
+        }
+
+        private void CbTarjetaVenta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbTarjetaVenta.Checked)
+            {
+                CbEfectivoVenta.Checked = false;
+            }
+        }
+
+        private void txtCategoriaVenta_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

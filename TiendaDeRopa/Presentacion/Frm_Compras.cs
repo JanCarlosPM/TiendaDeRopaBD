@@ -521,5 +521,10 @@ namespace TiendaDeRopa.formularios
                 cbEfectivo.Checked = false;
             }
         }
+
+        private void txtCategoria_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
