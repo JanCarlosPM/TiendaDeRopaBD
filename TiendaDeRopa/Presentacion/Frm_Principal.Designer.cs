@@ -88,8 +88,8 @@
             // 
             this.productosToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.producto_icon;
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(244, 30);
-            this.productosToolStripMenuItem.Text = "Agregar Productos";
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // proveedoresToolStripMenuItem

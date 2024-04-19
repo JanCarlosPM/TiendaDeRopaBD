@@ -110,6 +110,8 @@ namespace TiendaDeRopa.formularios
             LimpiarCampos();
             txtCantidad.Enabled = false;
             btnListarProducto.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnInsertar.Enabled = false;
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
