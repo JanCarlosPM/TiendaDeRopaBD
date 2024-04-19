@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -110,6 +110,8 @@ namespace TiendaDeRopa.formularios
             LimpiarCampos();
             txtCantidad.Enabled = false;
             btnListarProducto.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnInsertar.Enabled = false;
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -416,6 +418,11 @@ namespace TiendaDeRopa.formularios
             {
                 cbEfectivo.Checked = false;
             }
+        }
+
+        private void Frm_Compras_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

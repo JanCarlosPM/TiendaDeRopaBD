@@ -47,7 +47,6 @@
             this.cbProveedor = new System.Windows.Forms.ComboBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
@@ -234,21 +233,10 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Enabled = false;
-            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btnEliminar.Location = new System.Drawing.Point(675, 188);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 20;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btnLimpiar.Location = new System.Drawing.Point(675, 228);
+            this.btnLimpiar.Location = new System.Drawing.Point(675, 190);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 21;
@@ -265,7 +253,7 @@
             this.dgvProductos.Location = new System.Drawing.Point(31, 410);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
-            this.dgvProductos.Size = new System.Drawing.Size(751, 178);
+            this.dgvProductos.Size = new System.Drawing.Size(817, 178);
             this.dgvProductos.TabIndex = 22;
             // 
             // label10
@@ -307,7 +295,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.cbProveedor);
@@ -358,7 +345,6 @@
         private System.Windows.Forms.ComboBox cbProveedor;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.DataGridView dgvProductos;
         private System.Windows.Forms.Label label10;

@@ -266,7 +266,6 @@
             this.txtNumeroFactura.Size = new System.Drawing.Size(141, 27);
             this.txtNumeroFactura.TabIndex = 20;
             this.txtNumeroFactura.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            
             // 
             // txtCategoria
             // 
@@ -276,6 +275,7 @@
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(146, 25);
             this.txtCategoria.TabIndex = 21;
+            this.txtCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPrecio
             // 
@@ -285,6 +285,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(146, 25);
             this.txtPrecio.TabIndex = 22;
+            this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCantidad
             // 
@@ -395,6 +396,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Compras";
             this.Text = "wfCompras";
+            this.Load += new System.EventHandler(this.Frm_Compras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallesCompras)).EndInit();
             this.ResumeLayout(false);

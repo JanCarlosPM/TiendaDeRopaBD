@@ -37,7 +37,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(330, 9);
+            this.label1.Location = new System.Drawing.Point(361, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(291, 32);
             this.label1.TabIndex = 0;
@@ -50,9 +50,9 @@
             this.dgvInventario.AllowUserToResizeColumns = false;
             this.dgvInventario.AllowUserToResizeRows = false;
             this.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventario.Location = new System.Drawing.Point(12, 85);
+            this.dgvInventario.Location = new System.Drawing.Point(58, 64);
             this.dgvInventario.Name = "dgvInventario";
-            this.dgvInventario.Size = new System.Drawing.Size(702, 171);
+            this.dgvInventario.Size = new System.Drawing.Size(924, 214);
             this.dgvInventario.TabIndex = 1;
             // 
             // Frm_Inventario
@@ -65,6 +65,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Inventario";
             this.Text = "Frm_Inventario";
+            this.Load += new System.EventHandler(this.Frm_Inventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

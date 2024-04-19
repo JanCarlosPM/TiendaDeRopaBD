@@ -17,7 +17,7 @@ namespace TiendaDeRopa.Datos
             try
             {
                 SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_LISTADO_PROV", SqlCon);
+                SqlCommand Comando = new SqlCommand("SP_LISTADO_PROV", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
                 SqlCon.Open();
@@ -47,7 +47,7 @@ namespace TiendaDeRopa.Datos
             try
             {
                 SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_GUARDAR_PROV", SqlCon);
+                SqlCommand Comando = new SqlCommand("SP_GUARDAR_PROV", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@opcion", SqlDbType.Int).Value = nOpcion;
                 Comando.Parameters.Add("@id", SqlDbType.Int).Value = oProv.id;
@@ -79,7 +79,7 @@ namespace TiendaDeRopa.Datos
             {
 
                 SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("ACTIVO_PROV", SqlCon);
+                SqlCommand Comando = new SqlCommand("SP_ACTIVO_PROV", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
                 Comando.Parameters.Add("@id", SqlDbType.Int).Value = Id_prov;
                 Comando.Parameters.Add("@estado", SqlDbType.Int).Value = Estado_activo;

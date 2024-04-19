@@ -116,6 +116,18 @@ namespace TiendaDeRopa.Presentacion
             MessageBox.Show(mensaje, "Producto Editado con Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ListarProductos();
+
+            txtCategoria.Text = "";
+            txtTela.Text = "";
+            txtTalla.Text = "";
+            txtEstilo.Text = "";
+            txtDescripcion.Text = "";
+            txtMarca.Text = "";
+            txtPrecio.Text = "";
+            cbProveedor.Text = "Seleccionar";
+
+            btnRegistrar.Enabled = true;
+            btnEditar.Enabled = false;
         }
 
 

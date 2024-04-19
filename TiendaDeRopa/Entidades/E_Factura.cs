@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TiendaDeRopa.Entidades
-{
+
+{  
+
     public class E_Factura
     {
         public int id { get; set; }
