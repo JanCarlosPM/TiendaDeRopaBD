@@ -42,8 +42,6 @@ namespace TiendaDeRopa.Datos
             }
             return Rpta;
         }
-
-
         public string GuardarVenta(E_Factura e_Factura)
         {
             string Rpta = "";

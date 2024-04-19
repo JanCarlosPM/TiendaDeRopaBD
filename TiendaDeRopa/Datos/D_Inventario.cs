@@ -138,14 +138,5 @@ namespace TiendaDeRopa.Datos
 
             return mensaje;
         }
-
-
-       
-
     }
-
-
-    
 }
-
-
