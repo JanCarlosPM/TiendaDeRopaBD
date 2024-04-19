@@ -64,7 +64,7 @@
             this.Btn_BuscarVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Btn_BuscarVenta.Location = new System.Drawing.Point(354, 57);
             this.Btn_BuscarVenta.Name = "Btn_BuscarVenta";
-            this.Btn_BuscarVenta.Size = new System.Drawing.Size(94, 23);
+            this.Btn_BuscarVenta.Size = new System.Drawing.Size(94, 27);
             this.Btn_BuscarVenta.TabIndex = 0;
             this.Btn_BuscarVenta.Text = "Buscar";
             this.Btn_BuscarVenta.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             this.Btn_ListaVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Btn_ListaVenta.Location = new System.Drawing.Point(606, 97);
             this.Btn_ListaVenta.Name = "Btn_ListaVenta";
-            this.Btn_ListaVenta.Size = new System.Drawing.Size(107, 23);
+            this.Btn_ListaVenta.Size = new System.Drawing.Size(107, 30);
             this.Btn_ListaVenta.TabIndex = 8;
             this.Btn_ListaVenta.Text = "Lista Venta";
             this.Btn_ListaVenta.UseVisualStyleBackColor = true;
@@ -148,7 +148,7 @@
             this.Btn_LimpiarVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Btn_LimpiarVenta.Location = new System.Drawing.Point(606, 142);
             this.Btn_LimpiarVenta.Name = "Btn_LimpiarVenta";
-            this.Btn_LimpiarVenta.Size = new System.Drawing.Size(107, 23);
+            this.Btn_LimpiarVenta.Size = new System.Drawing.Size(107, 27);
             this.Btn_LimpiarVenta.TabIndex = 9;
             this.Btn_LimpiarVenta.Text = "Nueva Venta";
             this.Btn_LimpiarVenta.UseVisualStyleBackColor = true;
@@ -203,17 +203,18 @@
             this.BtnCancelarVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.BtnCancelarVenta.Location = new System.Drawing.Point(601, 332);
             this.BtnCancelarVenta.Name = "BtnCancelarVenta";
-            this.BtnCancelarVenta.Size = new System.Drawing.Size(107, 23);
+            this.BtnCancelarVenta.Size = new System.Drawing.Size(107, 28);
             this.BtnCancelarVenta.TabIndex = 14;
             this.BtnCancelarVenta.Text = "Cancelar";
             this.BtnCancelarVenta.UseVisualStyleBackColor = true;
+            this.BtnCancelarVenta.Click += new System.EventHandler(this.BtnCancelarVenta_Click);
             // 
             // BtnEliminarProductoVenta
             // 
             this.BtnEliminarProductoVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.BtnEliminarProductoVenta.Location = new System.Drawing.Point(601, 366);
             this.BtnEliminarProductoVenta.Name = "BtnEliminarProductoVenta";
-            this.BtnEliminarProductoVenta.Size = new System.Drawing.Size(107, 23);
+            this.BtnEliminarProductoVenta.Size = new System.Drawing.Size(107, 27);
             this.BtnEliminarProductoVenta.TabIndex = 15;
             this.BtnEliminarProductoVenta.Text = "Eliminar producto";
             this.BtnEliminarProductoVenta.UseVisualStyleBackColor = true;
@@ -224,7 +225,7 @@
             this.BtnfInsertarVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.BtnfInsertarVenta.Location = new System.Drawing.Point(601, 407);
             this.BtnfInsertarVenta.Name = "BtnfInsertarVenta";
-            this.BtnfInsertarVenta.Size = new System.Drawing.Size(107, 23);
+            this.BtnfInsertarVenta.Size = new System.Drawing.Size(112, 31);
             this.BtnfInsertarVenta.TabIndex = 16;
             this.BtnfInsertarVenta.Text = "Generar Factura ";
             this.BtnfInsertarVenta.UseVisualStyleBackColor = true;

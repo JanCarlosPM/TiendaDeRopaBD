@@ -225,6 +225,7 @@ namespace TiendaDeRopa.Presentacion
             dgvDetalleVenta.ClearSelection();
             Btn_ListaVenta.Enabled = false;
             txtCantidaVenta.Enabled = false;
+            BtnfInsertarVenta.Enabled = true;
         }
 
         private void Btn_BuscarVenta_Click(object sender, EventArgs e)
@@ -414,6 +415,20 @@ namespace TiendaDeRopa.Presentacion
         private void txtCategoriaVenta_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnCancelarVenta_Click(object sender, EventArgs e)
+        {
+            txtCategoriaVenta.Text = "";
+            txtPrecioVenta.Text = "";
+            txtCantidaVenta.Text = "";
+
+            BtnCancelarVenta.Visible = false;
+            BtnfInsertarVenta.Enabled = true;
+            BtnfInsertarVenta.Enabled = false;
+
+            dgvVenta.Enabled = true;
+            dgvDetalleVenta.ClearSelection();
         }
     }
 
