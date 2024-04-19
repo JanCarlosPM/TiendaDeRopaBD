@@ -128,6 +128,7 @@ namespace TiendaDeRopa.Presentacion
 
             btnRegistrar.Enabled = true;
             btnEditar.Enabled = false;
+            txtCategoria.Enabled = true;
         }
 
 
@@ -198,6 +199,15 @@ namespace TiendaDeRopa.Presentacion
             MessageBox.Show(mensaje, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ListarProductos();
+
+            txtCategoria.Text = "";
+            txtTela.Text = "";
+            txtTalla.Text = "";
+            txtEstilo.Text = "";
+            txtDescripcion.Text = "";
+            txtMarca.Text = "";
+            txtPrecio.Text = "";
+            cbProveedor.Text = "Seleccionar";
         }
     }
 }

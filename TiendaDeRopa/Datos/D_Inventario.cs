@@ -86,7 +86,7 @@ namespace TiendaDeRopa.Datos
             return mensaje;
         }
 
-        public string ActualizarStockVenta(List<E_Inventario> listaInventario, List<string> categorias, List<int> cantidades, List<DateTime> fechasIngreso)
+        public string ActualizarStockVenta(List<E_Inventario> listaInventario1, List<string> categorias, List<int> cantidades, List<DateTime> fechasIngreso)
         {
             string mensaje = "";
             SqlConnection conexion = new SqlConnection();

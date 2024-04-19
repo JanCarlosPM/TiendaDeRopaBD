@@ -229,6 +229,7 @@ namespace TiendaDeRopa.formularios
                         txtTotal.Text = "0";
                         cbEfectivo.Checked = false;
                         cbTarjeta.Checked = false;
+                        LimpiarCampos();
                     }
                     else
                     {

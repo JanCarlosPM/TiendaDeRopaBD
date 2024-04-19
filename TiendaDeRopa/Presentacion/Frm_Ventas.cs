@@ -324,6 +324,11 @@ namespace TiendaDeRopa.Presentacion
                 {
                     MessageBox.Show("Compra registrada correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    List<E_Inventario> listaInventario1 = new List<E_Inventario>();
+                    List<string> categoriasStock = new List<string>();
+                    List<int> cantidadesStock = new List<int>();
+                    List<DateTime> fechasIngresoStock = new List<DateTime>();
+
                     List<E_DetalleFactura> listaDetalles = new List<E_DetalleFactura>();
                     List<string> categorias = new List<string>();
                     List<int> cantidades = new List<int>();
@@ -334,10 +339,12 @@ namespace TiendaDeRopa.Presentacion
                         string categoria = fila.Cells["Categoria"].Value.ToString();
                         int cantidad = int.Parse(fila.Cells["Cantidad"].Value.ToString());
                         float precio = float.Parse(fila.Cells["Precio"].Value.ToString());
+                        DateTime fechaIngresoStock = DateTime.Parse(fila.Cells["Fecha de Ingreso"].Value.ToString());
 
                         categorias.Add(categoria);
                         cantidades.Add(cantidad);
                         precios.Add(precio);
+                        fechasIngresoStock.Add(fechaIngresoStock);
                     }
 
                     string idFactura = txtNumFacVenta.Text;
@@ -345,7 +352,10 @@ namespace TiendaDeRopa.Presentacion
                     D_DetalleFactura detalleFactura = new D_DetalleFactura();
                     rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
 
-                    if (rpta.Equals("Todos los detalles de la factura se registraron correctamente."))
+                    D_Inventario inventario = new D_Inventario();
+                    rpta = inventario.ActualizarStockVenta(listaInventario1, categoriasStock, cantidadesStock, fechasIngresoStock);
+
+                    if (rpta.Equals("El stock del inventario se actualizó correctamente."))
                     {
                         limpiarcampos();
                         GenerarNumeroFacturaVenta();
@@ -357,6 +367,7 @@ namespace TiendaDeRopa.Presentacion
                         txtTotalVenta.Text = "0";
                         CbEfectivoVenta.Checked = false;
                         CbTarjetaVenta.Checked = false;
+                        ListarProductos();
                     }
                     else
                     {
