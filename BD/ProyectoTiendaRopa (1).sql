@@ -12,7 +12,7 @@ CREATE TABLE [dbo].[DetalleFactura](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[id_producto_inventario] [int] NOT NULL,
 	[cantidad] [int] NOT NULL,
-	[precio_venta] [int] NULL,
+	[precio_venta] [float] NULL,
 	[id_factura] [int] NOT NULL
 ) ON [PRIMARY]
 GO

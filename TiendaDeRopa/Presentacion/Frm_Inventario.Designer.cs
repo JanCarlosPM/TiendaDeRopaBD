@@ -65,7 +65,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Inventario";
             this.Text = "Frm_Inventario";
-            this.Load += new System.EventHandler(this.Frm_Inventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

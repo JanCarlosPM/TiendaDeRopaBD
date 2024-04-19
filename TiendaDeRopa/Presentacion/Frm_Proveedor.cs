@@ -241,5 +241,15 @@ namespace TiendaDeRopa.Presentacion
         {
             this.Close();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvListado_prov_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

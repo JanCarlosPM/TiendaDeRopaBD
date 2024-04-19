@@ -70,7 +70,6 @@
             this.label1.Size = new System.Drawing.Size(49, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Fecha";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -123,7 +122,6 @@
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.Size = new System.Drawing.Size(399, 164);
             this.dgvProductos.TabIndex = 5;
-            this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
             // 
             // txtFechaCompra
             // 
@@ -273,7 +271,7 @@
             this.txtNumeroFactura.Size = new System.Drawing.Size(141, 27);
             this.txtNumeroFactura.TabIndex = 20;
             this.txtNumeroFactura.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtNumeroFactura.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            
             // 
             // txtCategoria
             // 
@@ -325,7 +323,6 @@
             this.dgvDetallesCompras.ReadOnly = true;
             this.dgvDetallesCompras.Size = new System.Drawing.Size(399, 150);
             this.dgvDetallesCompras.TabIndex = 26;
-            this.dgvDetallesCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetallesCompras_CellContentClick);
             // 
             // btnListarProducto
             // 
@@ -406,7 +403,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Compras";
             this.Text = "wfCompras";
-            this.Load += new System.EventHandler(this.wfCompras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallesCompras)).EndInit();
             this.ResumeLayout(false);

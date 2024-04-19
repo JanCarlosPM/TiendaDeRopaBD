@@ -21,10 +21,5 @@ namespace TiendaDeRopa.Presentacion
             datosOriginales = inventario.ListarInventario();
             dgvInventario.DataSource = datosOriginales;
         }
-
-        private void Frm_Inventario_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

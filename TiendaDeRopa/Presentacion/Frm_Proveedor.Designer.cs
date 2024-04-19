@@ -66,7 +66,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSalir_pr);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(580, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(106, 384);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -74,7 +74,7 @@
             // btnNuevo_pr
             // 
             this.btnNuevo_pr.Location = new System.Drawing.Point(2, 2);
-            this.btnNuevo_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNuevo_pr.Margin = new System.Windows.Forms.Padding(2);
             this.btnNuevo_pr.Name = "btnNuevo_pr";
             this.btnNuevo_pr.Size = new System.Drawing.Size(94, 52);
             this.btnNuevo_pr.TabIndex = 15;
@@ -85,7 +85,7 @@
             // btnActualizar_pr
             // 
             this.btnActualizar_pr.Location = new System.Drawing.Point(2, 58);
-            this.btnActualizar_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnActualizar_pr.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizar_pr.Name = "btnActualizar_pr";
             this.btnActualizar_pr.Size = new System.Drawing.Size(94, 52);
             this.btnActualizar_pr.TabIndex = 16;
@@ -96,7 +96,7 @@
             // btnEliminar_pr
             // 
             this.btnEliminar_pr.Location = new System.Drawing.Point(2, 114);
-            this.btnEliminar_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar_pr.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar_pr.Name = "btnEliminar_pr";
             this.btnEliminar_pr.Size = new System.Drawing.Size(94, 52);
             this.btnEliminar_pr.TabIndex = 17;
@@ -107,7 +107,7 @@
             // btnSalir_pr
             // 
             this.btnSalir_pr.Location = new System.Drawing.Point(2, 170);
-            this.btnSalir_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSalir_pr.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalir_pr.Name = "btnSalir_pr";
             this.btnSalir_pr.Size = new System.Drawing.Size(94, 52);
             this.btnSalir_pr.TabIndex = 18;
@@ -122,16 +122,17 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(580, 81);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(2, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(88, 79);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -164,7 +165,7 @@
             // 
             this.txtNombre_pr.Enabled = false;
             this.txtNombre_pr.Location = new System.Drawing.Point(68, 108);
-            this.txtNombre_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombre_pr.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre_pr.MaxLength = 50;
             this.txtNombre_pr.Name = "txtNombre_pr";
             this.txtNombre_pr.Size = new System.Drawing.Size(132, 20);
@@ -174,7 +175,7 @@
             // 
             this.txtEmail_pr.Enabled = false;
             this.txtEmail_pr.Location = new System.Drawing.Point(271, 108);
-            this.txtEmail_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmail_pr.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail_pr.MaxLength = 100;
             this.txtEmail_pr.Name = "txtEmail_pr";
             this.txtEmail_pr.Size = new System.Drawing.Size(132, 20);
@@ -194,7 +195,7 @@
             // 
             this.txtTelefono_pr.Enabled = false;
             this.txtTelefono_pr.Location = new System.Drawing.Point(68, 154);
-            this.txtTelefono_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTelefono_pr.Margin = new System.Windows.Forms.Padding(2);
             this.txtTelefono_pr.MaxLength = 20;
             this.txtTelefono_pr.Name = "txtTelefono_pr";
             this.txtTelefono_pr.Size = new System.Drawing.Size(132, 20);
@@ -214,7 +215,7 @@
             // 
             this.txtDireccion_pr.Enabled = false;
             this.txtDireccion_pr.Location = new System.Drawing.Point(271, 154);
-            this.txtDireccion_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDireccion_pr.Margin = new System.Windows.Forms.Padding(2);
             this.txtDireccion_pr.MaxLength = 300;
             this.txtDireccion_pr.Name = "txtDireccion_pr";
             this.txtDireccion_pr.Size = new System.Drawing.Size(132, 20);
@@ -238,7 +239,7 @@
             this.dgvListado_prov.ColumnHeadersHeight = 35;
             this.dgvListado_prov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvListado_prov.Location = new System.Drawing.Point(11, 252);
-            this.dgvListado_prov.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvListado_prov.Margin = new System.Windows.Forms.Padding(2);
             this.dgvListado_prov.Name = "dgvListado_prov";
             this.dgvListado_prov.ReadOnly = true;
             this.dgvListado_prov.RowHeadersWidth = 51;
@@ -246,11 +247,12 @@
             this.dgvListado_prov.Size = new System.Drawing.Size(538, 122);
             this.dgvListado_prov.TabIndex = 10;
             this.dgvListado_prov.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_prov_CellClick);
+            this.dgvListado_prov.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListado_prov_CellContentClick);
             // 
             // txtBuscar_pr
             // 
             this.txtBuscar_pr.Location = new System.Drawing.Point(52, 213);
-            this.txtBuscar_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBuscar_pr.Margin = new System.Windows.Forms.Padding(2);
             this.txtBuscar_pr.MaxLength = 80;
             this.txtBuscar_pr.Name = "txtBuscar_pr";
             this.txtBuscar_pr.Size = new System.Drawing.Size(132, 20);
@@ -269,7 +271,7 @@
             // btnBuscar_pr
             // 
             this.btnBuscar_pr.Location = new System.Drawing.Point(188, 213);
-            this.btnBuscar_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar_pr.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar_pr.Name = "btnBuscar_pr";
             this.btnBuscar_pr.Size = new System.Drawing.Size(56, 19);
             this.btnBuscar_pr.TabIndex = 13;
@@ -280,7 +282,7 @@
             // btnGuardar_pr
             // 
             this.btnGuardar_pr.Location = new System.Drawing.Point(394, 210);
-            this.btnGuardar_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuardar_pr.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar_pr.Name = "btnGuardar_pr";
             this.btnGuardar_pr.Size = new System.Drawing.Size(56, 25);
             this.btnGuardar_pr.TabIndex = 14;
@@ -292,7 +294,7 @@
             // btnCancelar_pr
             // 
             this.btnCancelar_pr.Location = new System.Drawing.Point(462, 210);
-            this.btnCancelar_pr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar_pr.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar_pr.Name = "btnCancelar_pr";
             this.btnCancelar_pr.Size = new System.Drawing.Size(66, 25);
             this.btnCancelar_pr.TabIndex = 15;
@@ -323,7 +325,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Frm_Proveedor";
