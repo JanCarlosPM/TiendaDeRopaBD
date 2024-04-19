@@ -91,29 +91,37 @@
             // 
             // dgvVenta
             // 
-            this.dgvVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVenta.AllowUserToAddRows = false;
+            this.dgvVenta.AllowUserToDeleteRows = false;
+            this.dgvVenta.AllowUserToOrderColumns = true;
+            this.dgvVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvVenta.Location = new System.Drawing.Point(16, 100);
             this.dgvVenta.Name = "dgvVenta";
+            this.dgvVenta.ReadOnly = true;
             this.dgvVenta.Size = new System.Drawing.Size(432, 144);
             this.dgvVenta.TabIndex = 4;
             this.dgvVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVenta_CellContentClick);
             // 
             // txtCategoriaVenta
             // 
+            this.txtCategoriaVenta.Enabled = false;
             this.txtCategoriaVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtCategoriaVenta.Location = new System.Drawing.Point(454, 100);
             this.txtCategoriaVenta.Name = "txtCategoriaVenta";
             this.txtCategoriaVenta.Size = new System.Drawing.Size(146, 27);
             this.txtCategoriaVenta.TabIndex = 5;
+            this.txtCategoriaVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCategoriaVenta.TextChanged += new System.EventHandler(this.txtCategoriaVenta_TextChanged);
             // 
             // txtPrecioVenta
             // 
+            this.txtPrecioVenta.Enabled = false;
             this.txtPrecioVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtPrecioVenta.Location = new System.Drawing.Point(454, 142);
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.Size = new System.Drawing.Size(146, 27);
             this.txtPrecioVenta.TabIndex = 6;
+            this.txtPrecioVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCantidaVenta
             // 
@@ -149,10 +157,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(489, 203);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(489, 199);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 16);
+            this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "Cantidad";
             // 
@@ -224,9 +232,13 @@
             // 
             // dgvDetalleVenta
             // 
-            this.dgvDetalleVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleVenta.AllowUserToAddRows = false;
+            this.dgvDetalleVenta.AllowUserToDeleteRows = false;
+            this.dgvDetalleVenta.AllowUserToOrderColumns = true;
+            this.dgvDetalleVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvDetalleVenta.Location = new System.Drawing.Point(16, 276);
             this.dgvDetalleVenta.Name = "dgvDetalleVenta";
+            this.dgvDetalleVenta.ReadOnly = true;
             this.dgvDetalleVenta.Size = new System.Drawing.Size(432, 145);
             this.dgvDetalleVenta.TabIndex = 17;
             this.dgvDetalleVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleVenta_CellClick);
@@ -278,6 +290,7 @@
             this.txtSubVenta.Name = "txtSubVenta";
             this.txtSubVenta.Size = new System.Drawing.Size(100, 27);
             this.txtSubVenta.TabIndex = 22;
+            this.txtSubVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtIvaVenta
             // 
@@ -286,6 +299,7 @@
             this.txtIvaVenta.Name = "txtIvaVenta";
             this.txtIvaVenta.Size = new System.Drawing.Size(100, 27);
             this.txtIvaVenta.TabIndex = 23;
+            this.txtIvaVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTotalVenta
             // 
@@ -294,6 +308,7 @@
             this.txtTotalVenta.Name = "txtTotalVenta";
             this.txtTotalVenta.Size = new System.Drawing.Size(100, 27);
             this.txtTotalVenta.TabIndex = 24;
+            this.txtTotalVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTotalVenta.TextChanged += new System.EventHandler(this.txtTotalVenta_TextChanged);
             // 
             // txtFechaVenta
@@ -303,6 +318,7 @@
             this.txtFechaVenta.Name = "txtFechaVenta";
             this.txtFechaVenta.Size = new System.Drawing.Size(100, 27);
             this.txtFechaVenta.TabIndex = 25;
+            this.txtFechaVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblNumfactVenta
             // 
@@ -316,11 +332,13 @@
             // 
             // txtNumFacVenta
             // 
+            this.txtNumFacVenta.Enabled = false;
             this.txtNumFacVenta.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtNumFacVenta.Location = new System.Drawing.Point(884, 63);
             this.txtNumFacVenta.Name = "txtNumFacVenta";
             this.txtNumFacVenta.Size = new System.Drawing.Size(131, 27);
             this.txtNumFacVenta.TabIndex = 27;
+            this.txtNumFacVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Frm_Ventas
             // 

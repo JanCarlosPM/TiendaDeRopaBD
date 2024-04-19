@@ -404,46 +404,6 @@ namespace TiendaDeRopa.formularios
             dgvDetallesCompras.ClearSelection();
         }
 
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void txtCantidad_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPrecio_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTotal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtIVA_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSubTotal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtFechaCompra_TextChanged(object sender, EventArgs e)
-        {
-             
-         
-        }
         private void cbEfectivo_CheckedChanged(object sender, EventArgs e)
         {
             if (cbEfectivo.Checked)
@@ -460,7 +420,7 @@ namespace TiendaDeRopa.formularios
             }
         }
 
-        private void txtCategoria_TextChanged(object sender, EventArgs e)
+        private void Frm_Compras_Load(object sender, EventArgs e)
         {
 
         }

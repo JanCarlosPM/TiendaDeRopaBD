@@ -131,7 +131,6 @@
             this.txtFechaCompra.Size = new System.Drawing.Size(100, 25);
             this.txtFechaCompra.TabIndex = 6;
             this.txtFechaCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtFechaCompra.TextChanged += new System.EventHandler(this.txtFechaCompra_TextChanged);
             // 
             // txtSubTotal
             // 
@@ -141,7 +140,6 @@
             this.txtSubTotal.Size = new System.Drawing.Size(100, 25);
             this.txtSubTotal.TabIndex = 7;
             this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSubTotal.TextChanged += new System.EventHandler(this.txtSubTotal_TextChanged);
             // 
             // txtIVA
             // 
@@ -151,7 +149,6 @@
             this.txtIVA.Size = new System.Drawing.Size(100, 25);
             this.txtIVA.TabIndex = 8;
             this.txtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtIVA.TextChanged += new System.EventHandler(this.txtIVA_TextChanged);
             // 
             // txtTotal
             // 
@@ -161,7 +158,6 @@
             this.txtTotal.Size = new System.Drawing.Size(100, 25);
             this.txtTotal.TabIndex = 9;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTotal.TextChanged += new System.EventHandler(this.txtTotal_TextChanged);
             // 
             // cbEfectivo
             // 
@@ -259,7 +255,6 @@
             this.label7.Size = new System.Drawing.Size(88, 20);
             this.label7.TabIndex = 19;
             this.label7.Text = "No. Factura";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // txtNumeroFactura
             // 
@@ -271,7 +266,6 @@
             this.txtNumeroFactura.Size = new System.Drawing.Size(141, 27);
             this.txtNumeroFactura.TabIndex = 20;
             this.txtNumeroFactura.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            
             // 
             // txtCategoria
             // 
@@ -281,7 +275,7 @@
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(146, 25);
             this.txtCategoria.TabIndex = 21;
-            this.txtCategoria.TextChanged += new System.EventHandler(this.txtCategoria_TextChanged);
+            this.txtCategoria.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPrecio
             // 
@@ -291,7 +285,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(146, 25);
             this.txtPrecio.TabIndex = 22;
-            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
+            this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCantidad
             // 
@@ -300,7 +294,6 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(146, 25);
             this.txtCantidad.TabIndex = 23;
-            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             // 
             // label8
             // 
@@ -403,6 +396,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Compras";
             this.Text = "wfCompras";
+            this.Load += new System.EventHandler(this.Frm_Compras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallesCompras)).EndInit();
             this.ResumeLayout(false);

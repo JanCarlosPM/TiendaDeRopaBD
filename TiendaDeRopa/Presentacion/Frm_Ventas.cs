@@ -27,8 +27,6 @@ namespace TiendaDeRopa.Presentacion
             Txt_BuscarVenta.KeyPress += txtBuscarVenta_KeyPress;
             txtCantidaVenta.KeyPress += txtCantidadVenta_KeyPress;
 
-            CbEfectivoVenta.Enabled = false;
-            CbTarjetaVenta.Enabled = false;
             txtCantidaVenta.Enabled = false;
             Btn_ListaVenta.Enabled = false;
             BtnEliminarProductoVenta.Enabled = false;
@@ -41,13 +39,13 @@ namespace TiendaDeRopa.Presentacion
         }
         private void ListarProductos()
         {
-            D_Producto productos = new D_Producto();
-            datosVenta = productos.ListarProductos();
+            D_Inventario inventario = new D_Inventario();
+            datosVenta = inventario.ListarInventario();
             dgvVenta.DataSource = datosVenta;
         }
         private void ObtenerFechaActual()
         {
-            txtFechaVenta.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtFechaVenta.Text = DateTime.Now.ToString("yyyy-MM-dd");
             txtFechaVenta.Enabled = false;
             txtSubVenta.Enabled = false;
             txtIvaVenta.Enabled = false;
@@ -202,6 +200,7 @@ namespace TiendaDeRopa.Presentacion
             string descripcion = txtCategoriaVenta.Text;
             double precio;
             int cantidad;
+            string fechaIngreso = txtFechaVenta.Text;
 
             if (!int.TryParse(txtCantidaVenta.Text, out cantidad))
             {
@@ -215,7 +214,7 @@ namespace TiendaDeRopa.Presentacion
                 return;
             }
 
-            dgvDetalleVenta.Rows.Add(descripcion, precio, cantidad);
+            dgvDetalleVenta.Rows.Add(descripcion, precio, cantidad, fechaIngreso);
 
             CalcularSubtotalVenta();
             ActEstadoBtnVenta();
@@ -314,7 +313,7 @@ namespace TiendaDeRopa.Presentacion
                     iva = float.Parse(txtIvaVenta.Text),
                     total = float.Parse(txtTotalVenta.Text),
                     forma_pago = CbEfectivoVenta.Checked ? "Efectivo" : "Tarjeta",
-                    tipo = 1
+                    tipo = 2
                 };
 
                 D_Factura dfactura = new D_Factura();
@@ -384,7 +383,16 @@ namespace TiendaDeRopa.Presentacion
 
         private void dgvVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow filaSeleccionada = dgvVenta.Rows[e.RowIndex];
 
+                txtCategoriaVenta.Text = filaSeleccionada.Cells["Categoria"].Value.ToString();
+                txtPrecioVenta.Text = filaSeleccionada.Cells["Precio"].Value.ToString();
+
+                txtCantidaVenta.Enabled = true;
+                Btn_ListaVenta.Enabled = true;
+            }
         }
 
         private void CbEfectivoVenta_CheckedChanged(object sender, EventArgs e)
