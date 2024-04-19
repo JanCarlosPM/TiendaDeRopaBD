@@ -1,5 +1,5 @@
 --//SP ACTUALIZAR STOCK
-CREATE PROCEDURE SP_ActualizarStock
+CREATE PROCEDURE [dbo].[SP_ActualizarStock]
     @categorias NVARCHAR(MAX),
     @cantidades NVARCHAR(MAX),
     @fechasIngreso NVARCHAR(MAX)
@@ -40,27 +40,30 @@ BEGIN
         -- Verificar si se encontró el producto
         IF @ProductoID IS NULL
         BEGIN
-            SELECT 'No se encontró ningún producto con la categoría especificada.' AS Mensaje;
-            RETURN;
+            -- Si el producto no existe, se inserta en la tabla Producto
+            INSERT INTO Producto (categoria) VALUES (@Categoria);
+            -- Se obtiene el ID del nuevo producto
+            SELECT @ProductoID = SCOPE_IDENTITY();
         END;
 
-        -- Obtener el ID del producto en el inventario
+        -- Verificar si el producto ya está en el inventario
         SELECT @InventarioID = id
         FROM Inventario
         WHERE id_producto = @ProductoID;
         
-        -- Verificar si se encontró el producto en el inventario
         IF @InventarioID IS NULL
         BEGIN
-            SELECT 'No se encontró ningún producto en el inventario con la categoría especificada.' AS Mensaje;
-            RETURN;
+            -- Si el producto no está en el inventario, se agrega con su cantidad y fecha de ingreso
+            INSERT INTO Inventario (id_producto, existencia, fecha_ingreso, estado) VALUES (@ProductoID, @Cantidad, @FechaIngreso, 1);
+        END
+        ELSE
+        BEGIN
+            -- Si el producto ya está en el inventario, se actualiza el stock y la fecha de ingreso
+            UPDATE Inventario
+            SET existencia = existencia + @Cantidad,
+                fecha_ingreso = @FechaIngreso
+            WHERE id = @InventarioID;
         END;
-
-        -- Actualizar el stock del producto en el inventario y la fecha de ingreso
-        UPDATE Inventario
-        SET existencia = existencia + @Cantidad,
-            fecha_ingreso = @FechaIngreso
-        WHERE id = @InventarioID;
 
         FETCH NEXT FROM cursorCategoria INTO @Categoria;
         FETCH NEXT FROM cursorCantidad INTO @Cantidad;
@@ -77,8 +80,8 @@ BEGIN
     SELECT 'El stock del producto se actualizó correctamente.' AS Mensaje;
 END;
 
-
 --//SP LISTAR INVENTARIO
+
 CREATE PROCEDURE [dbo].[SP_ListarInventario]
 AS
 BEGIN
