@@ -1,4 +1,4 @@
-CREATE PROCEDURE USP_LISTADO_PROV
+CREATE PROCEDURE SP_LISTADO_PROV
 @cTexto varchar(80) =''
 AS
 BEGIN
@@ -19,7 +19,7 @@ END;
   execute USP_LISTADO_PROV
 
 
-CREATE PROCEDURE USP_GUARDAR_PROV
+CREATE PROCEDURE SP_GUARDAR_PROV
 @opcion int=1, --1=Nuevo Registro / 2=Actualizar Registro 
 @id int,
 @nombre varchar(50),    
@@ -51,7 +51,7 @@ else --Actualizar Registro
 GO
 
 
-CREATE PROCEDURE ACTIVO_PROV
+CREATE PROCEDURE SP_ACTIVO_PROV
 @id int,
 @estado int
 
