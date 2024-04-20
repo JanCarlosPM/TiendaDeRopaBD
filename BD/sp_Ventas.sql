@@ -1,6 +1,6 @@
 --//SP ACTUALIZAR STOCK para ventas
 CREATE PROCEDURE SP_ActualizarStockVenta
-    @categorias NVARCHAR(MAX),
+   @categorias NVARCHAR(MAX),
     @cantidades NVARCHAR(MAX),
     @fechasIngreso NVARCHAR(MAX)
 AS
@@ -31,36 +31,52 @@ BEGIN
     BEGIN
         DECLARE @ProductoID INT;
         DECLARE @InventarioID INT;
+        DECLARE @EstadoAnterior INT;
 
-        -- Obtener el ID del producto en base a la categoría
+        -- Obtener el ID del producto en base a la categorÃ­a
         SELECT @ProductoID = id
         FROM Producto
         WHERE categoria = @Categoria;
         
-        -- Verificar si se encontró el producto
+        -- Verificar si se encontrÃ³ el producto
         IF @ProductoID IS NULL
         BEGIN
-            SELECT 'No se encontró ningún producto con la categoría especificada.' AS Mensaje;
+            SELECT 'No se encontrÃ³ ningÃºn producto con la categorÃ­a especificada.' AS Mensaje;
             RETURN;
         END;
 
         -- Obtener el ID del producto en el inventario
-        SELECT @InventarioID = id
+        SELECT @InventarioID = id, @EstadoAnterior = estado
         FROM Inventario
         WHERE id_producto = @ProductoID;
-        
-        -- Verificar si se encontró el producto en el inventario
+
+        -- Si no existe un registro en el inventario, lo creamos con un estado predeterminado
         IF @InventarioID IS NULL
         BEGIN
-            SELECT 'No se encontró ningún producto en el inventario con la categoría especificada.' AS Mensaje;
-            RETURN;
+            INSERT INTO Inventario (id_producto, existencia, fecha_ingreso, estado)
+            VALUES (@ProductoID, @Cantidad, @FechaIngreso, 1); -- AquÃ­ se asigna el estado predeterminado
+        END
+        ELSE
+        BEGIN
+            -- Actualizar el stock del producto en el inventario y la fecha de ingreso
+            UPDATE Inventario
+            SET existencia = existencia - @Cantidad,
+                fecha_ingreso = @FechaIngreso
+            WHERE id = @InventarioID;
+
+            -- Si el producto estaba en estado "2", cambiarlo a estado "1"
+            IF @EstadoAnterior = 1
+            BEGIN
+                UPDATE Inventario
+                SET estado = 2
+                WHERE id = @InventarioID;
+            END;
         END;
 
-        -- Actualizar el stock del producto en el inventario y la fecha de ingreso
-        UPDATE Inventario
-        SET existencia = existencia - @Cantidad,
-            fecha_ingreso = @FechaIngreso
-        WHERE id = @InventarioID;
+        -- Actualizar el estado del producto
+        UPDATE Producto
+        SET estado = (CASE WHEN @Cantidad > 0 THEN 2 ELSE 1 END) -- Si la cantidad es positiva, estado = 1, de lo contrario, estado = 2
+        WHERE id = @ProductoID;
 
         FETCH NEXT FROM cursorCategoria INTO @Categoria;
         FETCH NEXT FROM cursorCantidad INTO @Cantidad;
@@ -74,5 +90,5 @@ BEGIN
     DEALLOCATE cursorCantidad;
     DEALLOCATE cursorFecha;
     
-    SELECT 'El stock del producto se actualizó correctamente.' AS Mensaje;
+    SELECT 'El stock del producto se actualizÃ³ correctamente.' AS Mensaje;
 END;

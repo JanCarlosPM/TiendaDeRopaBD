@@ -1,5 +1,5 @@
 --//SP ACTUALIZAR STOCK
-CREATE PROCEDURE [dbo].[SP_ActualizarStock]
+ALTER PROCEDURE [dbo].[SP_ActualizarStock]
     @categorias NVARCHAR(MAX),
     @cantidades NVARCHAR(MAX),
     @fechasIngreso NVARCHAR(MAX)
@@ -31,6 +31,7 @@ BEGIN
     BEGIN
         DECLARE @ProductoID INT;
         DECLARE @InventarioID INT;
+        DECLARE @EstadoAnterior INT;
 
         -- Obtener el ID del producto en base a la categoría
         SELECT @ProductoID = id
@@ -40,30 +41,42 @@ BEGIN
         -- Verificar si se encontró el producto
         IF @ProductoID IS NULL
         BEGIN
-            -- Si el producto no existe, se inserta en la tabla Producto
-            INSERT INTO Producto (categoria) VALUES (@Categoria);
-            -- Se obtiene el ID del nuevo producto
-            SELECT @ProductoID = SCOPE_IDENTITY();
+            SELECT 'No se encontró ningún producto con la categoría especificada.' AS Mensaje;
+            RETURN;
         END;
 
-        -- Verificar si el producto ya está en el inventario
-        SELECT @InventarioID = id
+        -- Obtener el ID del producto en el inventario
+        SELECT @InventarioID = id, @EstadoAnterior = estado
         FROM Inventario
         WHERE id_producto = @ProductoID;
-        
+
+        -- Si no existe un registro en el inventario, lo creamos con un estado predeterminado
         IF @InventarioID IS NULL
         BEGIN
-            -- Si el producto no está en el inventario, se agrega con su cantidad y fecha de ingreso
-            INSERT INTO Inventario (id_producto, existencia, fecha_ingreso, estado) VALUES (@ProductoID, @Cantidad, @FechaIngreso, 1);
+            INSERT INTO Inventario (id_producto, existencia, fecha_ingreso, estado)
+            VALUES (@ProductoID, @Cantidad, @FechaIngreso, 1); -- Aquí se asigna el estado predeterminado
         END
         ELSE
         BEGIN
-            -- Si el producto ya está en el inventario, se actualiza el stock y la fecha de ingreso
+            -- Actualizar el stock del producto en el inventario y la fecha de ingreso
             UPDATE Inventario
             SET existencia = existencia + @Cantidad,
                 fecha_ingreso = @FechaIngreso
             WHERE id = @InventarioID;
+
+            -- Si el producto estaba en estado "2", cambiarlo a estado "1"
+            IF @EstadoAnterior = 2
+            BEGIN
+                UPDATE Inventario
+                SET estado = 1
+                WHERE id = @InventarioID;
+            END;
         END;
+
+        -- Actualizar el estado del producto
+        UPDATE Producto
+        SET estado = (CASE WHEN @Cantidad > 0 THEN 1 ELSE 2 END) -- Si la cantidad es positiva, estado = 1, de lo contrario, estado = 2
+        WHERE id = @ProductoID;
 
         FETCH NEXT FROM cursorCategoria INTO @Categoria;
         FETCH NEXT FROM cursorCantidad INTO @Cantidad;
@@ -81,23 +94,23 @@ BEGIN
 END;
 
 --//SP LISTAR INVENTARIO
-
-CREATE PROCEDURE [dbo].[SP_ListarInventario]
+CREATE PROCEDURE SP_ListarInventario
 AS
 BEGIN
-	SELECT Producto.categoria,
-		   Producto.tela,
-		   Producto.talla,
-		   Producto.estilo,
-		   Producto.descripcion,
-		   Producto.marca,
-		   Producto.precio,
-		   Inventario.existencia,
-		   Inventario.fecha_ingreso
-	FROM Inventario
-	INNER JOIN Producto ON Inventario.id_producto = Producto.id;
-	END;
-GO
+    SELECT P.categoria,
+           P.tela,
+           P.talla,
+           P.estilo,
+           P.descripcion,
+           P.marca,
+           P.precio,
+           I.existencia,
+           I.fecha_ingreso
+    FROM Inventario AS I
+    INNER JOIN Producto AS P ON I.id_producto = P.id
+    WHERE I.estado <> 2;
+END;
+
     
 --//SP GUARDAR DETALLES FACTURA
     
