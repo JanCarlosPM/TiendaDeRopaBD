@@ -182,6 +182,12 @@ namespace TiendaDeRopa.Presentacion
                 return;
             }
 
+            if (txtPrecio.Text.All(char.IsDigit) == false)
+            {
+                MessageBox.Show("El campo precio solo acepta números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string categoria = txtCategoria.Text;
             string tela = txtTela.Text;
             string talla = txtTalla.Text;
