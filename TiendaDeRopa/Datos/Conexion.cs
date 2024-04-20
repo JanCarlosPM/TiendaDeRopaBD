@@ -14,8 +14,6 @@ namespace TiendaDeRopa.Datos
         private string Usuario;
         private string Clave;
         private static Conexion Con = null;
-
-
         private Conexion()
         {
             this.Base = "TiendaRopa";

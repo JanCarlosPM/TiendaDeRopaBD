@@ -344,6 +344,8 @@ namespace TiendaDeRopa.Presentacion
                         categorias.Add(categoria);
                         cantidades.Add(cantidad);
                         precios.Add(precio);
+                        categoriasStock.Add(categoria);
+                        cantidadesStock.Add(cantidad);
                         fechasIngresoStock.Add(fechaIngresoStock);
                     }
 

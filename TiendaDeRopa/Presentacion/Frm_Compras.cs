@@ -211,30 +211,24 @@ namespace TiendaDeRopa.formularios
 
                     string idFactura = txtNumeroFactura.Text;
 
-                    D_DetalleFactura detalleFactura = new D_DetalleFactura();
-                    rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
-
                     D_Inventario inventario = new D_Inventario();
                     rpta = inventario.ActualizarStock(listaInventario, categoriasStock, cantidadesStock, fechasIngresoStock);
 
-                    if (rpta.Equals("El stock del inventario se actualizó correctamente."))
-                    {
-                        LimpiarCampos();
-                        GenerarNumeroFactura();
-                        btnLimpiar.Enabled = true;
-                        btnEliminar.Enabled = true;
-                        dgvDetallesCompras.Rows.Clear();
-                        txtSubTotal.Text = "0";
-                        txtIVA.Text = "0";
-                        txtTotal.Text = "0";
-                        cbEfectivo.Checked = false;
-                        cbTarjeta.Checked = false;
-                        LimpiarCampos();
-                    }
-                    else
-                    {
-                        MessageBox.Show(rpta, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    D_DetalleFactura detalleFactura = new D_DetalleFactura();
+                    rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
+
+                    LimpiarCampos();
+                    GenerarNumeroFactura();
+                    btnLimpiar.Enabled = true;
+                    btnEliminar.Enabled = true;
+                    dgvDetallesCompras.Rows.Clear();
+                    txtSubTotal.Text = "0";
+                    txtIVA.Text = "0";
+                    txtTotal.Text = "0";
+                    cbEfectivo.Checked = false;
+                    cbTarjeta.Checked = false;
+                    LimpiarCampos();
+
                 }
                 else
                 {
