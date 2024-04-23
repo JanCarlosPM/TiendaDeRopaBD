@@ -12,7 +12,7 @@ namespace TiendaDeRopa.Presentacion
         private int idProv = 0;
 
         // Expresiónes regulares (RegEx) para validacion de campos especiales.
-        Regex formatoLetras = new Regex("^[a-zA-Z]+$");
+        Regex formatoLetras = new Regex("^[a-zA-Z\\s]+$");
         Regex formatoTelefono = new Regex("^[2578][0-9]{7}$");
         Regex formatoCorreo = new Regex("^[a-zA-Z0-9]{5,50}@[a-zA-Z]{3,10}\\.[a-zA-Z]{2,4}$");
 
@@ -68,7 +68,7 @@ namespace TiendaDeRopa.Presentacion
         private void Listado_prov(string cTexto)
         {
             D_Proveedor Datos = new D_Proveedor();
-            dgvListado_prov.DataSource = Datos.Listado_prov(cTexto);
+            dgvListado_prov.DataSource = Datos.ListarProveedores(cTexto);
             Formato_prov();
         }
 
@@ -167,7 +167,7 @@ namespace TiendaDeRopa.Presentacion
             oProv.direccion = direccion;
             
             D_Proveedor Datos = new D_Proveedor();
-            Rpta = Datos.Guardar_prov(this.nEstadoguarda, oProv); //por el procedimiento o se guarda o actualiza
+            Rpta = Datos.InsertarProveedor(this.nEstadoguarda, oProv); //por el procedimiento o se guarda o actualiza
             
             if (Rpta == "OK")
             {
@@ -221,7 +221,7 @@ namespace TiendaDeRopa.Presentacion
             {
                 string Rpta = "";
                 D_Proveedor Datos = new D_Proveedor();
-                Rpta = Datos.Activo_prov(idProv, 0);
+                Rpta = Datos.ActivarProducto(idProv, 0);
                 if (Rpta == "OK")
                 {
                     this.Listado_prov("%");

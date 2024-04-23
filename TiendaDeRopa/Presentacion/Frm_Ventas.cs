@@ -305,7 +305,7 @@ namespace TiendaDeRopa.Presentacion
                 };
 
                 D_Factura dfactura = new D_Factura();
-                rpta = dfactura.GuardarCompra(factura);
+                rpta = dfactura.GuardarFactura(factura);
 
                 if (rpta.Equals("Compra registrada correctamente"))
                 {
@@ -339,7 +339,7 @@ namespace TiendaDeRopa.Presentacion
                     string idFactura = txtNumFacVenta.Text;
 
                     D_DetalleFactura detalleFactura = new D_DetalleFactura();
-                    rpta = detalleFactura.GuardarCompra(listaDetalles, categorias, cantidades, precios, idFactura);
+                    rpta = detalleFactura.GuardarDetalleFactura(listaDetalles, categorias, cantidades, precios, idFactura);
 
                     D_Inventario inventario = new D_Inventario();
                     rpta = inventario.ActualizarStockVenta(listaInventario1, categoriasStock, cantidadesStock, fechasIngresoStock);

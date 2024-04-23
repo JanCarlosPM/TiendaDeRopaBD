@@ -7,40 +7,63 @@ namespace TiendaDeRopa.Datos
 {
     public class D_Proveedor
     {
-
-        public DataTable Listado_prov(string cTexto)
+        public DataTable ListarProveedores(string cTexto)
         {
-            SqlDataReader Resultado;
-            DataTable Tabla = new DataTable();
-            SqlConnection SqlCon = new SqlConnection();
+            DataTable tabla = new DataTable();
 
             try
             {
-                SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("SP_LISTADO_PROV", SqlCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
-                SqlCon.Open();
-                Resultado = Comando.ExecuteReader();
-                Tabla.Load(Resultado);
-                return Tabla;
+                using (SqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
+                {
+                    using (SqlCommand comando = new SqlCommand("SP_LISTADO_PROV", sqlCon))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
+                        sqlCon.Open();
 
+                        using (SqlDataReader resultado = comando.ExecuteReader())
+                        {
+                            tabla.Load(resultado);
+                        }
+
+                        if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+                    }
+                }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Console.WriteLine("Error al listar proveedores: " + ex.Message);
             }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-
-
+            return tabla;
         }
 
-        public string Guardar_prov(int nOpcion,
-                               E_Proveedor oProv)
+        public DataTable ObtenerNombresProveedores()
+        {
+            DataTable nombres = new DataTable();
+
+            try
+            {
+                using (SqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
+                {
+                    using (SqlCommand comando = new SqlCommand("SP_ObtenerNombresProveedores", sqlCon))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        sqlCon.Open();
+                        nombres.Load(comando.ExecuteReader());
+                    }
+
+                    if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener nombres de proveedores: " + ex.Message);
+            }
+            return nombres;
+        }
+
+        public string InsertarProveedor(int nOpcion, E_Proveedor oProv)
         {
             string Rpta = "";
             SqlConnection SqlCon = new SqlConnection();
@@ -70,8 +93,7 @@ namespace TiendaDeRopa.Datos
             return Rpta;
         }
 
-        public string Activo_prov(int Id_prov,
-                               int Estado_activo)
+        public string ActivarProducto(int Id_prov, int Estado_activo)
         {
             string Rpta = "";
             SqlConnection SqlCon = new SqlConnection();
@@ -95,28 +117,6 @@ namespace TiendaDeRopa.Datos
                 if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
             }
             return Rpta;
-        }
-
-        public DataTable ObtenerNombresProveedores()
-        {
-            DataTable nombres = new DataTable();
-            try
-            {
-                using (SqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
-                {
-                    using (SqlCommand comando = new SqlCommand("SP_ObtenerNombresProveedores", sqlCon))
-                    {
-                        comando.CommandType = CommandType.StoredProcedure;
-                        sqlCon.Open();
-                        nombres.Load(comando.ExecuteReader());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al obtener nombres de proveedores: " + ex.Message);
-            }
-            return nombres;
         }
     }
 }

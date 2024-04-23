@@ -11,6 +11,7 @@ namespace TiendaDeRopa.Datos
         public DataTable ListarInventario()
         {
             DataTable tabla = new DataTable();
+
             try
             {
                 using (SqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
@@ -33,6 +34,7 @@ namespace TiendaDeRopa.Datos
             }
             return tabla;
         }
+
         public string ActualizarStock(List<E_Inventario> listaInventario, List<string> categorias, List<int> cantidades, List<DateTime> fechasIngreso)
         {
             string mensaje = "";
