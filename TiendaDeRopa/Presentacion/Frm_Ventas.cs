@@ -198,7 +198,7 @@ namespace TiendaDeRopa.Presentacion
                     int cantidadEnStock = Convert.ToInt32(fila.Cells["existencia"].Value);
                     if (cantidadSeleccionada > cantidadEnStock)
                     {
-                        MessageBox.Show("La cantidad ingresada es mayor que la existencia en stock del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("La cantidad ingresada es mayor que la existencia en stock del producto y/o el producto no cuenta con stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     int nuevaExistencia = cantidadEnStock - cantidadSeleccionada;

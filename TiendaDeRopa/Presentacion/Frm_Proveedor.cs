@@ -81,7 +81,7 @@ namespace TiendaDeRopa.Presentacion
             dgvListado_prov.Columns[4].Width = 350;
             dgvListado_prov.Columns[4].HeaderText = "DIRECCION";
         }
-        
+
         private void Listado_prov(string cTexto)
         {
             D_Proveedor Datos = new D_Proveedor();
@@ -135,7 +135,7 @@ namespace TiendaDeRopa.Presentacion
 
         private void btnGuardar_pr_Click(object sender, EventArgs e)
         {
-            
+
             string nombre = txtNombre_pr.Text;
             string telefono = txtTelefono_pr.Text;
             string correo = txtEmail_pr.Text;
@@ -168,7 +168,7 @@ namespace TiendaDeRopa.Presentacion
                 return;
             }
 
-            if (!formatoCorreo.IsMatch(correo)) 
+            if (!formatoCorreo.IsMatch(correo))
             {
                 MessageBox.Show("El formato del correo ingresado no es valido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -182,10 +182,10 @@ namespace TiendaDeRopa.Presentacion
             oProv.email = correo;
             oProv.telefono = telefono;
             oProv.direccion = direccion;
-            
+
             D_Proveedor Datos = new D_Proveedor();
             Rpta = Datos.Guardar_prov(this.nEstadoguarda, oProv); //por el procedimiento o se guarda o actualiza
-            
+
             if (Rpta == "OK")
             {
                 this.Listado_prov("%");
