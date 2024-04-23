@@ -11,7 +11,6 @@ namespace TiendaDeRopa.Presentacion
         private int nEstadoguarda = 0;
         private int idProv = 0;
 
-        // Expresiónes regulares (RegEx) para validacion de campos especiales.
         Regex formatoLetras = new Regex("^[a-zA-Z]+$");
         Regex formatoTelefono = new Regex("^[2578][0-9]{7}$");
         Regex formatoCorreo = new Regex("^[a-zA-Z0-9]{5,50}@[a-zA-Z]{3,10}\\.[a-zA-Z]{2,4}$");
@@ -19,6 +18,24 @@ namespace TiendaDeRopa.Presentacion
         public Frm_Proveedor()
         {
             InitializeComponent();
+
+            txtNombre_pr.KeyPress += txtNombre_pr_KeyPress;
+            txtTelefono_pr.KeyPress += txtTelefono_pr_KeyPress;
+        }
+
+        private void txtTelefono_pr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtNombre_pr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void LimpiaTexto()

@@ -459,5 +459,5 @@ namespace TiendaDeRopa.Presentacion
             dgvVenta.Enabled = true;
             dgvDetalleVenta.ClearSelection();
         }
-    }
+    }   
 }
