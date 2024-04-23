@@ -12,13 +12,31 @@ namespace TiendaDeRopa.Presentacion
         private int idProv = 0;
 
         // Expresiónes regulares (RegEx) para validacion de campos especiales.
-        Regex formatoLetras = new Regex("^[a-zA-Z\\s]+$");
+        Regex formatoLetras = new Regex("^[a-zA-Z]+$");
         Regex formatoTelefono = new Regex("^[2578][0-9]{7}$");
         Regex formatoCorreo = new Regex("^[a-zA-Z0-9]{5,50}@[a-zA-Z]{3,10}\\.[a-zA-Z]{2,4}$");
 
         public Frm_Proveedor()
         {
             InitializeComponent();
+
+            txtNombre_pr.KeyPress += txtNombre_pr_KeyPress;
+            txtTelefono_pr.KeyPress += txtTelefono_pr_KeyPress;
+        }
+
+        private void txtTelefono_pr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtNombre_pr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void LimpiaTexto()
@@ -64,7 +82,7 @@ namespace TiendaDeRopa.Presentacion
             dgvListado_prov.Columns[4].Width = 350;
             dgvListado_prov.Columns[4].HeaderText = "DIRECCION";
         }
-        
+
         private void Listado_prov(string cTexto)
         {
             D_Proveedor Datos = new D_Proveedor();
@@ -118,7 +136,7 @@ namespace TiendaDeRopa.Presentacion
 
         private void btnGuardar_pr_Click(object sender, EventArgs e)
         {
-            
+
             string nombre = txtNombre_pr.Text;
             string telefono = txtTelefono_pr.Text;
             string correo = txtEmail_pr.Text;
@@ -165,7 +183,7 @@ namespace TiendaDeRopa.Presentacion
             oProv.email = correo;
             oProv.telefono = telefono;
             oProv.direccion = direccion;
-            
+
             D_Proveedor Datos = new D_Proveedor();
             Rpta = Datos.InsertarProveedor(this.nEstadoguarda, oProv); //por el procedimiento o se guarda o actualiza
             
