@@ -8,7 +8,7 @@ namespace TiendaDeRopa.Presentacion
     public partial class Frm_Inventario : Form
     {
 
-        private DataTable datosOriginales;
+        private DataTable dataInventario;
         public Frm_Inventario()
         {
             InitializeComponent();
@@ -18,13 +18,8 @@ namespace TiendaDeRopa.Presentacion
         private void ListarInventario()
         {
             D_Inventario inventario = new D_Inventario();
-            datosOriginales = inventario.ListarInventario();
-            dgvInventario.DataSource = datosOriginales;
-        }
-
-        private void Frm_Inventario_Load(object sender, EventArgs e)
-        {
-
+            dataInventario = inventario.ListarInventario();
+            dgvInventario.DataSource = dataInventario;
         }
     }
 }

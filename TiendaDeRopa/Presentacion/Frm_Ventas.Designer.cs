@@ -111,7 +111,6 @@
             this.txtCategoriaVenta.Size = new System.Drawing.Size(146, 27);
             this.txtCategoriaVenta.TabIndex = 5;
             this.txtCategoriaVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCategoriaVenta.TextChanged += new System.EventHandler(this.txtCategoriaVenta_TextChanged);
             // 
             // txtPrecioVenta
             // 
@@ -130,7 +129,6 @@
             this.txtCantidaVenta.Name = "txtCantidaVenta";
             this.txtCantidaVenta.Size = new System.Drawing.Size(145, 27);
             this.txtCantidaVenta.TabIndex = 7;
-            this.txtCantidaVenta.TextChanged += new System.EventHandler(this.txtCantidaVenta_TextChanged);
             // 
             // Btn_ListaVenta
             // 
@@ -310,7 +308,6 @@
             this.txtTotalVenta.Size = new System.Drawing.Size(100, 27);
             this.txtTotalVenta.TabIndex = 24;
             this.txtTotalVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTotalVenta.TextChanged += new System.EventHandler(this.txtTotalVenta_TextChanged);
             // 
             // txtFechaVenta
             // 
@@ -379,7 +376,6 @@
             this.MinimizeBox = false;
             this.Name = "Frm_Ventas";
             this.Text = "WfVentas";
-            this.Load += new System.EventHandler(this.Frm_Ventas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleVenta)).EndInit();
             this.ResumeLayout(false);

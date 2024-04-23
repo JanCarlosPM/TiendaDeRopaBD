@@ -10,7 +10,8 @@ namespace TiendaDeRopa.Presentacion
 {
     public partial class Frm_Ventas : Form
     {
-        private DataTable datosVenta;
+        private DataTable dataProductos;
+
         public Frm_Ventas()
         {
             InitializeComponent();
@@ -40,8 +41,8 @@ namespace TiendaDeRopa.Presentacion
         private void ListarProductos()
         {
             D_Inventario inventario = new D_Inventario();
-            datosVenta = inventario.ListarInventario();
-            dgvVenta.DataSource = datosVenta;
+            dataProductos = inventario.ListarInventario();
+            dgvVenta.DataSource = dataProductos;
         }
         private void ObtenerFechaActual()
         {
@@ -160,20 +161,6 @@ namespace TiendaDeRopa.Presentacion
             }
             return true;
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Frm_Ventas_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTotalVenta_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -244,7 +231,7 @@ namespace TiendaDeRopa.Presentacion
             }
         }
 
-         private void dgvDetalleVenta_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvDetalleVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvDetalleVenta.Rows[e.RowIndex].Cells["Categoria"].Value != null &&
                 dgvDetalleVenta.Rows[e.RowIndex].Cells["Precio"].Value != null &&
@@ -383,11 +370,6 @@ namespace TiendaDeRopa.Presentacion
             }
         }
 
-        private void txtCantidaVenta_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Btn_LimpiarVenta_Click(object sender, EventArgs e)
         {
             limpiarcampos();
@@ -425,11 +407,6 @@ namespace TiendaDeRopa.Presentacion
             }
         }
 
-        private void txtCategoriaVenta_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnCancelarVenta_Click(object sender, EventArgs e)
         {
             txtCategoriaVenta.Text = "";
@@ -444,9 +421,4 @@ namespace TiendaDeRopa.Presentacion
             dgvDetalleVenta.ClearSelection();
         }
     }
-
-
-   
 }
-
-

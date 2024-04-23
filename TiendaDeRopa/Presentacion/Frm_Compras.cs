@@ -11,7 +11,7 @@ namespace TiendaDeRopa.formularios
     public partial class Frm_Compras : Form
     {
 
-        private DataTable datosOriginales;
+        private DataTable dataProductos;
 
         public Frm_Compras()
         {
@@ -45,8 +45,8 @@ namespace TiendaDeRopa.formularios
         private void ListarProductos()
         {
             D_Producto productos = new D_Producto();
-            datosOriginales = productos.ListarProductos();
-            dgvProductos.DataSource = datosOriginales;
+            dataProductos = productos.ListarProductos();
+            dgvProductos.DataSource = dataProductos;
         }
         private void ObtenerFechaActual()
         {
@@ -413,11 +413,6 @@ namespace TiendaDeRopa.formularios
             {
                 cbEfectivo.Checked = false;
             }
-        }
-
-        private void Frm_Compras_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

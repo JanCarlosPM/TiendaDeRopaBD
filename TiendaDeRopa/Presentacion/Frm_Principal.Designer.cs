@@ -88,7 +88,7 @@
             // 
             this.productosToolStripMenuItem.Image = global::TiendaDeRopa.Properties.Resources.producto_icon;
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(170, 30);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
@@ -148,6 +148,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Frm_Principal";
             this.Text = "Tienda De Ropa Alcides S.A";
             this.Load += new System.EventHandler(this.Form1_Load);

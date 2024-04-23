@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TiendaDeRopa.Datos;
 using TiendaDeRopa.Entidades;
@@ -15,17 +8,19 @@ namespace TiendaDeRopa.Presentacion
 {
     public partial class Frm_Proveedor : Form
     {
+        private int nEstadoguarda = 0;
+        private int idProv = 0;
+
+        // Expresiónes regulares (RegEx) para validacion de campos especiales.
+        Regex formatoLetras = new Regex("^[a-zA-Z]+$");
+        Regex formatoTelefono = new Regex("^[2578][0-9]{7}$");
+        Regex formatoCorreo = new Regex("^[a-zA-Z0-9]{5,50}@[a-zA-Z]{3,10}\\.[a-zA-Z]{2,4}$");
+
         public Frm_Proveedor()
         {
             InitializeComponent();
         }
 
-        #region "MIS VARIABLES"
-        int nEstadoguarda = 0;
-        int idProv = 0;
-        #endregion
-
-        #region "MIS METODOS"
         private void LimpiaTexto()
         {
             txtNombre_pr.Text = "";
@@ -66,21 +61,23 @@ namespace TiendaDeRopa.Presentacion
             dgvListado_prov.Columns[2].HeaderText = "EMAIL";
             dgvListado_prov.Columns[3].Width = 75;
             dgvListado_prov.Columns[3].HeaderText = "TELEFONO";
-            dgvListado_prov.Columns[4].Width = 250;
+            dgvListado_prov.Columns[4].Width = 350;
             dgvListado_prov.Columns[4].HeaderText = "DIRECCION";
-
         }
-
         
         private void Listado_prov(string cTexto)
         {
             D_Proveedor Datos = new D_Proveedor();
             dgvListado_prov.DataSource = Datos.Listado_prov(cTexto);
-            this.Formato_prov();
+            Formato_prov();
         }
 
         private void Selecciona_Item_prov()
         {
+            if (dgvListado_prov.CurrentRow == null)
+            {
+                return;
+            }
             if (string.IsNullOrEmpty(Convert.ToString(dgvListado_prov.CurrentRow.Cells["id"].Value)))
             {
                 MessageBox.Show("No se tiene informacion para visualizar",
@@ -90,50 +87,45 @@ namespace TiendaDeRopa.Presentacion
             }
             else
             {
-                this.idProv = Convert.ToInt32(dgvListado_prov.CurrentRow.Cells["id"].Value);
+                btnActualizar_pr.Enabled = true;
+                btnEliminar_pr.Enabled = true;
+
+                idProv = Convert.ToInt32(dgvListado_prov.CurrentRow.Cells["id"].Value);
                 txtNombre_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["nombre"].Value);
                 txtEmail_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["email"].Value);
                 txtTelefono_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["telefono"].Value);
                 txtDireccion_pr.Text = Convert.ToString(dgvListado_prov.CurrentRow.Cells["direccion"].Value);
-
             }
 
         }
-        #endregion
 
         private void btnNuevo_pr_Click(object sender, EventArgs e)
         {
-            this.nEstadoguarda = 1; //Nuevo Registro
-            this.idProv = 0;
-            this.LimpiaTexto();
-            this.EstadoTexto(true);
-            this.EstadoBotones(false);
+            nEstadoguarda = 1; //Nuevo Registro
+            idProv = 0;
+            LimpiaTexto();
+            EstadoTexto(true);
+            EstadoBotones(false);
             txtNombre_pr.Select();
         }
 
-
         private void btnCancelar_pr_Click(object sender, EventArgs e)
         {
-            this.LimpiaTexto();
-            this.EstadoTexto(false);
-            this.EstadoBotones(true);
+            LimpiaTexto();
+            EstadoTexto(false);
+            EstadoBotones(true);
         }
 
         private void btnGuardar_pr_Click(object sender, EventArgs e)
         {
-            int telefono;
-     
-            // Dentro del método donde estás realizando la validación
+            
             string nombre = txtNombre_pr.Text;
+            string telefono = txtTelefono_pr.Text;
+            string correo = txtEmail_pr.Text;
+            string direccion = txtDireccion_pr.Text;
 
-            // Expresión regular para verificar si el nombre contiene solo caracteres alfabéticos
-            Regex regex = new Regex("^[a-zA-Z]+$");
-
-
-            if (txtNombre_pr.Text == string.Empty ||
-               txtEmail_pr.Text == string.Empty ||
-               txtTelefono_pr.Text == string.Empty ||
-               txtDireccion_pr.Text == string.Empty)
+            if (nombre == string.Empty || telefono == string.Empty ||
+               correo == string.Empty || direccion == string.Empty)
             {
                 MessageBox.Show("Falta ingresar datos requeridos (*)",
                     "Aviso del Sistema",
@@ -142,50 +134,57 @@ namespace TiendaDeRopa.Presentacion
                 return;
             }
 
-            if (!regex.IsMatch(nombre))
+            if (!formatoLetras.IsMatch(nombre))
             {
                 MessageBox.Show("El nombre solo debe contener caracteres alfabéticos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(txtTelefono_pr.Text, out telefono))
+            if (!int.TryParse(telefono, out int tel))
             {
                 MessageBox.Show("El telefono solo deben ser números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-
-
-            else //Proceso para guardar informacion
+            else if (!formatoTelefono.IsMatch(telefono))
             {
-                string Rpta = "";
-                E_Proveedor oProv = new E_Proveedor();
-                oProv.id = this.idProv;
-                oProv.nombre= txtNombre_pr.Text;
-                oProv.email = txtEmail_pr.Text;
-                oProv.telefono = txtTelefono_pr.Text;
-                oProv.direccion = txtDireccion_pr.Text;
+                MessageBox.Show("El formato del telefono ingresado no es valido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                D_Proveedor Datos = new D_Proveedor();
-                Rpta = Datos.Guardar_prov(this.nEstadoguarda, oProv); //por el procedimiento o se guarda o actualiza
+            if (!formatoCorreo.IsMatch(correo)) 
+            {
+                MessageBox.Show("El formato del correo ingresado no es valido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (Rpta == "OK")
-                {
-                    this.Listado_prov("%");
-                    MessageBox.Show("Los datos han sido guardados correctamente",
-                        "Aviso del Sistema",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+            //Se procede aguardado si cumple con la validacion
+            string Rpta = "";
+            E_Proveedor oProv = new E_Proveedor();
+            oProv.id = this.idProv;
+            oProv.nombre = nombre;
+            oProv.email = correo;
+            oProv.telefono = telefono;
+            oProv.direccion = direccion;
+            
+            D_Proveedor Datos = new D_Proveedor();
+            Rpta = Datos.Guardar_prov(this.nEstadoguarda, oProv); //por el procedimiento o se guarda o actualiza
+            
+            if (Rpta == "OK")
+            {
+                this.Listado_prov("%");
+                MessageBox.Show("Los datos han sido guardados correctamente",
+                    "Aviso del Sistema",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
-                    this.idProv = 0;
-                    this.LimpiaTexto();
-                    this.EstadoTexto(false);
-                    this.EstadoBotones(true);
-                }
+                this.idProv = 0;
+                this.LimpiaTexto();
+                this.EstadoTexto(false);
+                this.EstadoBotones(true);
             }
         }
 
-        private void Frm_Proveedor_Load_1(object sender, EventArgs e)
+        private void Frm_Proveedor_Load(object sender, EventArgs e)
         {
             this.Listado_prov("%");
         }
@@ -195,17 +194,17 @@ namespace TiendaDeRopa.Presentacion
             this.Selecciona_Item_prov();
         }
 
+        private void btnBuscar_pr_Click(object sender, EventArgs e)
+        {
+            this.Listado_prov(txtBuscar_pr.Text);
+        }
+
         private void btnActualizar_pr_Click(object sender, EventArgs e)
         {
             this.nEstadoguarda = 2; //Actualizar Registro
             this.EstadoTexto(true);
             this.EstadoBotones(false);
             txtNombre_pr.Select();
-        }
-
-        private void btnBuscar_pr_Click(object sender, EventArgs e)
-        {
-            this.Listado_prov(txtBuscar_pr.Text); 
         }
 
         private void btnEliminar_pr_Click(object sender, EventArgs e)
@@ -239,17 +238,7 @@ namespace TiendaDeRopa.Presentacion
 
         private void btnSalir_pr_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dgvListado_prov_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            Close();
         }
     }
 }
