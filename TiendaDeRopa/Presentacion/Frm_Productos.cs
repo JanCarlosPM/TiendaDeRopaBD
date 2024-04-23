@@ -9,7 +9,7 @@ namespace TiendaDeRopa.Presentacion
     public partial class Frm_Productos : Form
     {
 
-        private DataTable datosOriginales;
+        private DataTable dataProductos;
         public Frm_Productos()
         {
             InitializeComponent();
@@ -19,7 +19,6 @@ namespace TiendaDeRopa.Presentacion
 
             btnEditar.Enabled = false;
         }
-
 
         private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -50,7 +49,6 @@ namespace TiendaDeRopa.Presentacion
                 btnEditar.Enabled = true;
             }
         }
-
 
         private void TextBoxLetras_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -85,12 +83,11 @@ namespace TiendaDeRopa.Presentacion
             txtCategoria.KeyPress += TextBoxLetras_KeyPress;
         }
 
-
         private void ListarProductos()
         {
             D_Producto productos = new D_Producto();
-            datosOriginales = productos.ListarProductos();
-            dgvProductos.DataSource = datosOriginales;
+            dataProductos = productos.ListarProductos();
+            dgvProductos.DataSource = dataProductos;
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -131,8 +128,6 @@ namespace TiendaDeRopa.Presentacion
             txtCategoria.Enabled = true;
         }
 
-
-
         private void Frm_Productos_Load(object sender, EventArgs e)
         {
             LlenarComboProveedores();
@@ -142,6 +137,7 @@ namespace TiendaDeRopa.Presentacion
         {
 
         }
+
         private void LlenarComboProveedores()
         {
             D_Proveedor proveedor = new D_Proveedor();

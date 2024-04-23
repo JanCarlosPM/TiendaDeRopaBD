@@ -396,7 +396,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Compras";
             this.Text = "wfCompras";
-            this.Load += new System.EventHandler(this.Frm_Compras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallesCompras)).EndInit();
             this.ResumeLayout(false);
