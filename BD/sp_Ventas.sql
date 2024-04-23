@@ -1,5 +1,8 @@
+USE TiendaRopa
+GO
+
 --//SP ACTUALIZAR STOCK para ventas
-CREATE PROCEDURE SP_ActualizarStockVenta
+CREATE OR ALTER PROCEDURE SP_ActualizarStockVenta
    @categorias NVARCHAR(MAX),
     @cantidades NVARCHAR(MAX),
     @fechasIngreso NVARCHAR(MAX)
@@ -92,3 +95,5 @@ BEGIN
     
     SELECT 'El stock del producto se actualizó correctamente.' AS Mensaje;
 END;
+GO
+

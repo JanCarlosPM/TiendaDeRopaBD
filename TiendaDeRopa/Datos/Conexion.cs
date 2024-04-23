@@ -17,10 +17,9 @@ namespace TiendaDeRopa.Datos
         private Conexion()
         {
             this.Base = "TiendaRopa";
-            this.Servidor = "JCPM";
-            this.Usuario = "Jan";
-            this.Clave = "1234";
-
+            this.Servidor = "localhost";
+            this.Usuario = "sa";
+            this.Clave = "Usuario123.#";
         }
 
         public SqlConnection CrearConexion()

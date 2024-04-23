@@ -1,5 +1,8 @@
+USE TiendaRopa
+GO
+
 --//SP ACTUALIZAR STOCK
-ALTER PROCEDURE [dbo].[SP_ActualizarStock]
+CREATE OR ALTER PROCEDURE [dbo].[SP_ActualizarStock]
     @categorias NVARCHAR(MAX),
     @cantidades NVARCHAR(MAX),
     @fechasIngreso NVARCHAR(MAX)
@@ -92,9 +95,10 @@ BEGIN
     
     SELECT 'El stock del producto se actualizó correctamente.' AS Mensaje;
 END;
+GO
 
 --//SP LISTAR INVENTARIO
-CREATE PROCEDURE SP_ListarInventario
+CREATE OR ALTER PROCEDURE [dbo].[SP_ListarInventario]
 AS
 BEGIN
     SELECT P.categoria,
@@ -110,11 +114,10 @@ BEGIN
     INNER JOIN Producto AS P ON I.id_producto = P.id
     WHERE I.estado <> 2;
 END;
-
+GO
     
 --//SP GUARDAR DETALLES FACTURA
-    
-CREATE PROCEDURE SP_DetalleFactura
+CREATE OR ALTER PROCEDURE [dbo].[SP_DetalleFactura]
     @categorias NVARCHAR(MAX),
     @cantidades NVARCHAR(MAX),
     @precios NVARCHAR(MAX),
@@ -188,10 +191,11 @@ BEGIN
     
     SELECT 'Todos los detalles de la factura se registraron correctamente.' AS Mensaje;
 END;
+GO
 
 --//SP INVENTARIO
 
-CREATE PROCEDURE [dbo].[SP_Inventario]
+CREATE OR ALTER PROCEDURE [dbo].[SP_Inventario]
     @id_producto_inventario INT,
     @cantidad_comprada INT
 AS
@@ -204,7 +208,7 @@ GO
 
 --//SP GUARDAR FACTURA
 
-CREATE PROCEDURE [dbo].[SP_GuardarFactura]
+CREATE OR ALTER PROCEDURE [dbo].[SP_GuardarFactura]
     @cod_factura NCHAR(10),
     @fecha DATETIME,
     @subtotal FLOAT,
@@ -220,8 +224,7 @@ END;
 GO
 
 --//SP LISTAR PRODUCTOS
-
-CREATE PROCEDURE [dbo].[SP_ListarProductos]
+CREATE OR ALTER PROCEDURE [dbo].[SP_ListarProductos]
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -240,10 +243,10 @@ BEGIN
     INNER JOIN
         Proveedor AS PR ON P.id_proveedor = PR.id;
 END;
+GO
 
 --//SP NUMERO DE FACTURA
-
-CREATE PROCEDURE [dbo].[SP_NumeroFactura]
+CREATE OR ALTER PROCEDURE [dbo].[SP_NumeroFactura]
 AS
 BEGIN
     DECLARE @UltimoNumeroFactura INT;
@@ -268,8 +271,7 @@ END;
 GO
 
 --//SP LISTAR PRODUCTOS POR FILTRO (CATEGORIA)
-
-CREATE PROCEDURE [dbo].[SP_ObtenerProductosFiltro]
+CREATE OR ALTER PROCEDURE [dbo].[SP_ObtenerProductosFiltro]
     @categoria NVARCHAR(50) = NULL
 AS
 BEGIN

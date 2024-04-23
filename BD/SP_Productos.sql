@@ -1,5 +1,8 @@
+USE TiendaRopa
+GO
+
 -- SP para ingresar un nuevo producto
-CREATE PROCEDURE [dbo].[SP_InsertarProducto]
+CREATE OR ALTER PROCEDURE [dbo].[SP_InsertarProducto]
     @categoria NVARCHAR(50),
     @tela NVARCHAR(50),
     @talla NVARCHAR(5),
@@ -32,8 +35,9 @@ BEGIN
         PRINT 'El proveedor con nombre ' + @nombre_proveedor + ' no existe.';
     END
 END
+GO
         
-CREATE PROCEDURE [dbo].[SP_ListarProductos]
+CREATE OR ALTER PROCEDURE [dbo].[SP_ListarProductos]
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -52,9 +56,9 @@ BEGIN
     INNER JOIN
         Proveedor AS PR ON P.id_proveedor = PR.id;
 END;
+GO
 
-
-CREATE PROCEDURE [dbo].[SP_EditarProducto]
+CREATE OR ALTER PROCEDURE [dbo].[SP_EditarProducto]
     @categoria NVARCHAR(50),
     @tela NVARCHAR(50),
     @talla NVARCHAR(5),
@@ -92,11 +96,13 @@ BEGIN
         PRINT 'El proveedor con nombre ' + @nombre_proveedor + ' no existe.';
     END
 END
+GO
 
-CREATE PROCEDURE [dbo].[SP_ObtenerNombresProveedores]
+CREATE OR ALTER PROCEDURE [dbo].[SP_ObtenerNombresProveedores]
 AS
 BEGIN
     SET NOCOUNT ON;
 
     SELECT nombre FROM Proveedor WHERE estado = 1;
 END
+GO
