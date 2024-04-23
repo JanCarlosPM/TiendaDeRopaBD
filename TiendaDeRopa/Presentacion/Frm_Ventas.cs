@@ -83,7 +83,7 @@ namespace TiendaDeRopa.Presentacion
                 Btn_LimpiarVenta.Enabled = true;
                 BtnEliminarProductoVenta.Enabled = true;
             }
-            
+
         }
         private void limpiarcampos()
         {
@@ -134,7 +134,7 @@ namespace TiendaDeRopa.Presentacion
         {
             if (txtFechaVenta.Text == "" || txtSubVenta.Text == "" || txtIvaVenta.Text == "" || txtTotalVenta.Text == "" || (!CbEfectivoVenta.Checked && !CbTarjetaVenta.Checked))
             {
-                MessageBox.Show("Debe llenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La tabla no contiene productos y/o seleccione una forma de pago", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -197,6 +197,30 @@ namespace TiendaDeRopa.Presentacion
                 return;
             }
 
+            int cantidadSeleccionada;
+            if (!int.TryParse(txtCantidaVenta.Text, out cantidadSeleccionada) || cantidadSeleccionada <= 0)
+            {
+                MessageBox.Show("La Cantidad debe ser un número entero mayor que cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            foreach (DataGridViewRow fila in dgvVenta.Rows)
+            {
+                if (fila.Cells["Categoria"].Value.ToString() == txtCategoriaVenta.Text)
+                {
+                    int cantidadEnStock = Convert.ToInt32(fila.Cells["existencia"].Value);
+                    if (cantidadSeleccionada > cantidadEnStock)
+                    {
+                        MessageBox.Show("La cantidad ingresada es mayor que la existencia en stock del producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    int nuevaExistencia = cantidadEnStock - cantidadSeleccionada;
+                    fila.Cells["existencia"].Value = nuevaExistencia;
+
+                    break;
+                }
+            }
+
             string descripcion = txtCategoriaVenta.Text;
             double precio;
             int cantidad;
@@ -228,6 +252,8 @@ namespace TiendaDeRopa.Presentacion
             BtnfInsertarVenta.Enabled = true;
         }
 
+
+
         private void Btn_BuscarVenta_Click(object sender, EventArgs e)
         {
             string categoria = Txt_BuscarVenta.Text.Trim();
@@ -244,7 +270,7 @@ namespace TiendaDeRopa.Presentacion
             }
         }
 
-         private void dgvDetalleVenta_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvDetalleVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvDetalleVenta.Rows[e.RowIndex].Cells["Categoria"].Value != null &&
                 dgvDetalleVenta.Rows[e.RowIndex].Cells["Precio"].Value != null &&
@@ -275,10 +301,23 @@ namespace TiendaDeRopa.Presentacion
             {
                 DataGridViewRow filaSeleccionada = dgvDetalleVenta.SelectedRows[0];
 
+                string categoriaEliminada = filaSeleccionada.Cells["Categoria"].Value.ToString();
+                int cantidadEliminada = Convert.ToInt32(filaSeleccionada.Cells["Cantidad"].Value);
+
+                // Recuperar la fila correspondiente en dgvVenta
+                foreach (DataGridViewRow fila in dgvVenta.Rows)
+                {
+                    if (fila.Cells["Categoria"].Value.ToString() == categoriaEliminada)
+                    {
+                        int existenciaActual = Convert.ToInt32(fila.Cells["existencia"].Value);
+                        fila.Cells["existencia"].Value = existenciaActual + cantidadEliminada;
+                        break;
+                    }
+                }
+
                 dgvDetalleVenta.Rows.Remove(filaSeleccionada);
 
                 CalcularSubtotalVenta();
-
                 limpiarcampos();
 
                 txtCantidaVenta.Enabled = false;
@@ -293,6 +332,7 @@ namespace TiendaDeRopa.Presentacion
                 MessageBox.Show("Seleccione una fila para eliminar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
         private void BtnfInsertarVenta_Click(object sender, EventArgs e)
         {
@@ -438,15 +478,9 @@ namespace TiendaDeRopa.Presentacion
 
             BtnCancelarVenta.Visible = false;
             BtnfInsertarVenta.Enabled = true;
-            BtnfInsertarVenta.Enabled = false;
 
             dgvVenta.Enabled = true;
             dgvDetalleVenta.ClearSelection();
         }
     }
-
-
-   
 }
-
-

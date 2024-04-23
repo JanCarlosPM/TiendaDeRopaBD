@@ -18,8 +18,8 @@ namespace TiendaDeRopa.Datos
         {
             this.Base = "TiendaRopa";
             this.Servidor = "localhost";
-            this.Usuario = "sa";
-            this.Clave = "Usuario123.#";
+            this.Usuario = "Jan";
+            this.Clave = "1234";
         }
 
         public SqlConnection CrearConexion()
